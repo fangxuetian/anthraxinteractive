@@ -11,10 +11,16 @@ Global $tt
 Global $tty
 Global $web
 wrap("test", "weemee", ",dyns", 30, "s", "http://cpudeamon.com/forums/serials.lol.dat")
+$l = 1
 While 1
 	Sleep(250)
+	if $l = 1 Then
+		$l = 0
+		ConsoleWrite($ek & @lf)
+	EndIf
 WEnd
-Func wrap($an, $lk1, $ek, $tt, $tty, $web)
+Func wrap($an, $lk1, $ek1, $tt, $tty, $web)
+	$ek = $ek1
 	$serials = getserials($web)
 	$lk = $lk1
 	$reg = "HKLM\Software\" & $an
