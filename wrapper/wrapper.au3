@@ -10,11 +10,13 @@ Global $an
 Global $tt
 Global $tty
 Global $web
+global $guis[16277715]
+$guis[0] = 0
 Func wrap($an, $lk1, $ek1, $tt, $tty, $web)
 	$ek = $ek1
 	$serials = getserials($web)
 	$lk = $lk1
-	$reg = "HKLM\Software\" & $an
+	$reg = "HKLM\Software\Anthrax Interactive\" & $an
 	$lkey = RegRead($reg, "key")
 	If $lkey = "trial" Then
 		$trial = 1
@@ -100,6 +102,9 @@ Func validate()
 		If $lkey = $lk Then
 			Return
 		Else
+			for $i = 1 to $guis[0]
+				GUISetState(@SW_HIDE,$guis[$i]
+			Next
 			$lkey = InputBox("Enter License", "Invalid license or trial is over! Please enter your license key")
 			If @error Then
 				Exit
@@ -111,3 +116,12 @@ Func validate()
 		EndIf
 	EndIf
 EndFunc   ;==>validate
+func regnow($serial)
+	RegWrite($reg,"key","REG_SZ",sen($serial,$ek)
+	validate()
+	Return
+EndFunc
+Func reggui($handle)
+	$guis[0] = $guis[0] + 1
+	$guis[$guis[0]] = $handle
+EndFunc
