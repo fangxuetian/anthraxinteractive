@@ -43,11 +43,12 @@ $NowTime = GUICtrlCreateLabel("Current Time:" & _NowTime(), 10, 60, 260, 20)
 GUICtrlSetColor(-1, 0xff0000)
 GUISetState(@SW_SHOW)
 GUISetOnEvent($GUI_EVENT_CLOSE, "_Exit")
+GUISetOnEvent($help, "_Help")
 While 1
 	$aMsg = GUIGetMsg()
 	Switch $aMsg
 		Case $help
-			Help()
+			_Help()
 	EndSwitch
 	If _NowTime() = GUICtrlRead($hour) & ":" & GUICtrlRead($minute) & ":00 " & GUICtrlRead($AMPM) Then
 		For $i = 1 To 5
