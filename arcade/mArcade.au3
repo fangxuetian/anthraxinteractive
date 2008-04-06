@@ -1,6 +1,6 @@
 #Region ;**** Directives created by AutoIt3Wrapper_GUI ****
 #AutoIt3Wrapper_icon=C:\Program Files\AutoIt3\Icons\filetype2.ico
-#AutoIt3Wrapper_outfile=C:\Users\maverick\Desktop\thumb\anthrax\Anthrax Arcade\mArcade.exe
+#AutoIt3Wrapper_outfile=C:\Users\maverick\Desktop\thumb\anthrax\Anthrax Arcade\Anthrax Arcade.exe
 #AutoIt3Wrapper_Compression=4
 #AutoIt3Wrapper_Res_Comment=http://cpudeamon.com is our website
 #AutoIt3Wrapper_Res_Description=Anthrax Arcade
@@ -8,7 +8,6 @@
 #AutoIt3Wrapper_Res_LegalCopyright=Copyright 2008 Anthrax
 #AutoIt3Wrapper_Run_Tidy=y
 #EndRegion ;**** Directives created by AutoIt3Wrapper_GUI ****
-$lk = "axdevpwner"
 global $ver = 3
 global $games = 2
 #region template
@@ -27,7 +26,7 @@ EndIf
 #include <guiconstants.au3>
 #include <IE.au3>
 #endregion
-wrap("aArcade","msdev","msdev","720","h")
+wrap("Arcade","msdev","msdev","720","h")
 #region CMD line componets
 if $cmdline[0] = 0 Then
 	regapp()
