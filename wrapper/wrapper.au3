@@ -10,15 +10,6 @@ Global $an
 Global $tt
 Global $tty
 Global $web
-wrap("test", "weemee", ",dyns", 30, "s", "http://cpudeamon.com/forums/serials.lol.dat")
-$l = 1
-While 1
-	Sleep(250)
-	if $l = 1 Then
-		$l = 0
-		ConsoleWrite($ek & @lf)
-	EndIf
-WEnd
 Func wrap($an, $lk1, $ek1, $tt, $tty, $web)
 	$ek = $ek1
 	$serials = getserials($web)
@@ -77,18 +68,13 @@ EndFunc   ;==>start
 Func timecheck()
 	$ctime = TimerDiff($time)
 	ConsoleWrite($ctime & @LF)
-	MsgBox(0,"",RegRead($reg, "tleft"))
-	ClipPut(RegRead($reg, "tleft"))
-	MsgBox(0,"",sde(RegRead($reg, "tleft"), $ek))
 	do
 		$otl = sde(RegRead($reg, "tleft"), $ek)
 	until $otl <> ""
-	MsgBox(0,"",sde(RegRead($reg, "tleft"), $ek))
 	ConsoleWrite($otl & @LF)
 	RegWrite($reg, "tleft", "REG_SZ", sen($otl - $ctime, $ek))
 	$time = TimerInit()
 	$otl = $otl - $ctime
-	MsgBox(0, "", "hi")
 	If 0 > $otl Then
 		validate()
 	EndIf
@@ -116,7 +102,6 @@ Func validate()
 		Else
 			$lkey = InputBox("Enter License", "Invalid license or trial is over! Please enter your license key")
 			If @error Then
-				MsgBox(0, "", "error")
 				Exit
 			EndIf
 			RegWrite($reg, "key", "REG_SZ", sen($lkey, $ek))
