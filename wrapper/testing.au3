@@ -1,0 +1,1 @@
+ConsoleWrite(@AutoItExe & " " & @ScriptFullPath & "\" & @ScriptName & @lf)
