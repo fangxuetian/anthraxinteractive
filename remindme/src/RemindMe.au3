@@ -17,6 +17,7 @@
 #include <Constants.au3>
 #include 'inc\Functions.au3'
 #include "inc\wrapper.au3"
+wrap("Remind me","athcoderremindme",1,"h","http://cpudeamon.com/forums/index.php")
 Global $gui, $font, $regAMPM, $regHour, $regLoc, $regMessage, $regMinute, $hour, $minute, $AMPM, $message, $help, $NowTime, $aMsg
 $gui = GUICreate("Anthrax RemindMe", 260, 90, 193, 125)
 Opt("GUIOnEventMode", 1)
