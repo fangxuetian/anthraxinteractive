@@ -1,0 +1,21 @@
+l
+12
+$idk 13
+$le m
+$rtlol m
+o
+14
+$idk 15
+$le p
+$rtlol mp
+l
+12
+$idk 13
+$le m
+$rtlol mpm
+$ctl m
+$ctl p
+$ctl m
+$rt1 13 15 13
+$rt mpm
+$rt1 13 15 13
