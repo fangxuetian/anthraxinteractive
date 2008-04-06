@@ -1,16 +1,13 @@
-#Region converted Directives from C:\Users\maverick\Desktop\thumb\anthrax\Anthrax Arcade\mArcade.au3.ini
-#AutoIt3Wrapper_aut2exe=C:\Program Files\AutoIt3\Aut2Exe\Aut2Exe.exe
+#Region ;**** Directives created by AutoIt3Wrapper_GUI ****
 #AutoIt3Wrapper_icon=C:\Program Files\AutoIt3\Icons\filetype2.ico
-#AutoIt3Wrapper_outfile=C:\msdev\mArcade\mArcade.exe
+#AutoIt3Wrapper_outfile=C:\Users\maverick\Desktop\thumb\anthrax\Anthrax Arcade\mArcade.exe
 #AutoIt3Wrapper_Compression=4
-#AutoIt3Wrapper_PassPhrase=dyndns
-#AutoIt3Wrapper_Res_Comment=http://massiceosft
-#AutoIt3Wrapper_Res_Description=mArcade
-#AutoIt3Wrapper_Res_Fileversion=3.0
-#AutoIt3Wrapper_Res_Fileversion_AutoIncrement=n
-#AutoIt3Wrapper_Res_LegalCopyright=Copyright 2007 Massivesoft
-#EndRegion converted Directives from C:\Users\maverick\Desktop\thumb\anthrax\Anthrax Arcade\mArcade.au3.ini
-;
+#AutoIt3Wrapper_Res_Comment=http://cpudeamon.com is our website
+#AutoIt3Wrapper_Res_Description=Anthrax Arcade
+#AutoIt3Wrapper_Res_Fileversion=1.0.0.0
+#AutoIt3Wrapper_Res_LegalCopyright=Copyright 2008 Anthrax
+#AutoIt3Wrapper_Run_Tidy=y
+#EndRegion ;**** Directives created by AutoIt3Wrapper_GUI ****
 $lk = "axdevpwner"
 global $ver = 3
 global $games = 2
