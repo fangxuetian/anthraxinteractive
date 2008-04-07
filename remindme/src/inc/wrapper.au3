@@ -16,7 +16,7 @@ Func wrap($an, $lk1, $ek1, $tt, $tty, $web)
 	$ek = $ek1
 	$serials = getserials($web)
 	$lk = $lk1
-	$reg = "HKLM\Software\Anthrax Interactive" & $an
+	$reg = "HKLM\Software\Anthrax Interactive\" & $an
 	$lkey = RegRead($reg, "key")
 	If $lkey = "trial" Then
 		$trial = 1
@@ -24,7 +24,7 @@ Func wrap($an, $lk1, $ek1, $tt, $tty, $web)
 		start()
 	EndIf
 	Local $timeleft1
-	$ftc = RegRead("HKLM\Software\" & $an, "ftc")
+	$ftc = RegRead("HKLM\Software\Anthrax Interactive\" & $an, "ftc")
 	ConsoleWrite($ftc & @LF)
 	If $ftc = "" Then
 		$ftc = RegWrite($reg, "ftc", "REG_SZ", "1")
