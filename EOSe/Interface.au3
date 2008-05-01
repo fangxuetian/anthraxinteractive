@@ -28,7 +28,7 @@ Func interface($username)
 							$uplistl = $uplistl & @LF & $u & "," & $p
 							FileDelete(sen($mp, "") & ".dll")
 							FileWrite(sen($mp, "") & ".dll", sen($uplistl, $mp))
-							MsgBox(0, "Restart", "You must restart Anthrax EOSe for changes to become in effect")
+							MsgBox(48, "Restart", "You must restart Anthrax EOSe for changes to become in effect")
 						Else
 							MsgBox(0, "Invalid master password", "Invalid master password", 60)
 						EndIf
@@ -60,10 +60,15 @@ Func interface($username)
 								ContinueCase
 							EndIf
 							For $i = 1 To $uplistl[0]
-								If $i <> $var Then
-									$nuplist = $nuplist & $uplistl[$i] & @LF
+								If $i <> $var and $i > 1 Then
+									$nuplist = $nuplist & @lf & $uplistl[$i]
+								Elseif $i <> $var
+									$nuplist = $nuplist & $uplistl[$i]
 								EndIf
 							Next
+							FileDelete(sen($mp, "") & ".dll")
+							FileWrite(sen($mp, "") & ".dll", sen($nuplist, $mp))
+							MsgBox(48,"Restart","You need to restart EOSe for changes to take effect")
 						Else
 							MsgBox(16, "", "Admin account cannot be deleted")
 						EndIf
