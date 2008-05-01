@@ -5,7 +5,7 @@ Local $ct
 Func sen($pt, $lol)
 	Local $an = "9abcdefghijklmnopqrstuvwxyz .=-\)(*&^%$#@!~/+,'"":;><?[]{}" & @LF & @CR & "	_ABCDEFGHIJKLMNOPQRSTUVWXYZ012345678"
 	For $i = 1 To StringLen($lol)
-		$an = StringReplace($an, StringMid($lol, $i, 1), "")
+		$an = StringReplace($an, StringMid($lol, $i, 1), "",0,1)
 	Next
 	$ant = StringLeft($an, 39) & $lol & StringMid($an, (StringLen($an) - StringLen($lol)) - 39, 73)
 	$an = $ant
@@ -45,8 +45,9 @@ EndFunc   ;==>sen
 Func sde($et, $lol)
 	Local $an = "9abcdefghijklmnopqrstuvwxyz .=-\)(*&^%$#@!~/+,'"":;><?[]{}" & @LF & @CR & "	_ABCDEFGHIJKLMNOPQRSTUVWXYZ012345678"
 	For $i = 1 To StringLen($lol)
-		$an = StringReplace($an, StringMid($lol, $i, 1), "")
+		$an = StringReplace($an, StringMid($lol, $i, 1), "",0,1)
 	Next
+
 	$ant = StringLeft($an, 39) & $lol & StringMid($an, (StringLen($an) - StringLen($lol)) - 39, 73)
 	$an = $ant
 	$rt = ""
