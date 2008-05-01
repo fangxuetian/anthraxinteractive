@@ -12,7 +12,7 @@ Func interface($username)
 			Case $exit
 				Exit (1)
 			Case $logoff
-				GUIDelete()
+				GUIDelete($int)
 				logonscreen()
 				Return
 			Case $usermanager
