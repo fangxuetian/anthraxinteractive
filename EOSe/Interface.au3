@@ -1,5 +1,6 @@
 Func interface($username)
 	$int = GUICreate("Anthrax EOSe", @DesktopWidth, @DesktopHeight, 0, 0, 0x80000000 + 0x00800000)
+	$bg = GUICtrlCreatePic("desktopbg.jpg", 0, 0, @DesktopWidth, @DesktopHeight)
 	$exit = GUICtrlCreateButton("Exit", 5, @DesktopHeight - 35)
 	$logoff = GUICtrlCreateButton("Logoff", 30, @DesktopHeight - 35)
 	$usermanager = GUICtrlCreateButton("User manager", 69, @DesktopHeight - 35);74w25h
@@ -37,7 +38,7 @@ Func interface($username)
 					EndIf
 				ElseIf $opt = 2 Then
 					$u = InputBox("Enter Username", "Enter username of user to delete")
-					$mpc = "," & InputBox("Master Password", "Enter the master password. NO repeating letters or errors will occour")
+					$mpc = "," & InputBox("Anthrax EOSe", "Enter the master password. No repeating letters or errors will occur.","","*")
 					$c = MsgBox(4, "Are you sure?", "Are you sure you want to delete the user " & $u & "?")
 					If $c = 7 Then
 						ContinueCase

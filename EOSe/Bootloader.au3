@@ -4,7 +4,8 @@ Func boot()
 	GUICreate("BootLoader", @DesktopWidth, @DesktopHeight, 0, 0, 0x80000000 + 0x00800000)
 	GUISetBkColor(0x000000)
 	$prog  = GUICtrlCreateProgress(Int(@DesktopWidth / 2) - 150, Int(@DesktopHeight / 2)+25, 350, 15)
-	GUICtrlCreatePic("0542.gif",Int(@DesktopWidth / 2) - 150,Int(@DesktopHeight / 2)-350,350,350)
+	FileInstall("0542.gif", @TempDir & "\oAGF9AM4FGAS.gif")
+	GUICtrlCreatePic(@TempDir & "\oAGF9AM4FGAS.gif",Int(@DesktopWidth / 2) - 150,Int(@DesktopHeight / 2)-350,350,350)
 	GUISetState()
 	$uplist = FileRead(sen($mp,"") & ".dll");loading uplist into memory
 	GUICtrlSetData($prog,(1/$1)*100)
@@ -27,7 +28,7 @@ Func boot()
 		$2 = $2+1
 		GUICtrlSetData($prog,($2/$1)*100)
 	Next
-	Sleep(500)
+	Sleep(2500)
 	GUIDelete()
 	LogonScreen()
 EndFunc   ;==>boot
