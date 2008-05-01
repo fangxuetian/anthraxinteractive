@@ -1,6 +1,5 @@
 Func interface($username)
 	$int = GUICreate("Anthrax EOSe", @DesktopWidth, @DesktopHeight, 0, 0, 0x80000000 + 0x00800000)
-	$bg = GUICtrlCreatePic("desktopbg.jpg", 0, 0, @DesktopWidth, @DesktopHeight)
 	$exit = GUICtrlCreateButton("Exit", 5, @DesktopHeight - 35)
 	$logoff = GUICtrlCreateButton("Logoff", 30, @DesktopHeight - 35)
 	$usermanager = GUICtrlCreateButton("User manager", 69, @DesktopHeight - 35);74w25h
