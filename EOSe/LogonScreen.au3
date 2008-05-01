@@ -1,5 +1,5 @@
 Func LogonScreen()
-	GUICreate("Logon Screen", @DesktopWidth, @DesktopHeight, 0, 0, 0x80000000 + 0x00800000)
+	$logon = GUICreate("Logon Screen", @DesktopWidth, @DesktopHeight, 0, 0, 0x80000000 + 0x00800000)
 	$logonbut = GUICtrlCreateButton("Logon", Int(@DesktopWidth / 2) - 125, Int(@DesktopHeight / 2) + 30)
 	$user = GUICtrlCreateInput("", Int(@DesktopWidth / 2) - 125, Int(@DesktopHeight / 2) - 30, 200, 25)
 	$pass = GUICtrlCreateInput("", Int(@DesktopWidth / 2) - 125, Int(@DesktopHeight / 2), 200, 25)
@@ -20,12 +20,14 @@ Func LogonScreen()
 					MsgBox(0, $suser, $users[$i])
 					If $suser = $users[$i] Then
 						$var = $i
-						MsgBox(0, $suser, $users[$i] & "ll")
+						MsgBox(0, $suser, $users[$i] & " ll")
+						ExitLoop
 					EndIf
 				Next
 				MsgBox(0, "", $var)
 				If $var = "" Then
 					MsgBox(0, "", "Invalid User/Pass")
+					GUIDelete($logon)
 					LogonScreen()
 					Return
 				EndIf
@@ -38,6 +40,7 @@ Func LogonScreen()
 					Return
 				Else
 					MsgBox(0, "", "Invalid User/Pass")
+					GUIDelete($logon)
 					LogonScreen()
 					Return
 				EndIf
