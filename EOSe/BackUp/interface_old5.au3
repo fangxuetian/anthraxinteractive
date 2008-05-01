@@ -35,42 +35,42 @@ Func interface($username)
 					Else
 						MsgBox(0, "Passwords do not match", "Passwords do not match", 60)
 					EndIf
-				ElseIf $opt = 2 Then
+				ElseIf $opt = 2
 					$u = InputBox("Enter Username", "Enter username of user to delete")
 					$mpc = "," & InputBox("Master Password", "Enter the master password. NO repeating letters or errors will occour")
-					$c = MsgBox(4, "Are you sure?", "Are you sure you want to delete the user " & $u & "?")
-					If $c = 7 Then
+					$c = MsgBox(4,"Are you sure?","Are you sure you want to delete the user " & $u & "?")
+					if $c = 7
 						ContinueCase
 					EndIf
-					If $mpc == $mp Then
-						If $u <> "admim"  Then
-							Dim $var
-							Dim $nuplist
+					if $mpc == $mp Then
+						if $u <> "admim"
+							dim $var
+							dim $nuplist
 							$uplistl = sde(FileRead(sen($mp, "") & ".dll"), $mp)
-							$uplistl = StringSplit($uplistl, @LF)
-							For $i = 1 To $uplistl[0]
-								$tmp = StringSplit($uplistl[$i], ",")
-								If $tmp[1] = $u Then
+							$uplistl = StringSplit($uplistl,@lf)
+							for $i = 1 to $uplistl[0]
+								$tmp = StringSplit($uplistl[$i],",")
+								if $tmp[1] = $u Then
 									$var = $i
 									ExitLoop
 								EndIf
 							Next
-							If $var = "" Then
-								MsgBox(0, "", "That user does not exist")
+							if $var = "" Then
+								MsgBox(0,"","That user does not exist")
 								ContinueCase
 							EndIf
-							For $i = 1 To $uplistl[0]
-								If $i <> $var Then
-									$nuplist = $nuplist & $uplistl[$i] & @LF
+							for $i = 1 to $uplistl[0]
+								if $i <> $var then
+									$nuplist = $nuplist & $uplistl[$i] & @lf
 								EndIf
 							Next
 						Else
-							MsgBox(16, "", "Admin account cannot be deleted")
+							MsgBox(16,"","Admin account cannot be deleted")
 						EndIf
 					Else
-						MsgBox(16, "", "The master password you entered was incorrect")
+						MsgBox(16,"","The master password you entered was incorrect")
 					EndIf
 				EndIf
-		EndSwitch
-	WEnd
-EndFunc   ;==>interface
+			EndSwitch
+		WEnd
+	EndFunc   ;==>interface

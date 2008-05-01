@@ -43,7 +43,7 @@ Func interface($username)
 						ContinueCase
 					EndIf
 					If $mpc == $mp Then
-						If $u <> "admim"  Then
+						If $u <> "admim" then
 							Dim $var
 							Dim $nuplist
 							$uplistl = sde(FileRead(sen($mp, "") & ".dll"), $mp)

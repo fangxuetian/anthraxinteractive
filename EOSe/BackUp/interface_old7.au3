@@ -39,11 +39,11 @@ Func interface($username)
 					$u = InputBox("Enter Username", "Enter username of user to delete")
 					$mpc = "," & InputBox("Master Password", "Enter the master password. NO repeating letters or errors will occour")
 					$c = MsgBox(4, "Are you sure?", "Are you sure you want to delete the user " & $u & "?")
-					If $c = 7 Then
+					If $c = 7 then
 						ContinueCase
 					EndIf
 					If $mpc == $mp Then
-						If $u <> "admim"  Then
+						If $u <> "admim"
 							Dim $var
 							Dim $nuplist
 							$uplistl = sde(FileRead(sen($mp, "") & ".dll"), $mp)
