@@ -58,7 +58,9 @@ Func sde($et, $lol)
 	$ets = StringSplit($et, " ")
 	For $i = 1 To $ets[0]
 		If $ets[$i] = 1 Then
-			$rt = $rt & "9"
+			$rt = $rt & StringLeft($an,1)
+			MsgBox(0,"",StringLeft($an,1))
+			MsgBox(0,"",StringInStr($an,"8"))
 		Else
 			$rt = $rt & StringMid($an, $ets[$i] - 1, 1)
 		EndIf
