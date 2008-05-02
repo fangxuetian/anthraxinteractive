@@ -3,9 +3,11 @@ Func interface($username)
 	$exit = GUICtrlCreateButton("Exit", 5, @DesktopHeight - 35)
 	$logoff = GUICtrlCreateButton("Logoff", 30, @DesktopHeight - 35)
 	$usermanager = GUICtrlCreateButton("User manager", 69, @DesktopHeight - 35);74w25h
-	
+	$bg = 0xee0000
+	GUISetBkColor($bg,$int)
 	Dim $umgui
-	GUICtrlCreateLabel("Welcome, " & $username, 5, 35)
+	$welcome = GUICtrlCreateLabel("Welcome, " & $username,5,35)
+	GUICtrlSetFont($welcome,18)
 	GUISetState()
 	While 1
 		Switch GUIGetMsg()
