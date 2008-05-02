@@ -13,10 +13,13 @@ Func sen($pt, $lol)
 	$rt1 = ""
 	For $i = 1 To StringLen($pt)
 		$cl = StringMid($pt, $i, 1)
+		MsgBox(0,$pt,$i & "			" & $cl)
+		MsgBox(0,"",StringInStr($an,$cl,1))
 		$cp = StringInStr($an, $cl, 1)
+		MsgBox
 		ConsoleWrite($cl & @LF & $cp & @LF)
 		If $cp = StringLen($an) Then
-			$rt = $rt & "a"
+			$rt = $rt & StringLeft($an,1)
 			ConsoleWrite("$rt " & $rt & @LF)
 		Else
 			$idk = $cp + 1
