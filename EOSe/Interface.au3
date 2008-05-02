@@ -6,7 +6,7 @@ Func interface($username)
 	$bg = 0xee0000
 	GUISetBkColor($bg,$int)
 	Dim $umgui
-	$welcome = GUICtrlCreateLabel("Welcome, " & $username,5,35)
+	$welcome = GUICtrlCreateLabel("Welcome, " & $username,5,35,@DesktopHeight - 5)
 	GUICtrlSetFont($welcome,18)
 	GUISetState()
 	While 1
