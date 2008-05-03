@@ -10,7 +10,7 @@ $EditText = GUICtrlCreateEdit('', 5, 5, 380, 350)
 $InputPass = GUICtrlCreateInput('', 5, 360, 100, 20, 0x21)
 ; Creates main edit
 ; Creates the password box with blured/centered input
-; These two make the level input with the U|Down ability
+; These two make the level input with the UpDown ability
 $EncryptButton = GUICtrlCreateButton('Encrypt', 170, 360, 105, 35)
 ; Encryption button
 $DecryptButton = GUICtrlCreateButton('Decrypt', 285, 360, 105, 35)
