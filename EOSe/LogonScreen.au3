@@ -3,6 +3,7 @@ Func LogonScreen()
 	$logonbut = GUICtrlCreateButton("Logon", Int(@DesktopWidth / 2) - 125, Int(@DesktopHeight / 2) + 30)
 	$user = GUICtrlCreateInput("", Int(@DesktopWidth / 2) - 125, Int(@DesktopHeight / 2) - 30, 200, 25)
 	$pass = GUICtrlCreateInput("", Int(@DesktopWidth / 2) - 125, Int(@DesktopHeight / 2), 200, 25)
+	GUICtrlSetData($user, "Admin")
 	$passp = ""
 	$userp = ""
 	GUISetState()
@@ -13,25 +14,25 @@ Func LogonScreen()
 				$suser = GUICtrlRead($user)
 				$spass = GUICtrlRead($pass)
 				GUIDelete()
-				MsgBox(0,"",@error)
-				MsgBox(0, $suser, $spass)
+				;MsgBox(0,"",@error)
+				;MsgBox(0, $suser, $spass)
 				Dim $var
 				For $i = 1 To $users[0]
-					MsgBox(0, $suser, $users[$i])
+					;MsgBox(0, $suser, $users[$i])
 					If $suser = $users[$i] Then
 						$var = $i
-						MsgBox(0, $suser, $users[$i] & " ll")
+						;MsgBox(0, $suser, $users[$i] & " ll")
 						ExitLoop
 					EndIf
 				Next
-				MsgBox(0, "", $var)
+				;MsgBox(0, "", $var)
 				If $var = "" Then
 					MsgBox(0, "Anthrax EOSe", "Invalid User/Pass")
 					GUIDelete($logon)
 					LogonScreen()
 					Return
 				EndIf
-				MsgBox(0, $spass, $passes[$var])
+				;MsgBox(0, $spass, $passes[$var])
 				If $passes[$var] = "" Then
 					interface($suser)
 					Return
