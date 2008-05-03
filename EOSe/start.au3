@@ -7,6 +7,7 @@
 #include <Interface.au3>
 #include <Wrapper.au3>
 #include <em.au3>
+#RequireAdmin
 Global $users[1677715]
 Global $passes[1677715]
 Global $mp
