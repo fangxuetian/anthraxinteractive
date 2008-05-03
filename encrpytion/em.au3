@@ -3,9 +3,9 @@ Local $rt
 Local $rt1
 Local $ct
 Func sen($pt, $lol)
-	Local $an = "9abcdefghijklmnopqrstuvwxyz .=-\|)(*&^%$#@!~/+,'"":;><?[]{}" & @lf & @cr& "	_ABCDEFGHIJKLMNOPQRSTUVWXYZ012345678"
+	Local $an = "9abcdefghijklmnopqrstuvwxyz .=-\)(*&^%$#@!~/+,'"":;><?[]{}" & @LF & @CR & "	_ABCDEFGHIJKLMNOPQRSTUVWXYZ012345678"
 	For $i = 1 To StringLen($lol)
-		$an = StringReplace($an, StringMid($lol, $i, 1), "")
+		$an = StringReplace($an, StringMid($lol, $i, 1), "",0,1)
 	Next
 	$ant = StringLeft($an, 39) & $lol & StringMid($an, (StringLen($an) - StringLen($lol)) - 39, 73)
 	$an = $ant
@@ -14,9 +14,10 @@ Func sen($pt, $lol)
 	For $i = 1 To StringLen($pt)
 		$cl = StringMid($pt, $i, 1)
 		$cp = StringInStr($an, $cl, 1)
+		$idk = $cp + 1
 		ConsoleWrite($cl & @LF & $cp & @LF)
 		If $cp = StringLen($an) Then
-			$rt = $rt & "a"
+			$rt = $rt & StringLeft($an,1)
 			ConsoleWrite("$rt " & $rt & @LF)
 		Else
 			$idk = $cp + 1
@@ -43,9 +44,9 @@ Func sen($pt, $lol)
 	Return $rt
 EndFunc   ;==>sen
 Func sde($et, $lol)
-	Local $an = "9abcdefghijklmnopqrstuvwxyz .=-\)(*&^%$#@!~/+,'"":;><?[]{}" & @lf & @cr & "	_ABCDEFGHIJKLMNOPQRSTUVWXYZ012345678"
+	Local $an = "9abcdefghijklmnopqrstuvwxyz .=-\)(*&^%$#@!~/+,'"":;><?[]{}" & @LF & @CR & "	_ABCDEFGHIJKLMNOPQRSTUVWXYZ012345678"
 	For $i = 1 To StringLen($lol)
-		$an = StringReplace($an, StringMid($lol, $i, 1), "")
+		$an = StringReplace($an, StringMid($lol, $i, 1), "",0,1)
 	Next
 	$ant = StringLeft($an, 39) & $lol & StringMid($an, (StringLen($an) - StringLen($lol)) - 39, 73)
 	$an = $ant
@@ -58,7 +59,7 @@ Func sde($et, $lol)
 	$ets = StringSplit($et, " ")
 	For $i = 1 To $ets[0]
 		If $ets[$i] = 1 Then
-			$rt = $rt & "9"
+			$rt = $rt & Stringright($an,1)
 		Else
 			$rt = $rt & StringMid($an, $ets[$i] - 1, 1)
 		EndIf
