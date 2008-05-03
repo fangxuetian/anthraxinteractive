@@ -13,10 +13,8 @@ Func sen($pt, $lol)
 	$rt1 = ""
 	For $i = 1 To StringLen($pt)
 		$cl = StringMid($pt, $i, 1)
-		MsgBox(0,$pt,$i & "			" & $cl)
-		MsgBox(0,"",StringInStr($an,$cl,1))
 		$cp = StringInStr($an, $cl, 1)
-		MsgBox
+		$idk = $cp + 1
 		ConsoleWrite($cl & @LF & $cp & @LF)
 		If $cp = StringLen($an) Then
 			$rt = $rt & StringLeft($an,1)
@@ -61,9 +59,7 @@ Func sde($et, $lol)
 	$ets = StringSplit($et, " ")
 	For $i = 1 To $ets[0]
 		If $ets[$i] = 1 Then
-			$rt = $rt & StringLeft($an,1)
-			MsgBox(0,"",StringLeft($an,1))
-			MsgBox(0,"",StringInStr($an,"8"))
+			$rt = $rt & Stringright($an,1)
 		Else
 			$rt = $rt & StringMid($an, $ets[$i] - 1, 1)
 		EndIf
