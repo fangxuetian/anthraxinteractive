@@ -2,7 +2,8 @@ Func interface($username)
 	$int = GUICreate("Anthrax EOSe", @DesktopWidth, @DesktopHeight, 0, 0, 0x80000000 + 0x00800000)
 	$exit = GUICtrlCreateButton("Exit", 5, @DesktopHeight - 35)
 	$logoff = GUICtrlCreateButton("Logoff", 30, @DesktopHeight - 35)
-	$usermanager = GUICtrlCreateButton("User manager", 69, @DesktopHeight - 35);74w25h
+	$usermanager = GUICtrlCreateButton("User manager", 68, @DesktopHeight - 35);74w25h
+	$custon = GUICtrlCreateButton("Addons",142,@DesktopHeight - 35)
 	$bg = 0xee0000
 	GUISetBkColor($bg,$int)
 	Dim $umgui
@@ -18,7 +19,7 @@ Func interface($username)
 				logonscreen()
 				Return
 			Case $usermanager
-				$opt = InputBox("", "enter 2 to delete a user and 1 to make a new user")
+				$opt = InputBox("", "enter 2 to delete a user, 1 to make a new user, and 3 to give yourself/change yourt own password")
 				If $opt = 1 Then
 					$u = InputBox("Enter Username", "Enter username of user to add")
 					$p = InputBox("Enter password", "Enter password of user to add", "", "*")
@@ -64,7 +65,7 @@ Func interface($username)
 							For $i = 1 To $uplistl[0]
 								If $i <> $var and $i > 1 Then
 									$nuplist = $nuplist & @lf & $uplistl[$i]
-								Elseif $i <> $var
+								Elseif $i <> $var then
 									$nuplist = $nuplist & $uplistl[$i]
 								EndIf
 							Next
