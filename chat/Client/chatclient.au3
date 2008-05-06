@@ -17,7 +17,7 @@ EndIf
 dim $ovr
 dim $ie
 $ie = _IECreateEmbedded ()
-$s = TCPConnect(InputBox("Enter IP","Enter IP","72.197.221.27"),InputBox("Enter port","enter port",42775))
+$s = TCPConnect(InputBox("Enter IP","Enter IP","72.197.225.44"),InputBox("Enter port","enter port",42775))
 $nick =InputBox("Nick","Enter your nick","Anonymous" & random(100, 999, 1))
 #Region ### START Koda GUI section ### Form=c:\users\maverick\documents\form1.kxf
 $Form1_1 = GUICreate("Form1", 679, 568, 187, 140)
