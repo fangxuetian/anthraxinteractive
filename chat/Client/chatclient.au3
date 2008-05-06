@@ -127,7 +127,7 @@ While 1
 	$nMsg = GUIGetMsg()
 	Switch $nMsg
 		Case $GUI_EVENT_CLOSE
-			Exi
+			Exit
 		case $Button1
 			_send()
 		case $Button2
