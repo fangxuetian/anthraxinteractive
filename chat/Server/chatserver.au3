@@ -176,7 +176,8 @@ Func OnSocketEvent($hWnd, $iMsgID, $WParam, $LParam)
 									EndIf
 								EndIf
 							ElseIf $sDataBuff[1] = "SENDMSG"  Then
-								$sDataBuff[2] = stringreplace($sDataBuff[2],">"," No greater than signs allowed")
+								$sDataBuff[2] = stringreplace($sDataBuff[2],">","&#62")
+								$sDataBuff[2] = stringreplace($sDataBuff[2],"<","&#60")
 								if $nicks[$nSocket + 1] = "" then
 									TCPSend($hSocket,"exit|" & $nicks[$nSocket + 1] & "|" & "No nick|You have not entered a nick")
 								else
