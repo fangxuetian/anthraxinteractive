@@ -1,10 +1,7 @@
-#Region ;**** Directives created by AutoIt3Wrapper_GUI ****
-#AutoIt3Wrapper_Run_Obfuscator=y
-#EndRegion ;**** Directives created by AutoIt3Wrapper_GUI ****
+#RequireAdmin
 #include <ASock.au3>
 #Include <Constants.au3>
 ;~ #NoTrayIcon
-#RequireAdmin
 ;~ Const $WM_USER = 1024
 ;;;
 Const $B_BEPOLITE = False
@@ -30,8 +27,8 @@ $auser[0] = 2
 $apass[0] = 2
 $auser[1] = "mmavipc"
 $apass[1] = "dyndns"
-$auser[2] = "Brad"
-$apass[2] = "window25"
+$auser[2] = "foome"
+$apass[2] = "foome"
 $nicks[0] = 0
 Opt("OnExitFunc", "ExitProgram")
 ;;;
