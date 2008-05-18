@@ -69,8 +69,8 @@ Func main()
 		For $j = 0 To $N_MAXSOCKETS - 1
 			If $hSockets[ $j ] <> -1 Then
 				TCPSend($hSockets[ $j ], $msgqueue[$j])
-				$msgqueue[$j] = ""
 			EndIf
+			$msgqueue[$j] = ""
 		Next
 		Sleep($N_WAITWORK)
 	WEnd
