@@ -14,7 +14,6 @@ global $guis[16277715]
 $guis[0] = 0
 Func wrap($an, $lk1, $ek1, $tt, $tty, $ip)
 	$ek = $ek1
-	$serials = getserials($ip)
 	$lk = $lk1
 	$reg = "HKLM\Software\Anthrax Interactive\" & $an
 	$lkey = RegRead($reg, "key")
@@ -24,7 +23,7 @@ Func wrap($an, $lk1, $ek1, $tt, $tty, $ip)
 		start()
 	EndIf
 	Local $timeleft1
-	$ftc = RegRead("HKLM\Software\" & $an, "ftc")
+	$ftc = RegRead($reg, "ftc")
 	ConsoleWrite($ftc & @LF)
 	If $ftc = "" Then
 		$ftc = RegWrite($reg, "ftc", "REG_SZ", "1")
@@ -81,18 +80,16 @@ Func timecheck()
 		validate()
 	EndIf
 EndFunc   ;==>timecheck
-Func getserials($s)
+Func isserialvalid($sip)
+	TCPStartup()
+	$s = TCPConnect($sip,5657)
+	
 	$temp = StringSplit($temp, ",")
 	Return $temp
 EndFunc   ;==>getserials
 Func validate()
 	$lkey = sde(RegRead($reg, "key"), $ek)
-	$var = 0
-	For $i = 1 To $serials[0]
-		If $lkey = $serials[$i] And $serials[$i] <> "" Then
-			$var = 1
-		EndIf
-	Next
+	$var = isserialvalid($lkey)
 	If $var = 1 Then
 		Return
 	Else
