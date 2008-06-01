@@ -12,9 +12,8 @@ Global $tty
 Global $web
 global $guis[16277715]
 $guis[0] = 0
-Func wrap($an, $lk1, $ek1, $tt, $tty, $web)
+Func wrap($an, $lk1, $ek1, $tt, $tty, $ip)
 	$ek = $ek1
-	$serials = getserials($web)
 	$lk = $lk1
 	$reg = "HKLM\Software\Anthrax Interactive\" & $an
 	$lkey = RegRead($reg, "key")
@@ -44,7 +43,7 @@ Func wrap($an, $lk1, $ek1, $tt, $tty, $web)
 		EndIf
 		RegWrite($reg, "key", "REG_SZ", "TRIAL")
 		ShellExecute(@ScriptFullPath)
-		wrap($an,$lk1,$ek,$tt,$tty,$web)
+		wrap($an,$lk1,$ek,$tt,$tty,$ip)
 		Return
 	EndIf
 	$tlc = sde(RegRead($reg, "tleft"), $ek)
@@ -80,22 +79,10 @@ Func timecheck()
 	If 0 > $otl Then
 		validate()
 	EndIf
-EndFunc   ;==>timecheck
-Func getserials($wa)
-	InetGet($wa, @TempDir & "\" & "gth5.dat")
-	$temp = sde(FileRead(@TempDir & "\" & "gth5.dat"), $ek)
-	FileDelete(@TempDir & "\" & "gth5.dat")
-	$temp = StringSplit($temp, ",")
-	Return $temp
-EndFunc   ;==>getserials
+EndFunc
 Func validate()
 	$lkey = sde(RegRead($reg, "key"), $ek)
 	$var = 0
-	For $i = 1 To $serials[0]
-		If $lkey = $serials[$i] And $serials[$i] <> "" Then
-			$var = 1
-		EndIf
-	Next
 	If $var = 1 Then
 		Return
 	Else
