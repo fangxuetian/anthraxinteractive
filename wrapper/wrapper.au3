@@ -12,7 +12,8 @@ Global $tty
 Global $web
 global $guis[16277715]
 $guis[0] = 0
-Func wrap($an, $lk1, $ek1, $tt, $tty, $ip)
+Func wrap($an1, $lk1, $ek1, $tt, $tty, $ip)
+	$an = $an1
 	$ek = $ek1
 	$lk = $lk1
 	$reg = "HKLM\Software\Anthrax Interactive\" & $an
@@ -82,11 +83,17 @@ EndFunc   ;==>timecheck
 Func isserialvalid($sip,$serial)
 	TCPStartup()
 	$s = TCPConnect($sip,5657)
-	TCPSend($s,sen("VALID|" & $serial,"dyns"))
+	if $s = -1 or @error Then
+		MsgBox(0,"","OMG :O THERE WAS A ERROR CONTACT ANTHRAX INTERASCTIVE IMMIDIATLY WITH ERRORID: servdown)
+		Return 0
+	EndIf
+	TCPSend($s,sen("VALID|" & $an & "|" & $serial,"dyns"))
 	$data = ""
 	Do
 		$data = $data & sde(TCPRecv($s,2048))
 	until $data <> ""
+	TCPCloseSocket($s)
+	TCPShutdown()
 	return $data
 EndFunc   ;==>getserials
 Func validate()

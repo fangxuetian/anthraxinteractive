@@ -3,7 +3,7 @@ Const $WM_USER = 1024
 ;;;
 Const $B_BEPOLITE    = False
 Const $N_MAXSOCKETS  = 25
-Const $N_DEFAULTPORT = 42775
+Const $N_DEFAULTPORT = 5657
 Const $N_MAXRECV     = 65536
 Const $N_WAITCLOSE   = 2000
 Const $N_WAITWORK    = 750
@@ -12,8 +12,14 @@ Dim $hListenSocket
 Dim $hSockets[ $N_MAXSOCKETS ]
 Dim $hNotifyGUI
 Dim $g_bExecExit = True
+;;;
+Global $aSerials[16277715]
+;;;
+$aSerials[0] = 0
 
 Opt( "OnExitFunc", "ExitProgram" )
+;;;
+LoadSerials()
 ;;;
 main( )
 ;;;
@@ -49,11 +55,9 @@ Func main( )
 	While 1
 		Out( "Doing serious work indeed... (" & $i & ")" )
 		$i += 1
-		For $j = 0 To $N_MAXSOCKETS - 1
-			If $hSockets[ $j ] <> -1 Then
-				TCPSend( $hSockets[ $j ], "Zorgians are attacking from the ship #mybutt" & $i & "!" )
-			EndIf
-		Next
+		if IsInt($i/5) Then
+			loadserials()
+		EndIf
 		Sleep( $N_WAITWORK )
 	WEnd
 	; I presume that this code will not be executed.
@@ -216,5 +220,5 @@ Func SocketToIP($SHOCKET)
 
     Return $aRet
 EndFunc
-
+Func LoadSerials()
 
