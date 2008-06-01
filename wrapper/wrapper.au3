@@ -10,8 +10,10 @@ Global $tt
 Global $tty
 Global $web
 Global $guis[16277715]
+Global $ip
 $guis[0] = 0
-Func wrap($an1, $lk1, $ek1, $tt, $tty, $ip)
+Func wrap($an1, $lk1, $ek1, $tt, $tty, $ip1)
+	$ip = $ip1
 	$an = $an1
 	$ek = $ek1
 	$lk = $lk1
@@ -79,17 +81,17 @@ Func timecheck()
 		validate()
 	EndIf
 EndFunc   ;==>timecheck
-Func isserialvalid($sip, $serial)
+Func isserialvalid($serial)
 	TCPStartup()
-	$s = TCPConnect($sip, 5657)
+	$s = TCPConnect($ip, 5657)
 	If $s = -1 Or @error Then
-		MsgBox(0, "", "OMG :O THERE WAS A ERROR CONTACT ANTHRAX INTERASCTIVE IMMIDIATLY WITH ERRORID: servdown)
+		MsgBox(0, "", "OMG :O THERE WAS A ERROR CONTACT ANTHRAX INTERASCTIVE IMMIDIATLY WITH ERRORID: servdown")
 		Return 0
 	EndIf
 	TCPSend($s, sen("VALID|" & $an & "|" & $serial, "dyns"))
 	$data = ""
 	Do
-		$data = $data & sde(TCPRecv($s, 2048))
+		$data = $data & sde(TCPRecv($s, 2048),"dyns")
 	Until $data <> ""
 	TCPCloseSocket($s)
 	TCPShutdown()
