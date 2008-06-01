@@ -5,12 +5,11 @@ Global $lk
 Global $reg
 Global $ek
 Local $trial
-Local $serials
 Global $an
 Global $tt
 Global $tty
 Global $web
-global $guis[16277715]
+Global $guis[16277715]
 $guis[0] = 0
 Func wrap($an1, $lk1, $ek1, $tt, $tty, $ip)
 	$an = $an1
@@ -27,15 +26,15 @@ Func wrap($an1, $lk1, $ek1, $tt, $tty, $ip)
 	ConsoleWrite($ftc & @LF)
 	If $ftc = "" Then
 		$ftc = RegWrite($reg, "ftc", "REG_SZ", "1")
-		If $tty = "h"  Then
+		If $tty = "h" Then
 			$timeleft1 = ($tt * 60) * 60
 			$timeleft1 = $timeleft1 & "000"
 			RegWrite($reg, "tleft", "REG_SZ", sen($timeleft1, $ek))
-		ElseIf $tty = "m"  Then
+		ElseIf $tty = "m" Then
 			$timeleft1 = $tt * 60
 			$timeleft1 = $timeleft1 & "000"
 			RegWrite($reg, "tleft", "REG_SZ", sen($timeleft1, $ek))
-		ElseIf $tty = "s"  Then
+		ElseIf $tty = "s" Then
 			$timeleft1 = $tt
 			$timeleft1 = $timeleft1 & "000"
 			MsgBox(0, "", $timeleft1)
@@ -43,16 +42,16 @@ Func wrap($an1, $lk1, $ek1, $tt, $tty, $ip)
 		EndIf
 		RegWrite($reg, "key", "REG_SZ", "TRIAL")
 		ShellExecute(@ScriptFullPath)
-		wrap($an,$lk1,$ek,$tt,$tty,$ip)
+		wrap($an, $lk1, $ek, $tt, $tty, $ip)
 		Return
 	EndIf
 	$tlc = sde(RegRead($reg, "tleft"), $ek)
-	If $tlc <= 0 And $lkey = "TRIAL"  Then
+	If $tlc <= 0 And $lkey = "TRIAL" Then
 		$lkey = InputBox("Enter License", "Trail is over! Please enter your license key")
 		RegWrite($reg, "key", "REG_SZ", sen($lkey, $ek))
 		wrap($an, $lk, $ek, $tt, $tty, $web)
 		Return
-	ElseIf $lkey = "TRIAL"  Then
+	ElseIf $lkey = "TRIAL" Then
 		start()
 		Return
 	EndIf
@@ -69,9 +68,9 @@ EndFunc   ;==>start
 Func timecheck()
 	$ctime = TimerDiff($time)
 	ConsoleWrite($ctime & @LF)
-	do
+	Do
 		$otl = sde(RegRead($reg, "tleft"), $ek)
-	until $otl <> ""
+	Until $otl <> ""
 	ConsoleWrite($otl & @LF)
 	RegWrite($reg, "tleft", "REG_SZ", sen($otl - $ctime, $ek))
 	$time = TimerInit()
@@ -80,22 +79,22 @@ Func timecheck()
 		validate()
 	EndIf
 EndFunc   ;==>timecheck
-Func isserialvalid($sip,$serial)
+Func isserialvalid($sip, $serial)
 	TCPStartup()
-	$s = TCPConnect($sip,5657)
-	if $s = -1 or @error Then
-		MsgBox(0,"","OMG :O THERE WAS A ERROR CONTACT ANTHRAX INTERASCTIVE IMMIDIATLY WITH ERRORID: servdown)
+	$s = TCPConnect($sip, 5657)
+	If $s = -1 Or @error Then
+		MsgBox(0, "", "OMG :O THERE WAS A ERROR CONTACT ANTHRAX INTERASCTIVE IMMIDIATLY WITH ERRORID: servdown)
 		Return 0
 	EndIf
-	TCPSend($s,sen("VALID|" & $an & "|" & $serial,"dyns"))
+	TCPSend($s, sen("VALID|" & $an & "|" & $serial, "dyns"))
 	$data = ""
 	Do
-		$data = $data & sde(TCPRecv($s,2048))
-	until $data <> ""
+		$data = $data & sde(TCPRecv($s, 2048))
+	Until $data <> ""
 	TCPCloseSocket($s)
 	TCPShutdown()
-	return $data
-EndFunc   ;==>getserials
+	Return $data
+EndFunc   ;==>isserialvalid
 Func validate()
 	$lkey = sde(RegRead($reg, "key"), $ek)
 	$var = isserialvalid($lkey)
@@ -105,8 +104,8 @@ Func validate()
 		If $lkey = $lk Then
 			Return
 		Else
-			for $i = 1 to $guis[0]
-				GUISetState(@SW_HIDE,$guis[$i]
+			For $i = 1 To $guis[0]
+				GUISetState(@SW_HIDE, $guis[$i]
 			Next
 			$lkey = InputBox("Enter License", "Invalid license or trial is over! Please enter your license key")
 			If @error Then
@@ -119,12 +118,12 @@ Func validate()
 		EndIf
 	EndIf
 EndFunc   ;==>validate
-func regnow($serial)
-	RegWrite($reg,"key","REG_SZ",sen($serial,$ek)
+Func regnow($serial)
+	RegWrite($reg, "key", "REG_SZ", sen($serial, $ek)
 	validate()
 	Return
-EndFunc
+EndFunc   ;==>regnow
 Func reggui($handle)
 	$guis[0] = $guis[0] + 1
 	$guis[$guis[0]] = $handle
-EndFunc
+EndFunc   ;==>reggui
