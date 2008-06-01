@@ -23,12 +23,10 @@ global $admin[1677715]
 global $auser[1677715]
 global $apass[1677715]
 global $allowconnections = 1
-$auser[0] = 2
-$apass[0] = 2
-$auser[1] = "mmavipc"
-$apass[1] = "dyndns"
-$auser[2] = "foome"
-$apass[2] = "foome"
+$auser[0] = 1
+$apass[0] = 1
+$auser[1] = "foome"
+$apass[1] = "foome"
 $nicks[0] = 0
 Opt("OnExitFunc", "ExitProgram")
 ;;;
