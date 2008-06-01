@@ -122,6 +122,25 @@ Func OnSocketEvent($hWnd, $iMsgID, $WParam, $LParam)
 					If @error Then
 						BreakConn($nSocket, "Conn is down while recv()'ing, error = " & @error & ".")
 					ElseIf $sDataBuff <> "" Then
+						If StringInStr($sDataBuff, "|") Then
+							$sDataBuff = StringSplit($sDataBuff, "|")
+							If $sDataBuff[1] = "Validate" Then
+								$sTotest = $sDataBuff[2] & "|" & $sDataBuff[3]
+								$var = 0
+								If $aSerials[0] > 0 Then
+									For $i = 1 To $aSerials[0]
+										If $aSerials[$i] = $sTotest Then
+											$var = 1
+										EndIf
+									Next
+								EndIf
+								TCPSend($hSocket, $var)
+							Else
+								TCPSend($hSocket, $var)
+							EndIf
+						Else
+							TCPSend($hSocket, $var)
+						EndIf
 					Else; This DEFINITELY shouldn't have happened
 						Out("Warning: schizophrenia! FD_READ, but no data on socket #" & $nSocket + 1 & "!")
 					EndIf
