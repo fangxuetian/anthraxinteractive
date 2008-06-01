@@ -1,4 +1,5 @@
 #include <ASock.au3>
+#include <em.au3>
 Const $WM_USER = 1024
 ;;;
 Const $B_BEPOLITE = False
@@ -118,28 +119,34 @@ Func OnSocketEvent($hWnd, $iMsgID, $WParam, $LParam)
 				If $iError <> 0 Then
 					BreakConn($nSocket, "FD_READ was received with the error value of " & $iError & ".")
 				Else
-					$sDataBuff = TCPRecv($hSocket, $N_MAXRECV)
+					$sDataBuff = sde(TCPRecv($hSocket, $N_MAXRECV),"|dyns")
+					MsgBox(0,"sdatabuff",$sDataBuff)
 					If @error Then
 						BreakConn($nSocket, "Conn is down while recv()'ing, error = " & @error & ".")
 					ElseIf $sDataBuff <> "" Then
 						If StringInStr($sDataBuff, "|") Then
 							$sDataBuff = StringSplit($sDataBuff, "|")
-							If $sDataBuff[1] = "Validate" Then
+							If $sDataBuff[1] = "Valid" Then
 								$sTotest = $sDataBuff[2] & "|" & $sDataBuff[3]
 								$var = 0
 								If $aSerials[0] > 0 Then
 									For $i = 1 To $aSerials[0]
 										If $aSerials[$i] = $sTotest Then
 											$var = 1
+											MsgBox(0,"","hi")
 										EndIf
 									Next
 								EndIf
-								TCPSend($hSocket, $var)
+								MsgBox(0,"",$var)
+								if $var <> 1 then 
+									$var = 0
+								EndIf
+								TCPSend($hSocket, sen($var,"|dyns"))
 							Else
-								TCPSend($hSocket, $var)
+								TCPSend($hSocket, sen(0,"|dyns"))
 							EndIf
 						Else
-							TCPSend($hSocket, $var)
+							TCPSend($hSocket, sen(0,"|dyns"))
 						EndIf
 					Else; This DEFINITELY shouldn't have happened
 						Out("Warning: schizophrenia! FD_READ, but no data on socket #" & $nSocket + 1 & "!")

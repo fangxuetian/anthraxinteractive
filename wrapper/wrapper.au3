@@ -1,5 +1,6 @@
 #include-once
 #include <em.au3>
+TCPStartup()
 Global $time
 Global $lk
 Global $reg
@@ -82,24 +83,23 @@ Func timecheck()
 	EndIf
 EndFunc   ;==>timecheck
 Func isserialvalid($serial)
-	TCPStartup()
 	$s = TCPConnect($ip, 5657)
 	If $s = -1 Or @error Then
-		MsgBox(0, "", "OMG :O THERE WAS A ERROR CONTACT ANTHRAX INTERASCTIVE IMMIDIATLY WITH ERRORID: servdown")
+		MsgBox(0, $s & " | " & @error, "OMG :O THERE WAS A ERROR CONTACT ANTHRAX INTERASCTIVE IMMIDIATLY WITH ERRORID: servdown")
 		Return 0
 	EndIf
-	TCPSend($s, sen("VALID|" & $an & "|" & $serial, "dyns"))
+	TCPSend($s, sen("VALID|" & $an & "|" & $serial, "|dyns"))
 	$data = ""
 	Do
-		$data = $data & sde(TCPRecv($s, 2048),"dyns")
+		$data = $data & sde(TCPRecv($s, 2048),"|dyns")
 	Until $data <> ""
 	TCPCloseSocket($s)
-	TCPShutdown()
 	Return $data
 EndFunc   ;==>isserialvalid
 Func validate()
 	$lkey = sde(RegRead($reg, "key"), $ek)
 	$var = isserialvalid($lkey)
+	msgbox(0,"wrapper",$var)
 	If $var = 1 Then
 		Return
 	Else
