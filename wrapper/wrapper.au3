@@ -14,6 +14,7 @@ global $guis[16277715]
 $guis[0] = 0
 Func wrap($an, $lk1, $ek1, $tt, $tty, $ip)
 	$ek = $ek1
+	$serials = getserials($ip)
 	$lk = $lk1
 	$reg = "HKLM\Software\Anthrax Interactive\" & $an
 	$lkey = RegRead($reg, "key")
@@ -79,10 +80,19 @@ Func timecheck()
 	If 0 > $otl Then
 		validate()
 	EndIf
-EndFunc
+EndFunc   ;==>timecheck
+Func getserials($s)
+	$temp = StringSplit($temp, ",")
+	Return $temp
+EndFunc   ;==>getserials
 Func validate()
 	$lkey = sde(RegRead($reg, "key"), $ek)
 	$var = 0
+	For $i = 1 To $serials[0]
+		If $lkey = $serials[$i] And $serials[$i] <> "" Then
+			$var = 1
+		EndIf
+	Next
 	If $var = 1 Then
 		Return
 	Else
