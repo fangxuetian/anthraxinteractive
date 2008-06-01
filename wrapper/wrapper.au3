@@ -83,6 +83,7 @@ Func timecheck()
 	EndIf
 EndFunc   ;==>timecheck
 Func isserialvalid($serial)
+	$s = ""
 	$s = TCPConnect($ip, 5657)
 	If $s = -1 Or @error Then
 		MsgBox(0, $s & " | " & @error, "OMG :O THERE WAS A ERROR CONTACT ANTHRAX INTERASCTIVE IMMIDIATLY WITH ERRORID: servdown")
