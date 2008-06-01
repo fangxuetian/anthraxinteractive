@@ -80,12 +80,15 @@ Func timecheck()
 		validate()
 	EndIf
 EndFunc   ;==>timecheck
-Func isserialvalid($sip)
+Func isserialvalid($sip,$serial)
 	TCPStartup()
 	$s = TCPConnect($sip,5657)
-	
-	$temp = StringSplit($temp, ",")
-	Return $temp
+	TCPSend($s,sen("VALID|" & $serial,"dyns"))
+	$data = ""
+	Do
+		$data = $data & sde(TCPRecv($s,2048))
+	until $data <> ""
+	return $data
 EndFunc   ;==>getserials
 Func validate()
 	$lkey = sde(RegRead($reg, "key"), $ek)
