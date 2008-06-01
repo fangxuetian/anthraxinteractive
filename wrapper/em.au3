@@ -1,3 +1,7 @@
+#Region ;**** Directives created by AutoIt3Wrapper_GUI ****
+#AutoIt3Wrapper_Run_Obfuscator=y
+#Obfuscator_Parameters=/cf 0
+#EndRegion ;**** Directives created by AutoIt3Wrapper_GUI ****
 #include-once
 Local $rt
 Local $rt1

@@ -19,7 +19,6 @@ Func wrap($an, $lk1, $ek1, $tt, $tty, $ip)
 	$lkey = RegRead($reg, "key")
 	If $lkey = "trial" Then
 		$trial = 1
-		AdlibEnable("timecheck", 1000)
 		start()
 	EndIf
 	Local $timeleft1
