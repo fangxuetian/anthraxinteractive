@@ -218,9 +218,11 @@ Func SocketToIP($SHOCKET)
 EndFunc   ;==>SocketToIP
 Func LoadSerials()
 	$file = FileRead("C:\serials")
-	if @error Then
+	If @error Then
 		$aSerials[0] = 0
 		Return
 	EndIf
-	$file = StringSplit($file,",")
-	
+	$file = StringSplit($file, ",")
+	$aSerials = $file
+	Return
+EndFunc   ;==>LoadSerials
