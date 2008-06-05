@@ -3,8 +3,8 @@
 HotKeySet("{F10}","hideshow")
 
 $oIE=_IECreateEmbedded()
-$Form1 = GUICreate("Form1", 749, 641, 193, 125)
-$activex = GUICtrlCreateObj($oIE,0,0,749,641)
+$Form1 = GUICreate("Form1", 1000, 1000, 193, 125)
+$activex = GUICtrlCreateObj($oIE,0,0,1000,1000)
 GUISetState(@SW_SHOW)
 _IENavigate($oIE,"http://freerice.com")
 While 1
