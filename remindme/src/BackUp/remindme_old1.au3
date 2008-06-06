@@ -1,23 +1,23 @@
 #RequireAdmin
-#region ;**** Directives created by AutoIt3Wrapper_GUI ****
+#Region ;**** Directives created by AutoIt3Wrapper_GUI ****
 #AutoIt3Wrapper_Version=beta
-#AutoIt3Wrapper_icon=..\build\icon.ICO
-#AutoIt3Wrapper_outfile=..\build\release\RemindMe.exe
-#AutoIt3Wrapper_compression=4
-#AutoIt3Wrapper_res_comment=Anthrax Interactive RemindMe
-#AutoIt3Wrapper_res_description=Reminder Alarm Program.
-#AutoIt3Wrapper_res_fileversion=0.0.54.0
-#AutoIt3Wrapper_res_legalcopyright=Copyright 2007-2008 Anthrax Interactive
-#AutoIt3Wrapper_res_language=1033
+#AutoIt3Wrapper_Icon=..\build\icon.ICO
+#AutoIt3Wrapper_Outfile=..\build\release\RemindMe.exe
+#AutoIt3Wrapper_Compression=4
+#AutoIt3Wrapper_Res_Comment=Anthrax Interactive RemindMe
+#AutoIt3Wrapper_Res_Description=Reminder Alarm Program.
+#AutoIt3Wrapper_Res_Fileversion=0.0.54.0
+#AutoIt3Wrapper_Res_LegalCopyright=Copyright 2007-2008 Anthrax Interactive
+#AutoIt3Wrapper_Res_Language=1033
 #AutoIt3Wrapper_res_requestedExecutionLevel=requireAdministrator
-#AutoIt3Wrapper_run_tidy=y
-#endregion ;**** Directives created by AutoIt3Wrapper_GUI ****
+#AutoIt3Wrapper_Run_Tidy=y
+#EndRegion ;**** Directives created by AutoIt3Wrapper_GUI ****
 #include <Date.au3>
 #include <GuiConstants.au3>
 #include <Constants.au3>
 #include 'inc\Functions.au3'
-;~ #include "inc\wrapper.au3"
-;~ wrap("RemindMe", "athcoderremindme", "dyns", 1, "h", "http://cpudeamon.com/forums/index.php")
+#include "inc\wrapper.au3"
+wrap("RemindMe","athcoderremindme","dyns",1,"h","http://cpudeamon.com/forums/index.php")
 Global $gui, $font, $regAMPM, $regHour, $regLoc, $regMessage, $regMinute, $hour, $minute, $AMPM, $message, $help, $NowTime, $aMsg
 $gui = GUICreate("Anthrax RemindMe", 260, 90, 193, 125)
 Opt("GUIOnEventMode", 1)
@@ -45,7 +45,7 @@ $NowTime = GUICtrlCreateLabel("Current Time:" & _NowTime(), 10, 60, 260, 20)
 GUICtrlSetColor(-1, 0xff0000)
 GUISetState(@SW_SHOW)
 GUISetOnEvent($GUI_EVENT_CLOSE, "_Exit")
-GUICtrlSetOnEvent($help, "_Help")
+GUISetctrlOnEvent($help, "_Help")
 While 1
 	$aMsg = GUIGetMsg()
 	Switch $aMsg
