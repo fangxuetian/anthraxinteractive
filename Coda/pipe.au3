@@ -17,14 +17,16 @@ $Ping = GUICtrlCreateInput("Ping 127.0.0..1", 12, 425, 209, 21)
 GUISetState(@SW_SHOW)
 Opt("GuiOnEventMode", 1)
 GUISetOnEvent($GUI_EVENT_CLOSE, "_exit")
+GUICtrlSetOnEvent($Enc,"enc")
 ;~ GUISetOnEvent($Ping,"ping")
 ;~ GUISetOnEvent($go,"goweb")
 While 1
 	Sleep(250)
 WEnd
 Func enc()
-	out("encrypted text: " & sen(GUICtrlRead($enctxt)))
+	out("encrypted text: " & sen(GUICtrlRead($enctxt),""))
 	GUICtrlSetData($enctxt,"")
+EndFunc
 Func out($text)
 	$old = GUICtrlRead($out)
 	GUICtrlSetData($out,$old & @crlf & $text)
