@@ -81,7 +81,6 @@
 				<property name="FileOptions.FileName" vt="String">https62.ocx</property>
 				<property name="FileOptions.Folder" vt="String">C:\Windows\system32\</property>
 				<property name="AutoRegister" vt="True">True</property>
-				<property name="AXName" vt="String">/n software - IPWorks! SSL V6 HTTPS Control</property>
 				<property name="AXID" vt="String">IPWorksSSL.HTTPS.1</property>
 				<property name="TabOrder" vt="Int8">3</property>
 			</properties>
@@ -115,7 +114,7 @@
 			</properties>
 			<components/>
 		</object>
-		<object type="TAInput" name="Ping">
+		<object type="TAInput" name="Pingtxt">
 			<properties>
 				<property name="Left" vt="Int8">12</property>
 				<property name="Top" vt="Int16">425</property>
@@ -126,6 +125,20 @@
 				<property name="CtrlStyle" vt="Int32">1342242944</property>
 				<property name="CtrlExStyle" vt="Int16">512</property>
 				<property name="Resizing" vt="Set">DockHeight</property>
+			</properties>
+			<components/>
+		</object>
+		<object type="TAButton" name="Ping">
+			<properties>
+				<property name="Left" vt="Int16">232</property>
+				<property name="Top" vt="Int16">424</property>
+				<property name="Width" vt="Int8">81</property>
+				<property name="Height" vt="Int8">25</property>
+				<property name="Caption" vt="String">Ping</property>
+				<property name="TabOrder" vt="Int8">7</property>
+				<property name="CtrlStyle" vt="Int32">1342259200</property>
+				<property name="CtrlExStyle" vt="Int8">0</property>
+				<property name="Resizing" vt="Set">DockWidth, DockHeight</property>
 			</properties>
 			<components/>
 		</object>
