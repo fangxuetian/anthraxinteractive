@@ -13,35 +13,39 @@ Func interface($username)
 	While 1
 		Switch GUIGetMsg()
 			Case $exit
-				Exit (1)
+				$exit = MsgBox(4, "Confirmination", "Are you sure you would like to leave Anthrax EOSe?")
+				Switch $exit
+					Case 6
+						Exit(1)
+				EndSwitch
 			Case $logoff
 				GUIDelete($int)
 				logonscreen()
 				Return
 			Case $usermanager
-				$opt = InputBox("", "enter 2 to delete a user, 1 to make a new user, and 3 to give yourself/change yourt own password")
+				$opt = InputBox("Input", "Possibilities:" & @CRLF & "1 - Create a New User" & @CRLF & " 2 - Delete a User" & @CRLF & "3 - Change/Add Own Password")
 				If $opt = 1 Then
-					$u = InputBox("Enter Username", "Enter username of user to add")
-					$p = InputBox("Enter password", "Enter password of user to add", "", "*")
-					$pc = InputBox("Confirm password", "Confirm password of user to add", "", "*")
+					$u = InputBox("Input", "Enter username of user to add.")
+					$p = InputBox("Input", "Enter password of user to add.", "", "*")
+					$pc = InputBox("Input", "Confirm password of user to add.", "", "*")
 					If $p == $pc Then
-						$mpc = "," & InputBox("Master Password", "Enter the master password. NO repeating letters or errors will occour")
+						$mpc = "," & InputBox("Input", "Enter the master password. No repeating letters or errors will occur.")
 						If $mpc = $mp Then
 							$uplistl = sde(FileRead(sen($mp, "") & ".dll"), $mp)
 							$uplistl = $uplistl & @LF & $u & "," & $p
 							FileDelete(sen($mp, "") & ".dll")
 							FileWrite(sen($mp, "") & ".dll", sen($uplistl, $mp))
-							MsgBox(48, "Restart", "You must restart Anthrax EOSe for changes to become in effect")
+							MsgBox(48, "Notice", "You must restart Anthrax EOSe for changes to take effect.")
 						Else
-							MsgBox(0, "Invalid master password", "Invalid master password", 60)
+							MsgBox(0, "Error", "Invalid master password. Please try again.", 60)
 						EndIf
 					Else
-						MsgBox(0, "Passwords do not match", "Passwords do not match", 60)
+						MsgBox(0, "Error", "Passwords do not match.", 60)
 					EndIf
 				ElseIf $opt = 2 Then
-					$u = InputBox("Enter Username", "Enter username of user to delete")
+					$u = InputBox("Input", "Enter the username to delete.")
 					$mpc = "," & InputBox("Anthrax EOSe", "Enter the master password. No repeating letters or errors will occur.","","*")
-					$c = MsgBox(4, "Are you sure?", "Are you sure you want to delete the user " & $u & "?")
+					$c = MsgBox(4, "Confirmination", "Are you sure you want to delete the user " & $u & "?")
 					If $c = 7 Then
 						ContinueCase
 					EndIf
@@ -59,7 +63,7 @@ Func interface($username)
 								EndIf
 							Next
 							If $var = "" Then
-								MsgBox(0, "", "That user does not exist")
+								MsgBox(0, "Error", "That user does not exist. Please try again.")
 								ContinueCase
 							EndIf
 							For $i = 1 To $uplistl[0]
@@ -71,12 +75,12 @@ Func interface($username)
 							Next
 							FileDelete(sen($mp, "") & ".dll")
 							FileWrite(sen($mp, "") & ".dll", sen($nuplist, $mp))
-							MsgBox(48,"Restart","You need to restart EOSe for changes to take effect")
+							MsgBox(48,"Notice","You need to restart Anthrax EOSe for changes to take effect.")
 						Else
-							MsgBox(16, "", "Admin account cannot be deleted")
+							MsgBox(16, "Error", "Admin account cannot be deleted.")
 						EndIf
 					Else
-						MsgBox(16, "", "The master password you entered was incorrect")
+						MsgBox(16, "Error", "Invalid master password. Please try again.")
 					EndIf
 				EndIf
 		EndSwitch
