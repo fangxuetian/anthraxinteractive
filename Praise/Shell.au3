@@ -4,7 +4,7 @@
 #include <StaticConstants.au3>
 HotKeySet("{ESC}", "_Exit")
 AdlibEnable("Time", 1000)
-$Ini = @ScriptDir & "\Storage\Settings.ini" 
+$Ini = @ScriptDir & "Settings.ini" 
 $temp = FileOpen($Ini, 10)
 FileClose($temp)
 $Wallpaper_File = IniRead($Ini, "Settings", "Background", "C:\Windows\Web\Wallpaper\img5.jpg")
