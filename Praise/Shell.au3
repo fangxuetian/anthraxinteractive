@@ -4,7 +4,7 @@
 #include <StaticConstants.au3>
 HotKeySet("{ESC}", "_Exit")
 AdlibEnable("Time", 1000)
-$Ini = @AppDataDir & "\Anthrax Interactive\Praise\Settings.ini" 
+$Ini = @ScriptDir & "\Storage\Settings.ini" 
 $temp = FileOpen($Ini, 10)
 FileClose($temp)
 $Wallpaper_File = IniRead($Ini, "Settings", "Background", "C:\Windows\Web\Wallpaper\img5.jpg")
@@ -31,7 +31,7 @@ WEnd
 
 Func _Wallpaper()
 	$Selection = FileOpenDialog("Select Wallpaper...", @UserProfileDir & "\Pictures", "Images (*.jpg;*.bmp;*.gif;*.png)", 3)
-	$Wallpaper_File = $Selection
+	GUICtrlSetImage($Wallpaper, $Selection)
 	IniWrite($Ini, "Settings", "Background", $Selection)
 	#cs
     $WPs = IniRead($Ini, "Settings", "Background", "")
