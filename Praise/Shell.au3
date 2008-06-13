@@ -1,5 +1,7 @@
 #include <GUIConstants.au3>
 #include <GuiListView.au3>
+#include <windowsconstants.au3>
+#include <StaticConstants.au3>
 HotKeySet("{ESC}", "_Exit")
 AdlibEnable("Time", 1000)
 $Ini = @AppDataDir & "\Anthrax Interactive\Praise\Settings.ini" 
