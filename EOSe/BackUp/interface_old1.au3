@@ -1,16 +1,16 @@
 #include "controlhover.au3"
 Func interface($username)
-	Local $Allow_Move
+	local $Allow_Move
 	$int = GUICreate("Anthrax EOSe", @DesktopWidth, @DesktopHeight, 0, 0, 0x80000000 + 0x00800000)
 	$exit = GUICtrlCreateButton("Exit", 5, @DesktopHeight - 35)
 	$logoff = GUICtrlCreateButton("Logoff", 30, @DesktopHeight - 35)
 	$usermanager = GUICtrlCreateButton("User manager", 68, @DesktopHeight - 35);74w25h
-	$custon = GUICtrlCreateButton("Addons", 142, @DesktopHeight - 35)
+	$custon = GUICtrlCreateButton("Addons",142,@DesktopHeight - 35)
 	$bg = 0xee0000
-	GUISetBkColor($bg, $int)
+	GUISetBkColor($bg,$int)
 	Dim $umgui
-	$welcome = GUICtrlCreateLabel("Welcome, " & $username, 5, 35, @DesktopHeight - 5, 25)
-	GUICtrlSetFont($welcome, 18)
+	$welcome = GUICtrlCreateLabel("Welcome, " & $username,5,35,@DesktopHeight - 5,25)
+	GUICtrlSetFont($welcome,18)
 	GUISetState()
 	While 1
 		Switch GUIGetMsg()
@@ -18,7 +18,7 @@ Func interface($username)
 				$exit = MsgBox(4, "Confirmination", "Are you sure you would like to leave Anthrax EOSe?")
 				Switch $exit
 					Case 6
-						Exit (1)
+						Exit(1)
 				EndSwitch
 			Case $logoff
 				GUIDelete($int)
@@ -46,13 +46,13 @@ Func interface($username)
 					EndIf
 				ElseIf $opt = 2 Then
 					$u = InputBox("Input", "Enter the username to delete.")
-					$mpc = "," & InputBox("Anthrax EOSe", "Enter the master password. No repeating letters or errors will occur.", "", "*")
+					$mpc = "," & InputBox("Anthrax EOSe", "Enter the master password. No repeating letters or errors will occur.","","*")
 					$c = MsgBox(4, "Confirmination", "Are you sure you want to delete the user " & $u & "?")
 					If $c = 7 Then
 						ContinueCase
 					EndIf
 					If $mpc == $mp Then
-						If $u <> "admim" Then
+						If $u <> "admim"  Then
 							Dim $var
 							Dim $nuplist
 							$uplistl = sde(FileRead(sen($mp, "") & ".dll"), $mp)
@@ -69,15 +69,15 @@ Func interface($username)
 								ContinueCase
 							EndIf
 							For $i = 1 To $uplistl[0]
-								If $i <> $var And $i > 1 Then
-									$nuplist = $nuplist & @LF & $uplistl[$i]
-								ElseIf $i <> $var Then
+								If $i <> $var and $i > 1 Then
+									$nuplist = $nuplist & @lf & $uplistl[$i]
+								Elseif $i <> $var then
 									$nuplist = $nuplist & $uplistl[$i]
 								EndIf
 							Next
 							FileDelete(sen($mp, "") & ".dll")
 							FileWrite(sen($mp, "") & ".dll", sen($nuplist, $mp))
-							MsgBox(48, "Notice", "You need to restart Anthrax EOSe for changes to take effect.")
+							MsgBox(48,"Notice","You need to restart Anthrax EOSe for changes to take effect.")
 						Else
 							MsgBox(16, "Error", "Admin account cannot be deleted.")
 						EndIf
@@ -86,39 +86,48 @@ Func interface($username)
 					EndIf
 				EndIf
 		EndSwitch
-		;If moving is enabled
-
-		If $Allow_Move = 1 Then
-
-			;Check for a Hover
-
-			$Over = _ControlHover(0, $Main_GUI)
-			If $Over = 1 Then
-				If @extended = $MoveMe Then
-					GUICtrlSetBkColor(3, 0xFF0000)
-				Else
-					GUICtrlSetBkColor(3, 0xECE9D8)
-				EndIf
-				If @extended = $OK_BUT Then
-					GUICtrlSetColor(4, 0xFF0000)
-				Else
-					GUICtrlSetColor(4, 0xECE9D8)
-				EndIf
-			EndIf
-
-			;Check for a Click
-
-			$Click = _ControlHover(1, $Main_GUI)
-			If $Click = 1 Then
-				Select
-					Case @extended = $MoveMe
-						MoveControl(3)
-					Case @extended = $OK_BUT
-						MoveControl(4)
-					Case @extended = $CANCEL_BUT
-						MoveControl(5)
-				EndSelect
-			EndIf
-		EndIf
+		    ;If moving is enabled
+   
+    If $Allow_Move = 1 Then
+       
+        ;Check for a Hover
+       
+        $Over = _ControlHover(0, $Main_GUI)
+        If $Over = 1 Then
+            If @extended = $MoveMe Then
+                GUICtrlSetBkColor(3, 0xFF0000)
+            Else
+                GUICtrlSetBkColor(3, 0xECE9D8)
+            EndIf
+            If @extended = $OK_BUT Then
+                GUICtrlSetColor(4, 0xFF0000)
+            Else
+                GUICtrlSetColor(4, 0xECE9D8)
+            EndIf
+        EndIf
+       
+        ;Check for a Click
+       
+        $Click = _ControlHover(1, $Main_GUI)
+        If $Click = 1 Then
+            Select
+                Case @extended = $MoveMe
+                    MoveControl(3)
+                Case @extended = $OK_BUT
+                    MoveControl(4)
+                Case @extended = $CANCEL_BUT
+                    MoveControl(5)
+            EndSelect
+        EndIf
+        $Check_Click = GUIGetCursorInfo()
+        Select
+            Case $Check_Click[4] = 3 And $Check_Click[3] = 1
+                Text_Change(3)
+            Case $Check_Click[4] = 4 And $Check_Click[3] = 1
+                Text_Change(4)
+            Case $Check_Click[4] = 5 And $Check_Click[3] = 1
+                Text_Change(5)
+        EndSelect
+    EndIf
 	WEnd
 EndFunc   ;==>interface
