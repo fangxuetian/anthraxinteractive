@@ -184,7 +184,7 @@ func _send($ovr = 0, $msg = 0)
 		$lol = StringSplit($read,"\")
 		TCPSend($s,"kick|" & $lol[2] & "|" & $lol[3] & "|" & $lol[4])
 		GUICtrlSetData($Input1,"")
-	ElseIf stringleft($read,3) = "/pm"
+	ElseIf stringleft($read,3) = "/pm" then
 		$lol = StringSplit($read," ")
 		$text = ""
 		for $i = 3 to $lol[0]
