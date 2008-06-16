@@ -1,6 +1,7 @@
 #RequireAdmin
 #include <ASock.au3>
 #Include <Constants.au3>
+#include <WindowsConstants.au3>
 ;~ #NoTrayIcon
 ;~ Const $WM_USER = 1024
 ;;;
@@ -23,10 +24,12 @@ global $admin[1677715]
 global $auser[1677715]
 global $apass[1677715]
 global $allowconnections = 1
-$auser[0] = 1
-$apass[0] = 1
-$auser[1] = "foome"
-$apass[1] = "foome"
+$auser[0] = 2
+$apass[0] = 2
+$auser[1] = "mmavipc"
+$apass[1] = "dyndns"
+$auser[1] = "brad"
+$apass[1] = "window"
 $nicks[0] = 0
 Opt("OnExitFunc", "ExitProgram")
 ;;;
@@ -184,6 +187,10 @@ Func OnSocketEvent($hWnd, $iMsgID, $WParam, $LParam)
 										TCPSend($hSocket,@lf & "exit|" & $nicks[$nSocket + 1] & "|" & "lolipwn|lolipwn")
 									EndIf
 								EndIf
+							ElseIf $sDataBuff[1] = "pm" Then
+								$sDataBuff[3] = stringreplace($sDataBuff[3],">","&#62")
+								$sDataBuff[3] = stringreplace($sDataBuff[3],"<","&#60")
+								TCPSend($hSockets[findsn($sDataBuff[2])],"SENDMSG|<b>PM</b> from " & $nicks[$nSocket + 1] & "|" & $sDataBuff[3] & @lf)
 							ElseIf $sDataBuff[1] = "adminlogin"  Then
 								local $userverify = 0
 								local $passverify = 0
@@ -390,4 +397,17 @@ func _string_split($string,$delimiter,ByRef $output)
 			$cplace = $cplace + 1
 		EndIf
 	Next
+EndFunc
+func findsn($nick)
+	$sn = 0
+	for $i = 1 to $nicks[0]
+		if $nicks[$i] = $nick Then
+			$sn = $i
+			ExitLoop
+		EndIf
+	Next
+	if $sn = 0 then
+		$sn = 1
+	EndIf
+	Return $sn - 1
 EndFunc

@@ -3,6 +3,7 @@
 #include <GUIEdit.au3>
 #include <ie.au3>
 #include <String.au3>
+#include <ButtonConstants.au3>
 TCPStartup()
 Global $pass
 global $nickid
@@ -22,7 +23,7 @@ $nick =InputBox("Nick","Enter your nick","Anonymous" & random(100, 999, 1))
 #Region ### START Koda GUI section ### Form=c:\users\maverick\documents\form1.kxf
 $Form1_1 = GUICreate("Form1", 679, 568, 187, 140)
 $Input1 = GUICtrlCreateInput("", 8, 456, 465, 21)
-$Button1 = GUICtrlCreateButton("Send", 568, 456, 97, 25, 0)
+$Button1 = GUICtrlCreateButton("Send", 568, 456, 97, 25, $BS_DEFPUSHBUTTON)
 GUICtrlCreateObj($ie, 8, 8, 665, 425)
 $Button2 = GUICtrlCreateButton("Admin login", 16, 488, 105, 25, 0)
 $Button3 = GUICtrlCreateButton("Clear", 480, 456, 81, 25, 0)
@@ -88,11 +89,6 @@ While 1
 	EndIf
 	 $iVisibleHeight = $IE.document.body.clientHeight
 	$IE.document.parentWindow.scrollBy(0,$iVisibleHeight)
-	if WinActive("Form1") Then
-		HotKeySet("{enter}","_send")
-	Else
-		HotKeySet("{enter}")
-	EndIf
 	$data = ""
 	$data = TCPRecv($s,2048)
 	if @error then exit
