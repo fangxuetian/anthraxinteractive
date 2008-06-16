@@ -1,6 +1,7 @@
 #include "controlhover.au3"
 Func interface($username)
 	Local $Allow_Move
+	local $icons[16277715]
 	$int = GUICreate("Anthrax EOSe", @DesktopWidth, @DesktopHeight, 0, 0, 0x80000000 + 0x00800000)
 	$exit = GUICtrlCreateButton("Exit", 5, @DesktopHeight - 35)
 	$logoff = GUICtrlCreateButton("Logoff", 30, @DesktopHeight - 35)
@@ -86,39 +87,5 @@ Func interface($username)
 					EndIf
 				EndIf
 		EndSwitch
-		;If moving is enabled
-
-		If $Allow_Move = 1 Then
-
-			;Check for a Hover
-
-			$Over = _ControlHover(0, $Main_GUI)
-			If $Over = 1 Then
-				If @extended = $MoveMe Then
-					GUICtrlSetBkColor(3, 0xFF0000)
-				Else
-					GUICtrlSetBkColor(3, 0xECE9D8)
-				EndIf
-				If @extended = $OK_BUT Then
-					GUICtrlSetColor(4, 0xFF0000)
-				Else
-					GUICtrlSetColor(4, 0xECE9D8)
-				EndIf
-			EndIf
-
-			;Check for a Click
-
-			$Click = _ControlHover(1, $Main_GUI)
-			If $Click = 1 Then
-				Select
-					Case @extended = $MoveMe
-						MoveControl(3)
-					Case @extended = $OK_BUT
-						MoveControl(4)
-					Case @extended = $CANCEL_BUT
-						MoveControl(5)
-				EndSelect
-			EndIf
-		EndIf
 	WEnd
 EndFunc   ;==>interface
