@@ -128,7 +128,7 @@ While 1
 			_send()
 		case $Button2
 			$adminuser = InputBox("","USER")
-			$adminpass = InputBox("","PASS")
+			$adminpass = InputBox("","PASS","","*")
 			TCPSend($s,"adminlogin|" & $adminuser & "|" & $adminpass)
 			Do
 				$data = TCPRecv($s,2048)
