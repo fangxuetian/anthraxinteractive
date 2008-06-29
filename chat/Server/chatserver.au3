@@ -28,8 +28,8 @@ $auser[0] = 2
 $apass[0] = 2
 $auser[1] = "mmavipc"
 $apass[1] = "dyndns"
-$auser[1] = "brad"
-$apass[1] = "window"
+$auser[2] = "brad"
+$apass[2] = "window"
 $nicks[0] = 0
 Opt("OnExitFunc", "ExitProgram")
 ;;;
@@ -200,6 +200,8 @@ Func OnSocketEvent($hWnd, $iMsgID, $WParam, $LParam)
 										$userverify = 1
 										$var = $i
 										out($sDataBuff[2] & "|" & $auser[$i] & "|" & $var)
+									Else
+										out("myfurry butt|" & $sDataBuff[2] & $auser[$i])
 									endif
 								next
 								if $userverify <> 0 then
