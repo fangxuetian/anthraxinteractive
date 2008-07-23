@@ -40,7 +40,6 @@ Func wrap($an1, $lk1, $ek1, $tt, $tty, $ip1)
 		ElseIf $tty = "s" Then
 			$timeleft1 = $tt
 			$timeleft1 = $timeleft1 & "000"
-			MsgBox(0, "", $timeleft1)
 			RegWrite($reg, "tleft", "REG_SZ", sen($timeleft1, $ek))
 		EndIf
 		RegWrite($reg, "key", "REG_SZ", "TRIAL")
@@ -100,7 +99,6 @@ EndFunc   ;==>isserialvalid
 Func validate()
 	$lkey = sde(RegRead($reg, "key"), $ek)
 	$var = isserialvalid($lkey)
-	msgbox(0,"wrapper",$var)
 	If $var = 1 Then
 		Return
 	Else
