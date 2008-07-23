@@ -85,7 +85,7 @@ EndFunc   ;==>timecheck
 Func isserialvalid($serial)
 	$s = TCPConnect($ip, 5657)
 	If $s = -1 Or @error Then
-		MsgBox(0, $s & " | " & @error, "OMG :O THERE WAS A ERROR CONTACT ANTHRAX INTERASCTIVE IMMIDIATLY WITH ERRORID: servdown")
+		MsgBox(0, $s & " | " & @error, "OMG :O THERE WAS A ERROR CONTACT ANTHRAX INTERASCTIVE IMMIDIATLY WITH ERRORID: servdown | " & $ip)
 		Return 0
 	EndIf
 	TCPSend($s, sen("VALID|" & $an & "|" & $serial, "|dyns"))
@@ -108,7 +108,7 @@ Func validate()
 			Return
 		Else
 			For $i = 1 To $guis[0]
-				GUISetState(@SW_HIDE, $guis[$i]
+				GUISetState(@SW_HIDE, $guis[$i])
 			Next
 			$lkey = InputBox("Enter License", "Invalid license or trial is over! Please enter your license key")
 			If @error Then
@@ -116,13 +116,13 @@ Func validate()
 			EndIf
 			RegWrite($reg, "key", "REG_SZ", sen($lkey, $ek))
 			AdlibDisable()
-			wrap($an, $lk, $ek, $tt, $tty, $web)
+			wrap($an, $lk, $ek, $tt, $tty, $ip)
 			Return
 		EndIf
 	EndIf
 EndFunc   ;==>validate
 Func regnow($serial)
-	RegWrite($reg, "key", "REG_SZ", sen($serial, $ek)
+	RegWrite($reg, "key", "REG_SZ", sen($serial, $ek))
 	validate()
 	Return
 EndFunc   ;==>regnow

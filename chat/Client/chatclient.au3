@@ -1,3 +1,6 @@
+#Region ;**** Directives created by AutoIt3Wrapper_GUI ****
+#AutoIt3Wrapper_Compression=4
+#EndRegion ;**** Directives created by AutoIt3Wrapper_GUI ****
 #include <GUIConstants.au3>
 #include <misc.au3>
 #include <GUIEdit.au3>
