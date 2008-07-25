@@ -120,7 +120,6 @@ Func OnSocketEvent($hWnd, $iMsgID, $WParam, $LParam)
 					BreakConn($nSocket, "FD_READ was received with the error value of " & $iError & ".")
 				Else
 					$sDataBuff = sde(TCPRecv($hSocket, $N_MAXRECV),"|dyns")
-					MsgBox(0,"sdatabuff",$sDataBuff)
 					If @error Then
 						BreakConn($nSocket, "Conn is down while recv()'ing, error = " & @error & ".")
 					ElseIf $sDataBuff <> "" Then
@@ -133,11 +132,10 @@ Func OnSocketEvent($hWnd, $iMsgID, $WParam, $LParam)
 									For $i = 1 To $aSerials[0]
 										If $aSerials[$i] = $sTotest Then
 											$var = 1
-											MsgBox(0,"","hi")
+											ExitLoop
 										EndIf
 									Next
 								EndIf
-								MsgBox(0,"",$var)
 								if $var <> 1 then 
 									$var = 0
 								EndIf
@@ -243,7 +241,7 @@ Func SocketToIP($SHOCKET)
 	Return $aRet
 EndFunc   ;==>SocketToIP
 Func LoadSerials()
-	$file = FileRead("C:\serials")
+	$file = FileRead("D:\serials")
 	If @error Then
 		$aSerials[0] = 0
 		Return
