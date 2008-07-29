@@ -1,6 +1,7 @@
 #include-once
 #include <em.au3>
 TCPStartup()
+#Region var define
 Global $time
 Global $lk
 Global $reg
@@ -13,6 +14,7 @@ Global $web
 Global $guis[16277715]
 Global $ip
 $guis[0] = 0
+#EndRegion
 Func wrap($an1, $lk1, $ek1, $tt, $tty, $ip1)
 	$ip = $ip1
 	$an = $an1

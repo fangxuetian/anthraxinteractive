@@ -1,4 +1,5 @@
 #Region ;**** Directives created by AutoIt3Wrapper_GUI ****
+#AutoIt3Wrapper_icon=..\..\..\..\..\..\Program Files\AutoIt3\Icons\filetype3.ico
 #AutoIt3Wrapper_Compression=4
 #EndRegion ;**** Directives created by AutoIt3Wrapper_GUI ****
 #include <guiconstants.au3>
