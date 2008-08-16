@@ -14,15 +14,20 @@ Local $ct
 		$a2 = $a2 & chr($i)
 	Next
 Func sen($pt, $lol = "",$mchk = 0)
-	Local $an = $a1 & "9abcdefghijklmnopqrstuvwxyz| .=-\)(*&^%{}$#@!~/+,'"":;><?[]" & @LF & @CR & "	_ABCDEFGHIJKLMNOPQRSTUVWXYZ012345678" & $a2
+	Local $an = "9abcdefghijklmnopqrstuvwxyz| .=-\)(*&^%{}$#@!~/+,'"":;><?[]" & @LF & @CR & "_ABCDEFGHIJKLMNOPQRSTUVWXYZ012345678"
 	If StringLen($lol) > 0 Then
 		For $i = 1 To StringLen($lol)
 			$an = StringReplace($an, StringMid($lol, $i, 1), "", 0, 1)
+;~ 			FileWrite("data.dat",Binary($an))
 		Next
+		ConsoleWrite($an & @lf)
 
 		$ant = StringLeft($an, 39) & $lol & StringMid($an, (39 + StringLen($lol)))
 		$an = $ant
+;~ 		FileWrite("data.dat",Binary($an))
+		ConsoleWrite($an & @lf)
 	EndIf
+;~ 	$an = $a1 & $an & $a2
 	$rt = ""
 	$rt1 = ""
 	For $i = 1 To StringLen($pt)
@@ -58,7 +63,7 @@ Func sen($pt, $lol = "",$mchk = 0)
 	Return $rt
 EndFunc   ;==>sen
 Func sde($et, $lol)
-	Local $an = $a1 & "9abcdefghijklmnopqrstuvwxyz| .=-\)(*&^%{}$#@!~/+,'"":;><?[]" & @LF & @CR & "	_ABCDEFGHIJKLMNOPQRSTUVWXYZ012345678" & $a2
+	Local $an = "9abcdefghijklmnopqrstuvwxyz| .=-\)(*&^%{}$#@!~/+,'"":;><?[]" & @LF & @CR & "_ABCDEFGHIJKLMNOPQRSTUVWXYZ012345678"
 	If StringLen($lol) > 0 Then
 		For $i = 1 To StringLen($lol)
 			$an = StringReplace($an, StringMid($lol, $i, 1), "", 0, 1)
@@ -66,6 +71,7 @@ Func sde($et, $lol)
 		$ant = StringLeft($an, 39) & $lol & StringMid($an, (39 + StringLen($lol)))
 		$an = $ant
 	EndIf
+;~ 	$an = $a1 & $an & $a2
 	$rt = ""
 	$rt1 = ""
 	$pt = ""
