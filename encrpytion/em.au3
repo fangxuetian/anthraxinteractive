@@ -20,13 +20,14 @@ Func sen($pt, $lol = "",$mchk = 0)
 			$an = StringReplace($an, StringMid($lol, $i, 1), "", 0, 1)
 ;~ 			FileWrite("data.dat",Binary($an))
 		Next
-		ConsoleWrite($an & @lf)
+;~ 		ConsoleWrite($an & @lf)
 
-		$ant = StringLeft($an, 35) & $lol & StringMid($an, (35 + StringLen($lol)))
+		$ant = StringLeft($an, 35) & $lol & stringright($an,(StringLen($an)-35))
 		FileWrite("data.dat",Binary($an))
+		FileWrite("data.dat",@crlf)
 		$an = $ant
 		FileWrite("data.dat",Binary($an))
-		ConsoleWrite($an & @lf)
+;~ 		ConsoleWrite($an & @lf)
 	EndIf
 	$an = $a1 & $an & $a2
 	$rt = ""
@@ -72,7 +73,7 @@ Func sde($et, $lol = "")
 		Next
 		ConsoleWrite($an & @lf)
 
-		$ant = StringLeft($an, 39) & $lol & StringMid($an, (39 + StringLen($lol)))
+		$ant = StringLeft($an, 35) & $lol & stringright($an,(StringLen($an)-35))
 ;~ 		FileWrite("data.dat",Binary($an))
 		$an = $ant
 ;~ 		FileWrite("data.dat",Binary($an))
