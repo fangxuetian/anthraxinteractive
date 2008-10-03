@@ -15,7 +15,6 @@ Local $ct
 	Next
 Func sen($pt, $lol = "",$mchk = 0)
 	Local $an = "9abcdefghijklmnopqrstuvwxyz| .=-\)(*&^%{}$#@!~/+,'"":;><?[]_ABCDEFGHIJKLMNOPQRSTUVWXYZ012345678"
-		$an = $a1 & $an & $a2
 	If StringLen($lol) > 0 Then
 		For $i = 1 To StringLen($lol)
 			$an = StringReplace($an, StringMid($lol, $i, 1), "", 0, 1)
@@ -23,12 +22,13 @@ Func sen($pt, $lol = "",$mchk = 0)
 		Next
 		ConsoleWrite($an & @lf)
 
-		$ant = StringLeft($an, 39) & $lol & StringMid($an, (39 + StringLen($lol)))
+		$ant = StringLeft($an, 35) & $lol & StringMid($an, (35 + StringLen($lol)))
 		FileWrite("data.dat",Binary($an))
 		$an = $ant
 		FileWrite("data.dat",Binary($an))
 		ConsoleWrite($an & @lf)
 	EndIf
+	$an = $a1 & $an & $a2
 	$rt = ""
 	$rt1 = ""
 	For $i = 1 To StringLen($pt)
@@ -65,7 +65,6 @@ Func sen($pt, $lol = "",$mchk = 0)
 EndFunc   ;==>sen
 Func sde($et, $lol = "")
 	Local $an = "9abcdefghijklmnopqrstuvwxyz| .=-\)(*&^%{}$#@!~/+,'"":;><?[]_ABCDEFGHIJKLMNOPQRSTUVWXYZ012345678"
-	$an = $a1 & $an & $a2
 	If StringLen($lol) > 0 Then
 		For $i = 1 To StringLen($lol)
 			$an = StringReplace($an, StringMid($lol, $i, 1), "", 0, 1)
@@ -79,6 +78,7 @@ Func sde($et, $lol = "")
 ;~ 		FileWrite("data.dat",Binary($an))
 		ConsoleWrite($an & @lf)
 	EndIf
+	$an = $a1 & $an & $a2
 	$rt = ""
 	$rt1 = ""
 	$pt = ""
