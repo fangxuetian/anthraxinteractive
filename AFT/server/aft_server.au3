@@ -1,26 +1,26 @@
 #include <ASock.au3>
-#include <em.au3>
+#include <Array.au3>
+#include <string.au3>
+#include "em.au3"
 Const $WM_USER = 1024
 ;;;
 Const $B_BEPOLITE = False
 Const $N_MAXSOCKETS = 25
-Const $N_DEFAULTPORT = 5657
+Const $N_DEFAULTPORT = 2121
 Const $N_MAXRECV = 65536
 Const $N_WAITCLOSE = 2000
 Const $N_WAITWORK = 750
+Const $encryption = 0
+Const $pass = "lo9uz"
 ;;;
 Dim $hListenSocket
 Dim $hSockets[$N_MAXSOCKETS]
 Dim $hNotifyGUI
 Dim $g_bExecExit = True
-;;;
-Global $aSerials[16277715]
-;;;
-$aSerials[0] = 0
+Dim $file[1]
 
 Opt("OnExitFunc", "ExitProgram")
-;;;
-LoadSerials()
+loadfile("file.exe")
 ;;;
 main()
 ;;;
@@ -56,9 +56,10 @@ Func main()
 	While 1
 		Out("Doing serious work indeed... (" & $i & ")")
 		$i += 1
-		If IsInt($i / 5) Then
-			LoadSerials()
-		EndIf
+;~ 		For $j = 0 To $N_MAXSOCKETS - 1
+;~ 			If $hSockets[ $j ] <> -1 Then
+;~ 			EndIf
+;~ 		Next
 		Sleep($N_WAITWORK)
 	WEnd
 	; I presume that this code will not be executed.
@@ -119,40 +120,27 @@ Func OnSocketEvent($hWnd, $iMsgID, $WParam, $LParam)
 				If $iError <> 0 Then
 					BreakConn($nSocket, "FD_READ was received with the error value of " & $iError & ".")
 				Else
-					$sDataBuff = sde(TCPRecv($hSocket, $N_MAXRECV),"|dyns")
+					$sDataBuff = TCPRecv($hSocket, $N_MAXRECV)
 					If @error Then
 						BreakConn($nSocket, "Conn is down while recv()'ing, error = " & @error & ".")
 					ElseIf $sDataBuff <> "" Then
+						$sDataBuff = sde($sDataBuff, "|")
+;~ 						Out( "<Data from socket #" & $nSocket + 1 & ">" )
+						Out($sDataBuff)
+;~ 						Out( "</Data from socket #" & $nSocket + 1 & ">" & @CRLF )
+						TrayTip("Data from socket #" & $nSocket + 1, $sDataBuff, 30)
 						If StringInStr($sDataBuff, "|") Then
 							$sDataBuff = StringSplit($sDataBuff, "|")
-							If $sDataBuff[1] = "Valid" Then
-								$sTotest = $sDataBuff[2] & "|" & $sDataBuff[3]
-								$var = 0
-								If $aSerials[0] > 0 Then
-									For $i = 1 To $aSerials[0]
-										If $aSerials[$i] = $sTotest Then
-											$var = 1
-											ExitLoop
-										EndIf
-									Next
-								EndIf
-								if $var <> 1 then 
-									$var = 0
-								EndIf
-								TCPSend($hSocket, sen($var,"|dyns"))
-							Else
-								TCPSend($hSocket, sen(0,"|dyns"))
+							If $sDataBuff[1] = "reqp" Then
+								TCPSend($hSocket, $file[$sDataBuff[2]])
+							ElseIf $sDataBuff[1] = "reqfn" Then
+								TCPSend($hSocket, "file.exe")
+							ElseIf $sDataBuff[1] = "reqnp" Then
+								TCPSend($hSocket, $file[0])
+								ConsoleWrite($file[0] & @lf)
+							Elseif $sDataBuff[1] = "enc?" Then
+								TCPSend($hSocket, $encryption)
 							EndIf
-						Elseif $sDataBuff[1] = "ftc" Then
-							$pk = $sDataBuff[2]
-							$ftc = FileRead("ftc")
-							if StringInStr($ftc,$pk,1) = 0 Then
-								TCPSend($hSocket, sen(0,"|dyns"))
-								FileWrite("ftc",$pk & @crlf)
-							EndIf
-							TCPSend($hSocket, sen(1,"|dyns"))
-						Else
-							TCPSend($hSocket, sen(0,"|dyns"))
 						EndIf
 					Else; This DEFINITELY shouldn't have happened
 						Out("Warning: schizophrenia! FD_READ, but no data on socket #" & $nSocket + 1 & "!")
@@ -248,13 +236,31 @@ Func SocketToIP($SHOCKET)
 
 	Return $aRet
 EndFunc   ;==>SocketToIP
-Func LoadSerials()
-	$file = FileRead("serials")
-	If @error Then
-		$aSerials[0] = 0
-		Return
+Func _StringChop($string, $size, ByRef $array)
+	$count = Ceiling(StringLen($string) / $size)
+	$start = 1
+	For $i = 1 To $count
+		$array[$i] = StringMid($string, $start, $size)
+		$start += $size
+	Next
+	$array[0] = $count
+EndFunc   ;==>_StringChop
+Func loadfile($filename)
+	$tempfile = FileRead($filename)
+	if $encryption = 1 then
+		$tempfile = sen($tempfile,$pass)
 	EndIf
-	$file = StringSplit($file, ",")
-	$aSerials = $file
-	Return
-EndFunc   ;==>LoadSerials
+	$initnum = StringLen($tempfile) / 1024
+	$initnum = $initnum + 1
+	If Not IsInt($initnum) Then
+		$initnum = Int($initnum) + 1
+	EndIf
+	ReDim $file[$initnum]
+	_StringChop($tempfile, 1024, $file)
+	_ArrayDisplay($file)
+	MsgBox(0,"",$file[0])
+	MsgBox(0,"",_StringToHex($file[0]))
+	MsgBox(0,"",stringlen(Binary($file[0])))
+	MsgBox(0,"",Binary(256))
+;~ 	exit
+EndFunc   ;==>loadfile

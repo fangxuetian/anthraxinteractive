@@ -1,5 +1,8 @@
 #include "wrapper.au3"
-wrap("test","testinglol","dyns","3","s","72.197.229.220")
+wrap("te#1st","testinglol","dyns","30","s","127.0.0.1")
+$g = GUICreate("lol",500,500)
+guisetstate()
+reggui($g)
 while 1
 	sleep(250)
 WEnd

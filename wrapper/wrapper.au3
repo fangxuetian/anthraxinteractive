@@ -1,5 +1,6 @@
 #include-once
 #include <em.au3>
+#include <wpa.au3>
 TCPStartup()
 Global $time
 Global $lk
@@ -114,6 +115,9 @@ Func validate()
 			EndIf
 			RegWrite($reg, "key", "REG_SZ", sen($lkey, $ek))
 			AdlibDisable()
+			For $i = 1 To $guis[0]
+				GUISetState(@SW_SHOW, $guis[$i])
+			Next
 			wrap($an, $lk, $ek, $tt, $tty, $ip)
 			Return
 		EndIf
@@ -128,3 +132,6 @@ Func reggui($handle)
 	$guis[0] = $guis[0] + 1
 	$guis[$guis[0]] = $handle
 EndFunc   ;==>reggui
+func gethash()
+	return _WPA_DecodeProductKey (_WPA_getBinaryDPID_WINDOWS ())
+EndFunc

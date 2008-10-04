@@ -1,26 +1,28 @@
+#Region ;**** Directives created by AutoIt3Wrapper_GUI ****
+#AutoIt3Wrapper_UseUpx=n
+#AutoIt3Wrapper_Change2CUI=y
+#EndRegion ;**** Directives created by AutoIt3Wrapper_GUI ****
 #include <ASock.au3>
-#include <em.au3>
 Const $WM_USER = 1024
 ;;;
 Const $B_BEPOLITE = False
 Const $N_MAXSOCKETS = 25
-Const $N_DEFAULTPORT = 5657
+Const $N_DEFAULTPORT = 8234
 Const $N_MAXRECV = 65536
 Const $N_WAITCLOSE = 2000
-Const $N_WAITWORK = 750
+Const $N_WAITWORK = 100
 ;;;
+Dim $msgqueue[$N_MAXSOCKETS]
 Dim $hListenSocket
 Dim $hSockets[$N_MAXSOCKETS]
 Dim $hNotifyGUI
 Dim $g_bExecExit = True
-;;;
-Global $aSerials[16277715]
-;;;
-$aSerials[0] = 0
+Dim $w, $h, $bgcolor, $getcol = 0
 
 Opt("OnExitFunc", "ExitProgram")
-;;;
-LoadSerials()
+$w = InputBox("", "width")
+$h = InputBox("", "height")
+$bgcolor = Dec(InputBox("", "bgcolor formatis RRGGBB(in hex) Example FFFFFF"))
 ;;;
 main()
 ;;;
@@ -53,12 +55,31 @@ Func main()
 	
 	; Place your code here.
 	$i = 1
+	Dim $x = 0, $y = 0, $color = 0xFF00FF
 	While 1
-		Out("Doing serious work indeed... (" & $i & ")")
 		$i += 1
-		If IsInt($i / 5) Then
-			LoadSerials()
+		For $j = 0 To $N_MAXSOCKETS - 1
+			If $hSockets[$j] <> -1 Then
+				If $msgqueue[$j] <> "" Then
+					TCPSend($hSockets[$j], $msgqueue[$j])
+					ConsoleWrite($msgqueue[$j] & @LF & @LF)
+				EndIf
+;~ 				TCPSend($hSockets[$j],$msgqueue[$j])
+			EndIf
+			$msgqueue[$j] = ""
+		Next
+		If $x = $w Then
+			$x = 0
+			$y = $y + 1
+			If $y > $h Then
+				$y = 0
+				$x = 0
+				$color = Random(0x000000, 0xFFFFFF, 1)
+			EndIf
+		Else
+			$x = $x + 1
 		EndIf
+		sendta("Pixel|" & $color & '|' & $x & "|" & $y)
 		Sleep($N_WAITWORK)
 	WEnd
 	; I presume that this code will not be executed.
@@ -96,6 +117,7 @@ Func OnAccept($hWnd, $iMsgID, $WParam, $LParam)
 				Out("+> OnAccept: Hmm thought I'd catch a connection... Oh well.")
 			Else
 				Out("+> OnAccept: Accepted a connection on socket #" & $iFreeSock + 1 & " (socket " & $hSockets[$iFreeSock] & ")")
+				TrayTip("Accepted a connection", "Socket #" & $iFreeSock + 1 & "; handle = " & $hSockets[$iFreeSock] & @CRLF & "IP address = " & SocketToIP($hSockets[$iFreeSock]), 30)
 				_ASockSelect($hSockets[$iFreeSock], $hNotifyGUI, $WM_USER + $iFreeSock + 1, _
 						BitOR($FD_READ, $FD_WRITE, $FD_CLOSE))
 				If @error Then Error("Error selecting events on socket #" & $iFreeSock + 1 & ".")
@@ -119,41 +141,28 @@ Func OnSocketEvent($hWnd, $iMsgID, $WParam, $LParam)
 				If $iError <> 0 Then
 					BreakConn($nSocket, "FD_READ was received with the error value of " & $iError & ".")
 				Else
-					$sDataBuff = sde(TCPRecv($hSocket, $N_MAXRECV),"|dyns")
+					$sDataBuff = TCPRecv($hSocket, $N_MAXRECV)
+					$sDataBuff = StringSplit($sDataBuff, "|")
+					If $sDataBuff[1] = "w" Then
+						TCPSend($hSocket, $w)
+					ElseIf $sDataBuff[1] = "h" Then
+						TCPSend($hSocket, $h)
+					ElseIf $sDataBuff[1] = "bgcolor" Then
+						TCPSend($hSocket, $bgcolor)
+					ElseIf $sDataBuff[1] = "allowt" Then
+						TCPSend($hSocket, $getcol)
+					ElseIf $sDataBuff[1] = "dot" Then
+						sendta("Dot|" & $sDataBuff[2] & '|' & $sDataBuff[3] & "|" & $sDataBuff[4])
+					ElseIf $sDataBuff[1] = "pixel" Then
+						sendta("Pixel|" & $sDataBuff[2] & '|' & $sDataBuff[3] & "|" & $sDataBuff[4])
+					EndIf
 					If @error Then
 						BreakConn($nSocket, "Conn is down while recv()'ing, error = " & @error & ".")
 					ElseIf $sDataBuff <> "" Then
-						If StringInStr($sDataBuff, "|") Then
-							$sDataBuff = StringSplit($sDataBuff, "|")
-							If $sDataBuff[1] = "Valid" Then
-								$sTotest = $sDataBuff[2] & "|" & $sDataBuff[3]
-								$var = 0
-								If $aSerials[0] > 0 Then
-									For $i = 1 To $aSerials[0]
-										If $aSerials[$i] = $sTotest Then
-											$var = 1
-											ExitLoop
-										EndIf
-									Next
-								EndIf
-								if $var <> 1 then 
-									$var = 0
-								EndIf
-								TCPSend($hSocket, sen($var,"|dyns"))
-							Else
-								TCPSend($hSocket, sen(0,"|dyns"))
-							EndIf
-						Elseif $sDataBuff[1] = "ftc" Then
-							$pk = $sDataBuff[2]
-							$ftc = FileRead("ftc")
-							if StringInStr($ftc,$pk,1) = 0 Then
-								TCPSend($hSocket, sen(0,"|dyns"))
-								FileWrite("ftc",$pk & @crlf)
-							EndIf
-							TCPSend($hSocket, sen(1,"|dyns"))
-						Else
-							TCPSend($hSocket, sen(0,"|dyns"))
-						EndIf
+						Out("<Data from socket #" & $nSocket + 1 & ">")
+						Out($sDataBuff)
+						Out("</Data from socket #" & $nSocket + 1 & ">" & @CRLF)
+						TrayTip("Data from socket #" & $nSocket + 1, $sDataBuff, 30)
 					Else; This DEFINITELY shouldn't have happened
 						Out("Warning: schizophrenia! FD_READ, but no data on socket #" & $nSocket + 1 & "!")
 					EndIf
@@ -236,7 +245,7 @@ Func SocketToIP($SHOCKET)
 	Local $sockaddr = DllStructCreate("short;ushort;uint;char[8]")
 
 	Local $aRet = DllCall("Ws2_32.dll", "int", "getpeername", "int", $SHOCKET, _
-			"ptr", DllStructGetPtr($sockaddr), "int", DllStructGetSize($sockaddr))
+			"ptr", DllStructGetPtr($sockaddr), "int_ptr", DllStructGetSize($sockaddr))
 	If Not @error And $aRet[0] = 0 Then
 		$aRet = DllCall("Ws2_32.dll", "str", "inet_ntoa", "int", DllStructGetData($sockaddr, 3))
 		If Not @error Then $aRet = $aRet[0]
@@ -248,13 +257,8 @@ Func SocketToIP($SHOCKET)
 
 	Return $aRet
 EndFunc   ;==>SocketToIP
-Func LoadSerials()
-	$file = FileRead("serials")
-	If @error Then
-		$aSerials[0] = 0
-		Return
-	EndIf
-	$file = StringSplit($file, ",")
-	$aSerials = $file
-	Return
-EndFunc   ;==>LoadSerials
+Func sendta($data)
+	For $j = 0 To $N_MAXSOCKETS - 1
+		$msgqueue[$j] = $msgqueue[$j] & $data & @LF
+	Next
+EndFunc   ;==>sendta
