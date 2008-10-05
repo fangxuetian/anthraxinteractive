@@ -1,0 +1,37 @@
+# Project: emdll
+# Makefile created by Dev-C++ 4.9.9.2
+
+CPP  = g++.exe -D__DEBUG__
+CC   = gcc.exe -D__DEBUG__
+WINDRES = windres.exe
+RES  = 
+OBJ  = dllmain.o au3plugin.o $(RES)
+LINKOBJ  = dllmain.o au3plugin.o $(RES)
+LIBS =  -L"D:/Dev-Cpp/lib" --no-export-all-symbols --add-stdcall-alias  -g3 -mwindows -fmessage-length=0 -s -mmmx 
+INCS =  -I"D:/Dev-Cpp/include" 
+CXXINCS =  -I"D:/Dev-Cpp/lib/gcc/mingw32/3.4.2/include"  -I"D:/Dev-Cpp/include/c++/3.4.2/backward"  -I"D:/Dev-Cpp/include/c++/3.4.2/mingw32"  -I"D:/Dev-Cpp/include/c++/3.4.2"  -I"D:/Dev-Cpp/include" 
+BIN  = emdll.dll
+CXXFLAGS = $(CXXINCS) -DBUILDING_DLL=1   -fexceptions -O3 -g3 -mwindows -fmessage-length=0 -mmmx
+CFLAGS = $(INCS) -DBUILDING_DLL=1   -fexceptions -O3 -g3 -mwindows -fmessage-length=0 -mmmx
+RM = rm -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before emdll.dll all-after
+
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+DLLWRAP=dllwrap.exe
+DEFFILE=libemdll.def
+STATICLIB=libemdll.a
+
+$(BIN): $(LINKOBJ)
+	$(DLLWRAP) --output-def $(DEFFILE) --driver-name c++ --implib $(STATICLIB) $(LINKOBJ) $(LIBS) -o $(BIN)
+
+dllmain.o: dllmain.cpp
+	$(CPP) -c dllmain.cpp -o dllmain.o $(CXXFLAGS)
+
+au3plugin.o: au3plugin.cpp
+	$(CPP) -c au3plugin.cpp -o au3plugin.o $(CXXFLAGS)

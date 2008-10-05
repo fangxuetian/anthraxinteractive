@@ -1,0 +1,6 @@
+; dlltool --base-file D:\DOCUME~1\Maverick\LOCALS~1\Temp/cca06308.base --output-exp example.exp --dllname example.dll --output-def ../../bin/libexample.def --no-export-all-symbols --add-stdcall-alias --exclude-symbol=DllMainCRTStartup@12 --def D:\DOCUME~1\Maverick\LOCALS~1\Temp/cca06308.def --output-lib ../../bin/libexample.a
+EXPORTS
+	AU3_GetPluginDetails @ 1
+	PluginAdd @ 2
+	PluginMsgBox @ 3
+	AU3_FreeVar @ 4
