@@ -1,18 +1,101 @@
+#include <array.au3>
 func _dstorefindindex($dstore,$nameofsection)
-	dim $index = -1,$temp
+	dim $index = -1
 	if StringInStr($dstore,@crlf) <> 0 Then
-		$temp = StringSplit($dstore,@crlf)
-	ElseIf if StringInStr($dstore,@lf) <> 0 Then
-		$temp = StringSplit($dstore,@lf)
+		$dstore = StringSplit($dstore,@crlf)
+	ElseIf StringInStr($dstore,@lf) <> 0 Then
+		$dstore = StringSplit($dstore,@lf)
 	Else
-		$temp = StringSplit($dstore,@cr)
+		$dstore = StringSplit($dstore,@cr)
 	EndIf
-	for $i = 1 to $temp[0]
-		if StringInStr($temp[$i],$nameofsection & "|") <> 0 Then
+	dim $todelete[1000]
+	$todelete[0] = 0
+	for $i = 1 to $dstore[0]
+		if $dstore[$i] = "" Then
+			$todelete[0] = $todelete[0] + 1
+			$todelete[$todelete[0]] = $i
+		EndIf
+	Next
+	for $i = 1 to $dstore[0]
+		if StringInStr($dstore[$i],$nameofsection & "|") <> 0 Then
 			$index = $i
 			ExitLoop
 		EndIf
 	Next
 	Return $index
 EndFunc
-func _dstorestorevalue
+func _dstorestorevalue($dstore,$section,$value)
+	$index = _dstorefindindex($dstore,$section)
+	if StringInStr($dstore,@crlf) <> 0 Then
+		$dstore = StringSplit($dstore,@crlf)
+	ElseIf  StringInStr($dstore,@lf) <> 0 Then
+		$dstore = StringSplit($dstore,@lf)
+	Else
+		$dstore = StringSplit($dstore,@cr)
+	EndIf
+	dim $todelete[1000]
+	$todelete[0] = 0
+;~ 	_ArrayDisplay($dstore,"p1st")
+	for $i = 1 to $dstore[0]
+		if $dstore[$i] = "" Then
+			$todelete[0] = $todelete[0] + 1
+			$todelete[$todelete[0]] = $i
+		EndIf
+	Next
+	for $i = 1 to $todelete[0]
+		_ArrayDelete($dstore,$todelete[$i]-($i-1))
+		$dstore[0] = $dstore[0] - 1
+	Next
+;~ 	_ArrayDisplay($dstore,"1st")
+;~ 	MsgBox(0,"debug 1st",$section & "|" & $value)
+	if $index <> -1 Then
+		$dstore[$index] = $section & "|" & $value
+	Else
+		_ArrayAdd($dstore,$section & "|" & $value)
+		$dstore[0] = $dstore[0] + 1
+;~ 		_ArrayDisplay($dstore,"2nd")
+	EndIf
+	dim $dt
+	for $i = 1 to $dstore[0]
+		$dt = $dt & $dstore[$i] & @CRLF
+;~ 		MsgBox(0,$i & "\" & $dstore[0],$dt & " dstore[$i] " & $dstore[$i])
+	Next
+	Return $dt
+EndFunc
+func _dstoregetvalue($dstore,$section)
+	$index = _dstorefindindex($dstore,$section)
+	if $index = -1 Then
+		return -1
+	EndIf
+	if StringInStr($dstore,@crlf) <> 0 Then
+		$dstore = StringSplit($dstore,@crlf)
+	ElseIf  StringInStr($dstore,@lf) <> 0 Then
+		$dstore = StringSplit($dstore,@lf)
+	Else
+		$dstore = StringSplit($dstore,@cr)
+	EndIf
+	dim $todelete[1000]
+	$todelete[0] = 0
+;~ 	_ArrayDisplay($dstore,"p1st")
+	for $i = 1 to $dstore[0]
+		if $dstore[$i] = "" Then
+			$todelete[0] = $todelete[0] + 1
+			$todelete[$todelete[0]] = $i
+		EndIf
+	Next
+	$temp1 = $dstore[$index]
+	$temp1 = StringSplit($temp1,"|")
+	dim $temp
+	if $temp1[0] = 2 Then
+		$temp = $temp1[2]
+	Else
+		for $i = 2 to $temp1[0]
+			if $i <> $temp1[0] then
+				$temp = $temp & $temp1[$i] & "|"
+			Else
+				$temp = $temp & $temp1[$i]
+			EndIf
+		Next
+	EndIf
+	return $temp
+EndFunc
