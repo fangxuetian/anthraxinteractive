@@ -6,15 +6,22 @@
 Local $rt
 Local $rt1
 Local $ct
-	dim $a1,$a2
-	for $i = 0 to 31
-		$a1 = $a1 & chr($i)
-	Next
-	for $i = 127 to 255
-		$a2 = $a2 & chr($i)
-	Next
+Dim $a1, $a2
+For $i = 0 To 31
+	If $i = 10 Then
+		$a1 = $a1 & Chr(10) & Chr(13)
+	ElseIf $i = 13 Then
+		ContinueLoop
+	Else
+		$a1 = $a1 & Chr($i)
+	EndIf
+Next
+For $i = 127 To 255
+	$a2 = $a2 & Chr($i)
+Next
 Func sen($pt, $lol = "")
 	Local $an = "9abcdefghijklmnopqrstuvwxyz| .=-\)(*&^%{}$#@!~/+,'"":;><?[]_ABCDEFGHIJKLMNOPQRSTUVWXYZ012345678"
+	$an = $a1 & $an & $a2
 	If StringLen($lol) > 0 Then
 		For $i = 1 To StringLen($lol)
 			$an = StringReplace($an, StringMid($lol, $i, 1), "", 0, 1)
@@ -22,11 +29,11 @@ Func sen($pt, $lol = "")
 		Next
 ;~ 		ConsoleWrite($an & @lf)
 
-		$ant = StringLeft($an, 35) & $lol & stringright($an,(StringLen($an)-35))
+		$ant = StringLeft($an, 35) & $lol & StringRight($an, (StringLen($an) - 35))
 		$an = $ant
 ;~ 		ConsoleWrite($an & @lf)
 	EndIf
-	$an = $a1 & $an & $a2
+	FileWrite("an.txt", Binary($an))
 	$rt = ""
 	$rt1 = ""
 	For $i = 1 To StringLen($pt)
@@ -63,20 +70,20 @@ Func sen($pt, $lol = "")
 EndFunc   ;==>sen
 Func sde($et, $lol = "")
 	Local $an = "9abcdefghijklmnopqrstuvwxyz| .=-\)(*&^%{}$#@!~/+,'"":;><?[]_ABCDEFGHIJKLMNOPQRSTUVWXYZ012345678"
+	$an = $a1 & $an & $a2
 	If StringLen($lol) > 0 Then
 		For $i = 1 To StringLen($lol)
 			$an = StringReplace($an, StringMid($lol, $i, 1), "", 0, 1)
 ;~ 			FileWrite("data.dat",Binary($an))
 		Next
-		ConsoleWrite($an & @lf)
+		ConsoleWrite($an & @LF)
 
-		$ant = StringLeft($an, 35) & $lol & stringright($an,(StringLen($an)-35))
+		$ant = StringLeft($an, 35) & $lol & StringRight($an, (StringLen($an) - 35))
 ;~ 		FileWrite("data.dat",Binary($an))
 		$an = $ant
 ;~ 		FileWrite("data.dat",Binary($an))
-		ConsoleWrite($an & @lf)
+		ConsoleWrite($an & @LF)
 	EndIf
-	$an = $a1 & $an & $a2
 	$rt = ""
 	$rt1 = ""
 	$pt = ""
@@ -91,5 +98,5 @@ Func sde($et, $lol = "")
 			$rt = $rt & StringMid($an, $ets[$i] - 1, 1)
 		EndIf
 	Next
-	Return $rt
+	Return binary($rt)
 EndFunc   ;==>sde

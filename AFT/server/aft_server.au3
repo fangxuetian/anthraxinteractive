@@ -10,17 +10,31 @@ Const $N_DEFAULTPORT = 2121
 Const $N_MAXRECV = 65536
 Const $N_WAITCLOSE = 2000
 Const $N_WAITWORK = 750
-Const $encryption = 0
-Const $pass = "lo9uz"
+;~ $encryption = 0
+;~ $pass = "lo9uz"
 ;;;
 Dim $hListenSocket
 Dim $hSockets[$N_MAXSOCKETS]
 Dim $hNotifyGUI
 Dim $g_bExecExit = True
-Dim $file[1]
+Dim $file[10000][1024]
+$file [0][0] = 0
+dim $fname
+dim $encryption[10000]
+$encryption[0] = 0
+dim $pass[10000]
 
 Opt("OnExitFunc", "ExitProgram")
-loadfile("file.exe")
+;~ $encryption = InputBox("encryption", "use encryption? 0 for no and 1 for yes")
+;~ If $encryption = 1 Then
+;~ 	$pass = InputBox("pass", 'pass no repeating character. the pass "lolz" would not would but the pass "loLz" would')
+;~ EndIf
+$fileloc = FileOpenDialog("file to send",@ScriptDir,"(*.*) all")
+$fnamet = StringSplit($fileloc,"\")
+$fnamet = $fnamet[$fnamet[0]]
+$fname = $fname & $fnamet & ","
+
+loadfile($fileloc)
 ;;;
 main()
 ;;;
@@ -120,11 +134,11 @@ Func OnSocketEvent($hWnd, $iMsgID, $WParam, $LParam)
 				If $iError <> 0 Then
 					BreakConn($nSocket, "FD_READ was received with the error value of " & $iError & ".")
 				Else
-					$sDataBuff = TCPRecv($hSocket, $N_MAXRECV)
+					$sDataBuff = BinaryToString(TCPRecv($hSocket, $N_MAXRECV,1))
 					If @error Then
 						BreakConn($nSocket, "Conn is down while recv()'ing, error = " & @error & ".")
 					ElseIf $sDataBuff <> "" Then
-						$sDataBuff = sde($sDataBuff, "|")
+						$sDataBuff = BinaryToString(sde($sDataBuff, "|"))
 ;~ 						Out( "<Data from socket #" & $nSocket + 1 & ">" )
 						Out($sDataBuff)
 ;~ 						Out( "</Data from socket #" & $nSocket + 1 & ">" & @CRLF )
@@ -132,14 +146,14 @@ Func OnSocketEvent($hWnd, $iMsgID, $WParam, $LParam)
 						If StringInStr($sDataBuff, "|") Then
 							$sDataBuff = StringSplit($sDataBuff, "|")
 							If $sDataBuff[1] = "reqp" Then
-								TCPSend($hSocket, $file[$sDataBuff[2]])
+								TCPSend($hSocket, binary($file[$sDataBuff[2]][$sDataBuff[3]]))
 							ElseIf $sDataBuff[1] = "reqfn" Then
-								TCPSend($hSocket, "file.exe")
+								TCPSend($hSocket, binary($fname))
 							ElseIf $sDataBuff[1] = "reqnp" Then
-								TCPSend($hSocket, $file[0])
-								ConsoleWrite($file[0] & @lf)
-							Elseif $sDataBuff[1] = "enc?" Then
-								TCPSend($hSocket, $encryption)
+								TCPSend($hSocket, binary($file[0]))
+								ConsoleWrite($file[0] & @LF)
+							ElseIf $sDataBuff[1] = "enc?" Then
+								TCPSend($hSocket, binary($encryption))
 							EndIf
 						EndIf
 					Else; This DEFINITELY shouldn't have happened
@@ -238,29 +252,42 @@ Func SocketToIP($SHOCKET)
 EndFunc   ;==>SocketToIP
 Func _StringChop($string, $size, ByRef $array)
 	$count = Ceiling(StringLen($string) / $size)
+;~ 	MsgBox(0,"initnumc",$initnum)
 	$start = 1
+;~ 	MsgBox(0,"initnums",$initnum)
 	For $i = 1 To $count
-		$array[$i] = StringMid($string, $start, $size)
+;~ 		MsgBox(0,"initnumi",$initnum)
+		$array[$array[0][0]][$i] = StringMid($string, $start, $size)
 		$start += $size
+;~ 		_ArrayDisplay($array,$i & "/" & $count)
 	Next
-	$array[0] = $count
+	$array[$array[0][0]][0] = $count
 EndFunc   ;==>_StringChop
 Func loadfile($filename)
 	$tempfile = FileRead($filename)
-	if $encryption = 1 then
-		$tempfile = sen($tempfile,$pass)
+	$encryption[0] = $encryption[0] + 1
+	$encryption[$encryption[0]] = InputBox("encryption", "use encryption? 0 for no and 1 for yes")
+	If $encryption[$encryption[0]] = 1 Then
+		$pass[$encryption[0]] = InputBox("pass", 'pass no repeating character. the pass "lolz" would not would but the pass "loLz" would')
 	EndIf
-	$initnum = StringLen($tempfile) / 1024
+	If $encryption[$encryption[0]] = 1 Then
+		$tempfile = sen($tempfile, $pass[$encryption[0]])
+		$tempfile = BinaryToString($tempfile)
+	EndIf
+	$initnum = StringLen($tempfile) / 2048
 	$initnum = $initnum + 1
 	If Not IsInt($initnum) Then
 		$initnum = Int($initnum) + 1
 	EndIf
-	ReDim $file[$initnum]
-	_StringChop($tempfile, 1024, $file)
-	_ArrayDisplay($file)
-	MsgBox(0,"",$file[0])
-	MsgBox(0,"",_StringToHex($file[0]))
-	MsgBox(0,"",stringlen(Binary($file[0])))
-	MsgBox(0,"",Binary(256))
+	MsgBox(0,"initnum",$initnum)
+;~ 	ReDim $file[$initnum]
+	$file[0][0] = $file[0][0] + 1
+	MsgBox(0,"initnum",$initnum)
+	_StringChop($tempfile, 2048, $file)
+;~ 	_ArrayDisplay($file)
+	MsgBox(0, "", $file[$file[0][0]][0])
+;~ 	MsgBox(0, "", _StringToHex($file[0]))
+;~ 	MsgBox(0, "", StringLen(Binary($file[0])))
+;~ 	MsgBox(0, "", Binary(256))
 ;~ 	exit
 EndFunc   ;==>loadfile

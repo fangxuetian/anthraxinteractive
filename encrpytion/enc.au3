@@ -1,8 +1,9 @@
 #Region ;**** Directives created by AutoIt3Wrapper_GUI ****
+#AutoIt3Wrapper_outfile_type=a3x
 #AutoIt3Wrapper_Compression=4
 #EndRegion ;**** Directives created by AutoIt3Wrapper_GUI ****
 #include <guiconstants.au3>
-#include "em.au3"
+#include "em_mod.au3"
 ; GUI and String stuff
 $WinMain = GUICreate('Encryption tool', 400, 400)
 ; Creates window
@@ -25,7 +26,8 @@ Do
 		GUISetState(@SW_DISABLE, $WinMain) ; Stops you from changing anything
 		$string = GUICtrlRead($EditText) ; Saves the editbox for later
 		GUICtrlSetData($EditText, 'Please wait while the text is Encrypted/Decrypted.') ; Friendly message
-		GUICtrlSetData($EditText, sen($string, GUICtrlRead($InputPass)))
+		$sen = sen($string, GUICtrlRead($InputPass))
+		GUICtrlSetData($EditText, BinaryToString($sen))
 		; Calls the encryption. Sets the data of editbox with the encrypted string
 		; The encryption starts with 1/0 to tell it to encrypt/decrypt
 		; The encryption then has the string that we saved for later from edit box
@@ -36,7 +38,7 @@ Do
 		GUISetState(@SW_DISABLE, $WinMain) ; Stops you from changing anything
 		$string = GUICtrlRead($EditText) ; Saves the editbox for later
 		GUICtrlSetData($EditText, 'Please wait while the text is Encrypted/Decrypted.') ; Friendly message
-		GUICtrlSetData($EditText, sde($string, GUICtrlRead($InputPass)))
+		GUICtrlSetData($EditText, BinaryToString(sde($string, GUICtrlRead($InputPass))))
 		; Calls the encryption. Sets the data of editbox with the encrypted string
 		; The encryption starts with 1/0 to tell it to encrypt/decrypt
 		; The encryption then has the string that we saved for later from edit box
