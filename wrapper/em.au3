@@ -33,7 +33,7 @@ Func sen($pt, $lol = "")
 		$an = $ant
 ;~ 		ConsoleWrite($an & @lf)
 	EndIf
-	FileWrite("an.txt", Binary($an))
+;~ 	FileWrite("an.txt", Binary($an))
 	$rt = ""
 	$rt1 = ""
 	For $i = 1 To StringLen($pt)

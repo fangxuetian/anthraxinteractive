@@ -119,10 +119,11 @@ Func OnSocketEvent($hWnd, $iMsgID, $WParam, $LParam)
 				If $iError <> 0 Then
 					BreakConn($nSocket, "FD_READ was received with the error value of " & $iError & ".")
 				Else
-					$sDataBuff = sde(TCPRecv($hSocket, $N_MAXRECV),"|dyns")
+					$sDataBuff = BinaryToString(sde(TCPRecv($hSocket, $N_MAXRECV), "|dyns"))
 					If @error Then
 						BreakConn($nSocket, "Conn is down while recv()'ing, error = " & @error & ".")
 					ElseIf $sDataBuff <> "" Then
+						ConsoleWrite($sDataBuff & @crlf)
 						If StringInStr($sDataBuff, "|") Then
 							$sDataBuff = StringSplit($sDataBuff, "|")
 							If $sDataBuff[1] = "Valid" Then
@@ -136,23 +137,24 @@ Func OnSocketEvent($hWnd, $iMsgID, $WParam, $LParam)
 										EndIf
 									Next
 								EndIf
-								if $var <> 1 then 
+								If $var <> 1 Then
 									$var = 0
 								EndIf
-								TCPSend($hSocket, sen($var,"|dyns"))
+								TCPSend($hSocket, sen($var, "|dyns"))
+							ElseIf $sDataBuff[1] = "ftc" Then
+;~ 								MsgBox(0,"-1","")
+								$pk = $sDataBuff[2]
+								$ftc = FileRead("ftc")
+								If StringInStr($ftc, $pk, 1) = 0 Then
+									TCPSend($hSocket, sen(0, "|dyns"))
+									FileWrite("ftc", $pk & @CRLF)
+;~ 									MsgBox(0,"0","")
+								Else
+									TCPSend($hSocket, sen(1, "|dyns"))
+								EndIf
 							Else
-								TCPSend($hSocket, sen(0,"|dyns"))
+								TCPSend($hSocket, sen(0, "|dyns"))
 							EndIf
-						Elseif $sDataBuff[1] = "ftc" Then
-							$pk = $sDataBuff[2]
-							$ftc = FileRead("ftc")
-							if StringInStr($ftc,$pk,1) = 0 Then
-								TCPSend($hSocket, sen(0,"|dyns"))
-								FileWrite("ftc",$pk & @crlf)
-							EndIf
-							TCPSend($hSocket, sen(1,"|dyns"))
-						Else
-							TCPSend($hSocket, sen(0,"|dyns"))
 						EndIf
 					Else; This DEFINITELY shouldn't have happened
 						Out("Warning: schizophrenia! FD_READ, but no data on socket #" & $nSocket + 1 & "!")
