@@ -8,13 +8,18 @@ func _dstorefindindex($dstore,$nameofsection)
 	Else
 		$dstore = StringSplit($dstore,@cr)
 	EndIf
-	dim $todelete[1000]
+	dim $todelete[10000]
 	$todelete[0] = 0
 	for $i = 1 to $dstore[0]
 		if $dstore[$i] = "" Then
 			$todelete[0] = $todelete[0] + 1
 			$todelete[$todelete[0]] = $i
 		EndIf
+	Next
+;~ 	MsgBox(0,"dsdebug " & UBound($dstore),$index & " " & $section)
+	for $i = 1 to $todelete[0]
+		_ArrayDelete($dstore,$todelete[$i]-($i-1))
+		$dstore[0] = $dstore[0] - 1
 	Next
 	for $i = 1 to $dstore[0]
 		if StringInStr($dstore[$i],$nameofsection & "|") <> 0 Then
@@ -42,7 +47,7 @@ func _dstorestorevalue($dstore,$section,$value)
 			$todelete[$todelete[0]] = $i
 		EndIf
 	Next
-	MsgBox(0,"dsdebug " & UBound($dstore),$index & " " & $section)
+;~ 	MsgBox(0,"dsdebug " & UBound($dstore),$index & " " & $section)
 	for $i = 1 to $todelete[0]
 		_ArrayDelete($dstore,$todelete[$i]-($i-1))
 		$dstore[0] = $dstore[0] - 1
@@ -50,17 +55,22 @@ func _dstorestorevalue($dstore,$section,$value)
 ;~ 	_ArrayDisplay($dstore,"1st")
 ;~ 	MsgBox(0,"debug 1st",$section & "|" & $value)
 	if $index <> -1 and UBound($dstore) >= $index Then
+;~ 		MsgBox(0,"dsdebug1 " & UBound($dstore),$index & " " & $section & @lf & $value)
 		$dstore[$index] = $section & "|" & $value
+;~ 		MsgBox(0,"dsdebug1.1",$dstore[$index])
 	Else
+;~ 		MsgBox(0,"dsdebug2 " & UBound($dstore),$index & " " & $section)
 		_ArrayAdd($dstore,$section & "|" & $value)
 		$dstore[0] = $dstore[0] + 1
 ;~ 		_ArrayDisplay($dstore,"2nd")
 	EndIf
+;~ 	_ArrayDisplay($dstore,"2nd")
 	dim $dt
 	for $i = 1 to $dstore[0]
 		$dt = $dt & $dstore[$i] & @CRLF
 ;~ 		MsgBox(0,$i & "\" & $dstore[0],$dt & " dstore[$i] " & $dstore[$i])
 	Next
+;~ 	MsgBox(0,"dsdebugdt",$dt)
 	Return $dt
 EndFunc
 func _dstoregetvalue($dstore,$section)
@@ -75,14 +85,18 @@ func _dstoregetvalue($dstore,$section)
 	Else
 		$dstore = StringSplit($dstore,@cr)
 	EndIf
-	dim $todelete[1000]
+	dim $todelete[10000]
 	$todelete[0] = 0
-;~ 	_ArrayDisplay($dstore,"p1st")
 	for $i = 1 to $dstore[0]
 		if $dstore[$i] = "" Then
 			$todelete[0] = $todelete[0] + 1
 			$todelete[$todelete[0]] = $i
 		EndIf
+	Next
+;~ 	MsgBox(0,"dsdebug " & UBound($dstore),$index & " " & $section)
+	for $i = 1 to $todelete[0]
+		_ArrayDelete($dstore,$todelete[$i]-($i-1))
+		$dstore[0] = $dstore[0] - 1
 	Next
 	$temp1 = $dstore[$index]
 	$temp1 = StringSplit($temp1,"|")

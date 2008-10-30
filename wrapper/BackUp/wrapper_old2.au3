@@ -3,100 +3,83 @@
 #include <wpa.au3>
 #include <dstore.au3>
 TCPStartup()
-Local $time
-Local $lk
-Local $reg
-Local $ek
+Global $time
+Global $lk
+Global $reg
+Global $ek
 Local $trial
-Local $an
-Local $tty
-Local $tt
-Local $guis[16277715]
-Local $ip
+Global $an
+Global $tt
+Global $tty
+Global $web
+Global $guis[16277715]
+Global $ip
 Global $regged
-Local $port
 Local $ds
 $guis[0] = 0
-Func wrap($an1, $lk1, $ek1, $tt, $tty1, $ip1, $port1)
+Func wrap($an1, $lk1, $ek1, $tt, $tty, $ip1)
 	$regged = 0
 	$ip = $ip1
 	$an = $an1
 	$ek = $ek1
 	$lk = $lk1
-	$tty = $tty1
-	$port = $port1
 	$reg = "HKLM\Software\Anthrax Interactive\" & $an
-	$ds = BinaryToString(sde(FileRead("DRM.dat"), $ek))
+	$ds = FileRead("DRM.dat")
 ;~ 	$lkey = RegRead($reg, "key")
 	$lkey = _dstoregetvalue($ds, "key")
 	If $lkey = "trial" Then
 		$trial = 1
 		start()
 	EndIf
-	;msgbox(0, "lk1", $lkey)
+	MsgBox(0, "", $lkey)
 	Local $timeleft1
 	$ftc = ftccheck()
 	ConsoleWrite($ftc & @LF)
 	If $ftc = 0 Then
 ;~ 		$ftc = RegWrite($reg, "ftc", "REG_SZ", "1")
-		;msgbox(0,"ftctty",$tty)
 		If $tty = "h" Then
 			$timeleft1 = ($tt * 60) * 60
 			$timeleft1 = $timeleft1 & "000"
 ;~ 			RegWrite($reg, "tleft", "REG_SZ", sen($timeleft1, $ek))
 			$ds = _dstorestorevalue($ds, "tleft", sen($timeleft1, $ek))
-			;msgbox(0,"ftcds",$ds)
 			FileDelete("DRM.dat")
-			FileWrite("DRM.dat", sen($ds, $ek))
+			FileWrite("DRM.dat", $ds)
 		ElseIf $tty = "m" Then
 			$timeleft1 = $tt * 60
 			$timeleft1 = $timeleft1 & "000"
 ;~ 			RegWrite($reg, "tleft", "REG_SZ", sen($timeleft1, $ek))
 			$ds = _dstorestorevalue($ds, "tleft", sen($timeleft1, $ek))
-			;msgbox(0,"ftcds",$ds)
 			FileDelete("DRM.dat")
-			FileWrite("DRM.dat", sen($ds, $ek))
+			FileWrite("DRM.dat", $ds)
 		ElseIf $tty = "s" Then
 			$timeleft1 = $tt
 			$timeleft1 = $timeleft1 & "000"
 ;~ 			RegWrite($reg, "tleft", "REG_SZ", sen($timeleft1, $ek))
 			$ds = _dstorestorevalue($ds, "tleft", sen($timeleft1, $ek))
-			;msgbox(0,"ftcds",$ds)
 			FileDelete("DRM.dat")
-			FileWrite("DRM.dat", sen($ds, $ek))
-		ElseIf $tty = "d" Then
-			$timeleft1 = ($tt * 60) * 24
-			$timeleft1 = $timeleft1 & "000"
-;~ 			RegWrite($reg, "tleft", "REG_SZ", sen($timeleft1, $ek))
-			$ds = _dstorestorevalue($ds, "tleft", sen($timeleft1, $ek))
-			;msgbox(0,"ftcds",$ds)
-			FileDelete("DRM.dat")
-			FileWrite("DRM.dat", sen($ds, $ek))
+			FileWrite("DRM.dat", $ds)
 		EndIf
 ;~ 		RegWrite($reg, "key", "REG_SZ", "TRIAL")
 		$ds = _dstorestorevalue($ds, "key", "TRIAL")
 		FileDelete("DRM.dat")
-		FileWrite("DRM.dat", sen($ds, $ek))
-		;msgbox(0,"","ts")
-		;$trial = 1
-		;start()
+		FileWrite("DRM.dat", $ds)
 ;~ 		ShellExecute(@ScriptFullPath)
-		wrap($an, $lk, $ek, $tt, $tty, $ip, $port)
+		wrap($an, $lk1, $ek, $tt, $tty, $ip)
 		Return
 	EndIf
 ;~ 	$tlc = sde(RegRead($reg, "tleft"), $ek)
 	$tlc = BinaryToString(sde(_dstoregetvalue($ds, "tleft"), $ek))
 	ConsoleWrite("tlc " & $tlc & @LF)
-;~ 	;msgbox(0, "", $lkey)
+	MsgBox(0, "", $lkey)
 	If $tlc <= 0 And $lkey = "TRIAL" Then
 		$lkey = InputBox("Enter License", "Trail is over! Please enter your license key")
 ;~ 		RegWrite($reg, "key", "REG_SZ", sen($lkey, $ek))
-;~ 		;msgbox(0, "", $lkey)
+		MsgBox(0, "", $lkey)
 		$ds = _dstorestorevalue($ds, "key", sen($lkey, $ek))
-;~ 		;msgbox(0, "", $ds)
+		MsgBox(0, "", $ds)
 		FileDelete("DRM.dat")
-		FileWrite("DRM.dat", sen($ds, $ek))
-		wrap($an, $lk, $ek, $tt, $tty, $ip, $port)
+		FileWrite("DRM.dat", $ds)
+		wrap($an, $lk, $ek, $tt, $tty, $ip)
 		Return
 	ElseIf $lkey = "TRIAL" Then
 		start()
@@ -118,14 +101,12 @@ Func timecheck()
 	Do
 ;~ 		$otl = BinaryToString(sde(RegRead($reg, "tleft"), $ek))
 		$otl = BinaryToString(sde(_dstoregetvalue($ds, "tleft"), $ek))
-;~ 		ConsoleWrite("otl " & $otl & @LF)
 	Until $otl <> ""
 	ConsoleWrite("otl " & $otl & @LF)
 ;~ 	RegWrite($reg, "tleft", "REG_SZ", sen($otl - $ctime, $ek))
 	$ds = _dstorestorevalue($ds, "tleft", sen($otl - $ctime, $ek))
 	FileDelete("DRM.dat")
-;~ 	;msgbox(0,"",$ds)
-	FileWrite("DRM.dat", sen($ds, $ek))
+	FileWrite("DRM.dat", $ds)
 	$time = TimerInit()
 	$otl = $otl - $ctime
 	If 0 > $otl Then
@@ -133,35 +114,35 @@ Func timecheck()
 	EndIf
 EndFunc   ;==>timecheck
 Func isserialvalid($serial)
-	$s = TCPConnect($ip, $port)
+	$s = TCPConnect($ip, 5657)
 	ConsoleWrite("ip " & $ip & @LF)
 	If $s = -1 Or @error Then
-		;msgbox(0, $s & " | " & @error, "OMG :O THERE WAS A ERROR CONTACT ANTHRAX INTERASCTIVE IMMIDIATLY WITH ERRORID: servdown | " & $ip)
+		MsgBox(0, $s & " | " & @error, "OMG :O THERE WAS A ERROR CONTACT ANTHRAX INTERASCTIVE IMMIDIATLY WITH ERRORID: servdown | " & $ip)
 		Return _dstoregetvalue($ds, "ltsv")
 	EndIf
-	TCPSend($s, sen("VALID|" & $an & "|" & $serial, $ek))
+	TCPSend($s, sen("VALID|" & $an & "|" & $serial, "|dyns"))
 	$data = ""
 	Do
-		$data = $data & BinaryToString(sde(TCPRecv($s, 2048), $ek))
+		$data = $data & BinaryToString(sde(TCPRecv($s, 2048), "|dyns"))
 	Until $data <> ""
 	$ds = _dstorestorevalue($ds, "ltsv", $data)
 	FileDelete("DRM.dat")
-	FileWrite("DRM.dat", sen($ds, $ek))
+	FileWrite("DRM.dat", $ds)
 	TCPCloseSocket($s)
 	$s = -1
 	Return $data
 EndFunc   ;==>isserialvalid
 Func ftccheck()
-	$s = TCPConnect($ip, $port)
+	$s = TCPConnect($ip, 5657)
 	ConsoleWrite("ip " & $ip & @LF)
 	If $s = -1 Or @error Then
-		;msgbox(0, $s & " | " & @error, "OMG :O THERE WAS A ERROR CONTACT ANTHRAX INTERASCTIVE IMMIDIATLY WITH ERRORID: servdown | " & $ip)
+		MsgBox(0, $s & " | " & @error, "OMG :O THERE WAS A ERROR CONTACT ANTHRAX INTERASCTIVE IMMIDIATLY WITH ERRORID: servdown | " & $ip)
 		Return 1
 	EndIf
-	TCPSend($s, sen("FTC|" & $an & "|" & getpk(), $ek))
+	TCPSend($s, sen("FTC|" & getpk(), "|dyns"))
 	$data = ""
 	Do
-		$data = $data & BinaryToString(sde(TCPRecv($s, 2048), $ek))
+		$data = $data & BinaryToString(sde(TCPRecv($s, 2048), "|dyns"))
 	Until $data <> ""
 	TCPCloseSocket($s)
 	$s = -1
@@ -173,12 +154,10 @@ Func validate()
 	$var = isserialvalid($lkey)
 	If $var = 1 Then
 		$regged = 1
-		AdlibDisable()
 		Return
 	Else
 		If $lkey = $lk Then
 			$regged = 1
-			AdlibDisable()
 			Return
 		Else
 			For $i = 1 To $guis[0]
@@ -189,24 +168,23 @@ Func validate()
 				Exit
 			EndIf
 ;~ 			RegWrite($reg, "key", "REG_SZ", sen($lkey, $ek))
-			$ds = _dstorestorevalue($ds, "key", sen($lkey, $ek))
+			_dstorestorevalue($ds, "key", sen($lkey, $ek))
 			FileDelete("DRM.dat")
-			FileWrite("DRM.dat", sen($ds, $ek))
-;~ 			;msgbox(0,"vds",$ds)
+			FileWrite("DRM.dat", $ds)
 			AdlibDisable()
 			For $i = 1 To $guis[0]
 				GUISetState(@SW_SHOW, $guis[$i])
 			Next
-			wrap($an, $lk, $ek, $tt, $tty, $ip, $port)
+			wrap($an, $lk, $ek, $tt, $tty, $ip)
 			Return
 		EndIf
 	EndIf
 EndFunc   ;==>validate
 Func regnow($serial)
 ;~ 	RegWrite($reg, "key", "REG_SZ", sen($serial, $ek))
-	$ds = _dstorestorevalue($ds, "key", sen($serial, $ek))
+	_dstorestorevalue($ds, "key", sen($serial, $ek))
 	FileDelete("DRM.dat")
-	FileWrite("DRM.dat", sen($ds, $ek))
+	FileWrite("DRM.dat", $ds)
 	validate()
 	Return
 EndFunc   ;==>regnow
