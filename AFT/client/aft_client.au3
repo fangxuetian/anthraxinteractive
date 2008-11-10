@@ -1,7 +1,7 @@
-#include "em.au3"
+;~ #include "em.au3"
 $maxdata = 2048
 TCPStartup()
-$s = TCPConnect("192.168.1.199",2121)
+$s = TCPConnect("72.197.223.217",2121)
 TCPSend($s,sen("reqnp|","|"))
 dim $np, $pass
 Do
@@ -30,8 +30,13 @@ MsgBox(0,"",dec(hex($np)))
 dim $data
 $c = 0
 ProgressOn("Downloading","Downloading " & $fn,"0/" & $np & " parts downloaded")
+dim $c = 0
+dim $speed
+dim $time
+$time = TimerInit()
 for $i = 1 to $np
-	TCPSend($s,sen("reqp|" & $i,"|"))
+	$c = $c + 1
+	TCPSend($s,sen("reqp|1|" & $i,"|"))
 ;~ 	ConsoleWrite
 	$temp = ""
 	Do
@@ -39,7 +44,16 @@ for $i = 1 to $np
 	until $temp <> ""
 	$temp = BinaryToString($temp)
 	$data = $data & $temp
-	ProgressSet($i/$np*100,$i & "/" & $np & " parts downloaded")
+	if $c = 10 Then
+		$dif = TimerDiff($time)
+		$time = TimerInit()
+		$dif = ($dif/1000)
+		$m = 1/$dif
+		$speed = int($c*$m)
+		ConsoleWrite("dif " & $dif & " m " & $m & " $speed " & $speed & @LF)
+		$c = 0
+	EndIf
+	ProgressSet($i/$np*100,$i & "/" & $np & " parts downloaded" & @lf & "p/s: " & $speed & @lf &"KB/s " & ($speed*2))
 	ConsoleWrite($i & @lf)
 Next
 ;~ $data = BinaryToString($data)

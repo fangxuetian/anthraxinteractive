@@ -17,30 +17,36 @@ Dim $hListenSocket
 Dim $hSockets[$N_MAXSOCKETS]
 Dim $hNotifyGUI
 Dim $g_bExecExit = True
-Dim $file[10000][1024]
+Dim $file[101][7501]
 $file [0][0] = 0
 dim $fname
+dim $fnamea[101]
 dim $encryption[10000]
 $encryption[0] = 0
 dim $pass[10000]
 
 Opt("OnExitFunc", "ExitProgram")
+Opt("TrayMenuMode",1)
 ;~ $encryption = InputBox("encryption", "use encryption? 0 for no and 1 for yes")
 ;~ If $encryption = 1 Then
 ;~ 	$pass = InputBox("pass", 'pass no repeating character. the pass "lolz" would not would but the pass "loLz" would')
 ;~ EndIf
-$fileloc = FileOpenDialog("file to send",@ScriptDir,"(*.*) all")
-$fnamet = StringSplit($fileloc,"\")
-$fnamet = $fnamet[$fnamet[0]]
-$fname = $fname & $fnamet & ","
 
-loadfile($fileloc)
+loadfile()
 ;;;
 main()
 ;;;
 Func main()
 	Dim $iPort
 	Dim $i
+	$ftm = TrayCreateMenu("File")
+	$lfftm = TrayCreateItem("Load file",$ftm)
+	TrayCreateItem("")
+	$exit = TrayCreateItem("Exit")
+	TraySetState()
+	opt("TrayOnEventMode",1)
+	TrayItemSetOnEvent($lfftm,"loadfile")
+	TrayItemSetOnEvent($exit,"_exit")
 	;;;
 	If Not TCPStartup() Then Error("WSAStartup() failed.", False)
 	
@@ -70,6 +76,7 @@ Func main()
 	While 1
 		Out("Doing serious work indeed... (" & $i & ")")
 		$i += 1
+;~ 		ConsoleWrite("msg " & $msg & " exit " & $exit & " lfftm" & $lfftm & @LF)
 ;~ 		For $j = 0 To $N_MAXSOCKETS - 1
 ;~ 			If $hSockets[ $j ] <> -1 Then
 ;~ 			EndIf
@@ -138,7 +145,7 @@ Func OnSocketEvent($hWnd, $iMsgID, $WParam, $LParam)
 					If @error Then
 						BreakConn($nSocket, "Conn is down while recv()'ing, error = " & @error & ".")
 					ElseIf $sDataBuff <> "" Then
-						$sDataBuff = BinaryToString(sde($sDataBuff, "|"))
+						$sDataBuff = BinaryToString(sde($sDataBuff, ""))
 ;~ 						Out( "<Data from socket #" & $nSocket + 1 & ">" )
 						Out($sDataBuff)
 ;~ 						Out( "</Data from socket #" & $nSocket + 1 & ">" & @CRLF )
@@ -150,10 +157,10 @@ Func OnSocketEvent($hWnd, $iMsgID, $WParam, $LParam)
 							ElseIf $sDataBuff[1] = "reqfn" Then
 								TCPSend($hSocket, binary($fname))
 							ElseIf $sDataBuff[1] = "reqnp" Then
-								TCPSend($hSocket, binary($file[0]))
-								ConsoleWrite($file[0] & @LF)
+								TCPSend($hSocket, binary($file[$sDataBuff[2]][0]))
+								ConsoleWrite($file[0][0] & @LF)
 							ElseIf $sDataBuff[1] = "enc?" Then
-								TCPSend($hSocket, binary($encryption))
+								TCPSend($hSocket, binary($encryption[$sDataBuff[2]]))
 							EndIf
 						EndIf
 					Else; This DEFINITELY shouldn't have happened
@@ -259,11 +266,16 @@ Func _StringChop($string, $size, ByRef $array)
 ;~ 		MsgBox(0,"initnumi",$initnum)
 		$array[$array[0][0]][$i] = StringMid($string, $start, $size)
 		$start += $size
+;~ 		MsgBox(0,"",$i & "/" &$count)
 ;~ 		_ArrayDisplay($array,$i & "/" & $count)
 	Next
 	$array[$array[0][0]][0] = $count
 EndFunc   ;==>_StringChop
-Func loadfile($filename)
+Func loadfile()
+	$filename = FileOpenDialog("file to send",@ScriptDir,"(*.*) all")
+	$fnamet = StringSplit($filename,"\")
+	$fnamet = $fnamet[$fnamet[0]]
+	$fname = $fname & $fnamet & ","
 	$tempfile = FileRead($filename)
 	$encryption[0] = $encryption[0] + 1
 	$encryption[$encryption[0]] = InputBox("encryption", "use encryption? 0 for no and 1 for yes")

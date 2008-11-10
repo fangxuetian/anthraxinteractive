@@ -1,4 +1,4 @@
-#include <em.au3>
+#include <em_mod.au3>
 $filen = FileOpenDialog("encrpytion",@ScriptDir,"any thing(*.*)")
 $fdata = FileRead($filen)
 $pass = InputBox("pass","pass","","*")

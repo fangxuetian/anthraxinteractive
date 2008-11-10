@@ -136,7 +136,7 @@ Func isserialvalid($serial)
 	$s = TCPConnect($ip, $port)
 	ConsoleWrite("ip " & $ip & @LF)
 	If $s = -1 Or @error Then
-		;msgbox(0, $s & " | " & @error, "OMG :O THERE WAS A ERROR CONTACT ANTHRAX INTERASCTIVE IMMIDIATLY WITH ERRORID: servdown | " & $ip)
+		msgbox(0, $s & " | " & @error, "OMG :O THERE WAS A ERROR CONTACT Maverick IMMIDIATLY WITH ERRORID: servdown | " & $ip)
 		Return _dstoregetvalue($ds, "ltsv")
 	EndIf
 	TCPSend($s, sen("VALID|" & $an & "|" & $serial, $ek))
@@ -155,7 +155,7 @@ Func ftccheck()
 	$s = TCPConnect($ip, $port)
 	ConsoleWrite("ip " & $ip & @LF)
 	If $s = -1 Or @error Then
-		;msgbox(0, $s & " | " & @error, "OMG :O THERE WAS A ERROR CONTACT ANTHRAX INTERASCTIVE IMMIDIATLY WITH ERRORID: servdown | " & $ip)
+		msgbox(0, $s & " | " & @error, "OMG :O THERE WAS A ERROR CONTACT Maverick IMMIDIATLY WITH ERRORID: servdown | " & $ip)
 		Return 1
 	EndIf
 	TCPSend($s, sen("FTC|" & $an & "|" & getpk(), $ek))
