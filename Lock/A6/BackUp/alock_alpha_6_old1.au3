@@ -69,7 +69,7 @@ while 1
 			EndIf
 		case $msg = $about
 			if $locked = 0 Then
-				msgbox(0,"About","Publisher: Anthrax" & @CRLF & "Copyright 2007 MassiveSoft" & @CRLF & @CRLF & "This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.(at your option) any later version.This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details. You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA )")
+				msgbox(0,"About","Publisher: PixelSoft" & @CRLF & "Copyright 2007 MassiveSoft" & @CRLF & @CRLF & "This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.(at your option) any later version.This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details. You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA )")
 			EndIf
 		case $msg = $opts
 			opts()
@@ -77,7 +77,7 @@ while 1
 WEnd
 func _lock()
 	$mp = MouseGetPos()
-	SplashTextOn("Anthrax Lock", "locked. press p to bring up the password screen",@DesktopWidth, @DesktopHeight, Default, Default, 3, "Times New Roman", 72, 700)
+	SplashTextOn("PixelSoft Lock", "locked. press p to bring up the password screen",@DesktopWidth, @DesktopHeight, Default, Default, 3, "Times New Roman", 72, 700)
 	$locked = 1
 	hotkeyset("p","_Passwd")
 	$splash = 1

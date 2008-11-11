@@ -161,7 +161,7 @@ Func WRAP($AN1, $LK1, $EK1, $TT, $TTY, $IP1)
 	$AN = $AN1
 	$EK = $EK1
 	$LK = $LK1
-	$REG = "HKLM\Software\Anthrax Interactive\" & $AN
+	$REG = "HKLM\Software\PixelSoft\" & $AN
 	$LKEY = RegRead($REG, "key")
 	If $LKEY = "trial" Then
 		$TRIAL = 1
@@ -233,7 +233,7 @@ EndFunc
 Func ISSERIALVALID($SERIAL)
 	$S = TCPConnect($IP, 5657)
 	If $S = -1 Or @error Then
-		MsgBox(0, $S & " | " & @error, "OMG :O THERE WAS A ERROR CONTACT ANTHRAX INTERASCTIVE IMMIDIATLY WITH ERRORID: servdown | " & $IP)
+		MsgBox(0, $S & " | " & @error, "OMG :O THERE WAS A ERROR CONTACT PixelSoft INTERASCTIVE IMMIDIATLY WITH ERRORID: servdown | " & $IP)
 		Return 0
 	EndIf
 	TCPSend($S, SEN("VALID|" & $AN & "|" & $SERIAL, "|dyns"))

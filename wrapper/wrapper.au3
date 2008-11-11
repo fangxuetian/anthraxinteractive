@@ -25,7 +25,7 @@ Func wrap($an1, $lk1, $ek1, $tt, $tty1, $ip1, $port1)
 	$lk = $lk1
 	$tty = $tty1
 	$port = $port1
-	$reg = "HKLM\Software\Anthrax Interactive\" & $an
+	$reg = "HKLM\Software\PixelSoft\" & $an
 	$ds = BinaryToString(sde(FileRead("DRM.dat"), $ek))
 ;~ 	$lkey = RegRead($reg, "key")
 	$lkey = _dstoregetvalue($ds, "key")

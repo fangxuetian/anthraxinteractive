@@ -12,16 +12,16 @@
 Global $users[1677715]
 Global $passes[1677715]
 Global $mp
-$mp = "," & InputBox("Anthrax EOSe", "Enter the master password. No repeating letters or errors will occur. If this is your first boot, enter your new master password.","","*")
+$mp = "," & InputBox("PixelSoft EOSe", "Enter the master password. No repeating letters or errors will occur. If this is your first boot, enter your new master password.","","*")
 if IniRead("Settings.ini","UP","upc",0) = 0 Then
 	IniWrite("Settings.ini","UP","upc",1)
 	FileWrite(sen($mp,"") & ".dll",sen("Admin,",$mp))
 EndIf
 if FileExists(sen($mp,"") & ".dll") = 0 Then
-	end(3,"Anthrax EOSe","Invalid master password, exiting...")
+	end(3,"PixelSoft EOSe","Invalid master password, exiting...")
 EndIf
 HotKeySet("{ESCAPE}", "_exit")
-Wrap("Anthrax EOSe", "Milkshakeingcows", "dyns", 24, "h")
+Wrap("PixelSoft EOSe", "Milkshakeingcows", "dyns", 24, "h")
 Boot()
 Func _exit()
 	Exit (2)

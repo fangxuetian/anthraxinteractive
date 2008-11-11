@@ -4,10 +4,10 @@
 #AutoIt3Wrapper_icon=..\build\icon.ICO
 #AutoIt3Wrapper_outfile=..\build\release\RemindMe.exe
 #AutoIt3Wrapper_compression=4
-#AutoIt3Wrapper_res_comment=Anthrax Interactive RemindMe
+#AutoIt3Wrapper_res_comment=PixelSoft RemindMe
 #AutoIt3Wrapper_res_description=Reminder Alarm Program.
 #AutoIt3Wrapper_res_fileversion=0.0.54.0
-#AutoIt3Wrapper_res_legalcopyright=Copyright 2007-2008 Anthrax Interactive
+#AutoIt3Wrapper_res_legalcopyright=Copyright 2007-2008 PixelSoft
 #AutoIt3Wrapper_res_language=1033
 #AutoIt3Wrapper_res_requestedExecutionLevel=requireAdministrator
 #AutoIt3Wrapper_run_tidy=y
@@ -19,14 +19,14 @@
 ;~ #include "inc\wrapper.au3"
 ;~ wrap("RemindMe", "athcoderremindme", "dyns", 1, "h", "http://cpudeamon.com/forums/index.php")
 Global $gui, $font, $regAMPM, $regHour, $regLoc, $regMessage, $regMinute, $hour, $minute, $AMPM, $message, $help, $NowTime, $aMsg
-$gui = GUICreate("Anthrax RemindMe", 260, 90, 193, 125)
+$gui = GUICreate("PixelSoft RemindMe", 260, 90, 193, 125)
 Opt("GUIOnEventMode", 1)
 Opt("MustDeclareVars", 1)
 GUISetBkColor(0x000000, $gui)
 $font = "Arial"
 GUISetFont(9, 400, 0, $font)
 AdlibEnable("Refresh", 1000)
-$regLoc = "HKLM\SOFTWARE\Anthrax Interactive\RemindMe"
+$regLoc = "HKLM\SOFTWARE\PixelSoft\RemindMe"
 $regHour = RegRead($regLoc, "Hour")
 $regMinute = RegRead($regLoc, "Minute")
 $regAMPM = RegRead($regLoc, "AMPM")
@@ -56,7 +56,7 @@ While 1
 		For $i = 1 To 5
 			Beep(1100, 500)
 		Next
-		MsgBox(0, "Anthrax RemindMe", "It is " & _NowTime() & ". " & GUICtrlRead($message))
+		MsgBox(0, "PixelSoft RemindMe", "It is " & _NowTime() & ". " & GUICtrlRead($message))
 		If $regLoc = 0 Then
 			RegWrite($regLoc)
 		EndIf

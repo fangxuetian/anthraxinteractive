@@ -10,14 +10,14 @@ $e = 1
 Func wrap($an, $lk1, $ek1, $tt, $tty)
 	$ek = $ek1
 	$lk = $lk1
-	$reg = "HKLM\Software\Anthrax Interactive\" & $an
+	$reg = "HKLM\Software\PixelSoft\" & $an
 	$lkey = RegRead($reg, "key")
 	If $lkey = "trial"  Then
 		$trial = 1
 		AdlibEnable("timecheck", 1000)
 	EndIf
 	Local $timeleft1
-	$ftc = RegRead("HKLM\Software\Anthrax Interactive\" & $an, "ftc")
+	$ftc = RegRead("HKLM\Software\PixelSoft\" & $an, "ftc")
 	ConsoleWrite($ftc & @LF)
 	If $ftc = "" Then
 		$ftc = RegWrite($reg, "ftc", "REG_SZ", "1")

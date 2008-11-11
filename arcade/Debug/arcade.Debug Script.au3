@@ -8,23 +8,23 @@ Global $AutoItDebuggerCommandWindow
 Global $AutoItDebuggerCommandWindowListbox
 AutoIt_Debugger_CreateMessageWindow()
 $TempOriginalFileBeingDebuggedFileName = "arcade"
-$TempOriginalFileBeingDebuggedFileFolder = "D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\arcade"
-$TempOriginalFileBeingDebuggedFilePath = "D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\arcade\arcade.au3"
-AutoIt_Debugger_LoadFile("D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\arcade\arcade.au3", "arcade")
+$TempOriginalFileBeingDebuggedFileFolder = "D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\arcade"
+$TempOriginalFileBeingDebuggedFilePath = "D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\arcade\arcade.au3"
+AutoIt_Debugger_LoadFile("D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\arcade\arcade.au3", "arcade")
 AutoIt_Debugger_DebugFile(@ScriptFullPath)
-AutoIt_Debugger_NextLine("D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\arcade\arcade.au3", "arcade", 1, False, @error, @extended)
-#Include "D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\arcade\Debug\wrapper.Debug Script.au3"
-AutoIt_Debugger_FinishedLine("D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\arcade\arcade.au3", "arcade", 1, False, @error, @extended)
-AutoIt_Debugger_NextLine("D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\arcade\arcade.au3", "arcade", 2, False, @error, @extended)
-#Include "D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\arcade\Debug\update.Debug Script.au3"
-AutoIt_Debugger_FinishedLine("D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\arcade\arcade.au3", "arcade", 2, False, @error, @extended)
-AutoIt_Debugger_NextLine("D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\arcade\arcade.au3", "arcade", 3, False, @error, @extended)
+AutoIt_Debugger_NextLine("D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\arcade\arcade.au3", "arcade", 1, False, @error, @extended)
+#Include "D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\arcade\Debug\wrapper.Debug Script.au3"
+AutoIt_Debugger_FinishedLine("D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\arcade\arcade.au3", "arcade", 1, False, @error, @extended)
+AutoIt_Debugger_NextLine("D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\arcade\arcade.au3", "arcade", 2, False, @error, @extended)
+#Include "D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\arcade\Debug\update.Debug Script.au3"
+AutoIt_Debugger_FinishedLine("D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\arcade\arcade.au3", "arcade", 2, False, @error, @extended)
+AutoIt_Debugger_NextLine("D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\arcade\arcade.au3", "arcade", 3, False, @error, @extended)
 $port = 5656
-AutoIt_Debugger_FinishedLine("D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\arcade\arcade.au3", "arcade", 3, False, @error, @extended)
+AutoIt_Debugger_FinishedLine("D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\arcade\arcade.au3", "arcade", 3, False, @error, @extended)
 AutoIt_Debugger_SendVariable("$port", $port, @error, @extended)
-AutoIt_Debugger_NextLine("D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\arcade\arcade.au3", "arcade", 4, False, @error, @extended)
-update("D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\arcade\update.ini","D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\arcade\update.upd",1,1,IniRead("settings.ini","arcade","go",0))
-AutoIt_Debugger_FinishedLine("D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\arcade\arcade.au3", "arcade", 4, False, @error, @extended)
+AutoIt_Debugger_NextLine("D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\arcade\arcade.au3", "arcade", 4, False, @error, @extended)
+update("D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\arcade\update.ini","D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\arcade\update.upd",1,1,IniRead("settings.ini","arcade","go",0))
+AutoIt_Debugger_FinishedLine("D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\arcade\arcade.au3", "arcade", 4, False, @error, @extended)
 
 Func OnAutoItExit()
 	AutoIt_Debugger_WaitForExit()

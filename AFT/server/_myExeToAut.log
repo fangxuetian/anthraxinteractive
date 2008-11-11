@@ -1,7 +1,7 @@
 ================================================================================
 myAut2Exe >The Open Source AutoIT/AutoHotKey script decompiler< 2.4 build(82)
 ================================================================================
-Unpacking: D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\AFT\server\file.exe
+Unpacking: D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\AFT\server\file.exe
 Script Type 3.2.5+ found.
 AlternativeSigScan for 'FILE'-signature in au3-body...
 0003EC55 -> SrcFile_FileInst: >>>AUTOIT SCRIPT<<<
@@ -11,7 +11,7 @@ AU3_Signature: A3 48 4B BE 98 6C 4A A9 99 4C 53 0A 86 D6 48 7D   £HK¾˜lJ©™LS
 
  ---> ScriptStartOffset: 0003EC00
       EndOf_PE-ExeFile: 0003EC00
-Extracting ExeIcon/s to: "D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\AFT\server\file.ico"
+Extracting ExeIcon/s to: "D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\AFT\server\file.ico"
 0003EC13 -> SubType: 0x41  AU3!
 ~ Note:  The following offset values are were the data ends (and not were it starts) ~
 0003EC17 -> New AutoIt Script Found.  - Type2 = EA06
@@ -36,8 +36,8 @@ Decrypting script data...
 Calculating ADLER32 checksum from decrypted scriptdata
    OK.
 JB LZSS Signature:EA06
-Compressed scriptdata written to D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\AFT\server\file.pak
-Expanding script data to "file.tok" at D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\AFT\server\
+Compressed scriptdata written to D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\AFT\server\file.pak
+Expanding script data to "file.tok" at D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\AFT\server\
 Setting Creation and LastWrite time
 Write data in textbox
 -------------------------------------------------------------------------------
@@ -47,23 +47,23 @@ overlaybytes: 41 55 33 21 45 41 30 36   AU3!EA06
 ===============================================================================
 Testing for Scripts that were obfuscate by 'Jos van der Zande AutoIt3 Source Obfuscator v1.0.15 [July 1, 2007]' or 'EncodeIt 2.0'
 ===============================================================================
-Trying to DeTokenise: D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\AFT\server\file.tok
+Trying to DeTokenise: D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\AFT\server\file.tok
 00000003 -> Code Lines: 299   0x0000012B
 Keep TmpFile is unchecked => Deleting 'file.tok'
-Deleting: D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\AFT\server\file.tok
+Deleting: D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\AFT\server\file.tok
 Converting Unicode to UTF8, since Tidy don't support unicode.
 Try to breaks very long lines (about 2000 chars) by adding '_'+<NewLine> ...
-Save/overwrite script to: D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\AFT\server\file.au3
+Save/overwrite script to: D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\AFT\server\file.au3
 
 Running 'Tidy.exe file.au3' to improve sourcecode readability.
-D:\Documents and Settings\Maverick\My Documents\atut2exe\Tidy\Tidy.exe "D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\AFT\server\file.au3"
+D:\Documents and Settings\Maverick\My Documents\atut2exe\Tidy\Tidy.exe "D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\AFT\server\file.au3"
 => Okay (ExitCode: 0).
 Deleting Tidy BackupFile...
-Deleting: D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\AFT\server\file_old1.au3
+Deleting: D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\AFT\server\file_old1.au3
 Token expansion succeed.
 ===============================================================================
-Trying to DeObfuscate : D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\AFT\server\file.au3
+Trying to DeObfuscate : D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\AFT\server\file.au3
 ERR: Script is NOT obfuscate by 'Jos van der Zande AutoIt3 Source Obfuscator v1.0.15 [July 1, 2007]', v1.0.14[June 16, 2007] or 'EncodeIt 2.0'
 
-Saving Logdata to : D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\AFT\server\_myExeToAut.log
+Saving Logdata to : D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\AFT\server\_myExeToAut.log
 

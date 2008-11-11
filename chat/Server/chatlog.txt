@@ -215,4 +215,10 @@ exit|Brad|1|2
 exit|Brad|1|2
 Admin : lolz
 Brad : BLEH
-Brad has left the chatroom.MMavipc has left the chatroom.
+Brad has left the chatroom.MMavipc has left the chatroom.MMavipc has joined the chatroom.
+MMavipc : hello
+MMavipc : wow
+MMavipc : lot faster now
+MMavipc : lol
+MMavipc : :P
+MMavipc has left the chatroom.

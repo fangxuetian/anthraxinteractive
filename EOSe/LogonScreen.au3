@@ -27,7 +27,7 @@ Func LogonScreen()
 				Next
 				MsgBox(0, "", $var)
 				If $var = "" Then
-					MsgBox(0, "Anthrax EOSe", "Invalid User/Pass")
+					MsgBox(0, "PixelSoft EOSe", "Invalid User/Pass")
 					GUIDelete($logon)
 					LogonScreen()
 					Return
@@ -40,7 +40,7 @@ Func LogonScreen()
 					interface($suser)
 					Return
 				Else
-					MsgBox(0, "Anthrax EOSe", "Invalid User/Pass")
+					MsgBox(0, "PixelSoft EOSe", "Invalid User/Pass")
 					GUIDelete($logon)
 					LogonScreen()
 					Return

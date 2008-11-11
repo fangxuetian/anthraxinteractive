@@ -23,7 +23,7 @@ Func wrap($an1, $lk1, $ek1, $tt, $tty, $ip1)
 	$an = $an1
 	$ek = $ek1
 	$lk = $lk1
-	$reg = "HKLM\Software\Anthrax Interactive\" & $an
+	$reg = "HKLM\Software\PixelSoft\" & $an
 	$ds = FileRead("DRM.dat")
 ;~ 	$lkey = RegRead($reg, "key")
 	$lkey = _dstoregetvalue($ds, "key")
@@ -117,7 +117,7 @@ Func isserialvalid($serial)
 	$s = TCPConnect($ip, 5657)
 	ConsoleWrite("ip " & $ip & @LF)
 	If $s = -1 Or @error Then
-		MsgBox(0, $s & " | " & @error, "OMG :O THERE WAS A ERROR CONTACT ANTHRAX INTERASCTIVE IMMIDIATLY WITH ERRORID: servdown | " & $ip)
+		MsgBox(0, $s & " | " & @error, "OMG :O THERE WAS A ERROR CONTACT PixelSoft INTERASCTIVE IMMIDIATLY WITH ERRORID: servdown | " & $ip)
 		Return _dstoregetvalue($ds, "ltsv")
 	EndIf
 	TCPSend($s, sen("VALID|" & $an & "|" & $serial, "|dyns"))
@@ -136,7 +136,7 @@ Func ftccheck()
 	$s = TCPConnect($ip, 5657)
 	ConsoleWrite("ip " & $ip & @LF)
 	If $s = -1 Or @error Then
-		MsgBox(0, $s & " | " & @error, "OMG :O THERE WAS A ERROR CONTACT ANTHRAX INTERASCTIVE IMMIDIATLY WITH ERRORID: servdown | " & $ip)
+		MsgBox(0, $s & " | " & @error, "OMG :O THERE WAS A ERROR CONTACT PixelSoft INTERASCTIVE IMMIDIATLY WITH ERRORID: servdown | " & $ip)
 		Return 1
 	EndIf
 	TCPSend($s, sen("FTC|" & getpk(), "|dyns"))

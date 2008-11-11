@@ -8,129 +8,129 @@ Global $AutoItDebuggerCommandWindow
 Global $AutoItDebuggerCommandWindowListbox
 AutoIt_Debugger_CreateMessageWindow()
 $TempOriginalFileBeingDebuggedFileName = "enc"
-$TempOriginalFileBeingDebuggedFileFolder = "D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\wrapper"
-$TempOriginalFileBeingDebuggedFilePath = "D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\wrapper\enc.au3"
-AutoIt_Debugger_LoadFile("D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\wrapper\enc.au3", "enc")
+$TempOriginalFileBeingDebuggedFileFolder = "D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\wrapper"
+$TempOriginalFileBeingDebuggedFilePath = "D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\wrapper\enc.au3"
+AutoIt_Debugger_LoadFile("D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\wrapper\enc.au3", "enc")
 AutoIt_Debugger_DebugFile(@ScriptFullPath)
-AutoIt_Debugger_NextLine("D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\wrapper\enc.au3", "enc", 1, False, @error, @extended)
+AutoIt_Debugger_NextLine("D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\wrapper\enc.au3", "enc", 1, False, @error, @extended)
 #Region ;**** Directives created by AutoIt3Wrapper_GUI ****
-AutoIt_Debugger_FinishedLine("D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\wrapper\enc.au3", "enc", 1, False, @error, @extended)
-AutoIt_Debugger_NextLine("D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\wrapper\enc.au3", "enc", 2, False, @error, @extended)
+AutoIt_Debugger_FinishedLine("D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\wrapper\enc.au3", "enc", 1, False, @error, @extended)
+AutoIt_Debugger_NextLine("D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\wrapper\enc.au3", "enc", 2, False, @error, @extended)
 #AutoIt3Wrapper_outfile_type=a3x
-AutoIt_Debugger_FinishedLine("D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\wrapper\enc.au3", "enc", 2, False, @error, @extended)
-AutoIt_Debugger_NextLine("D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\wrapper\enc.au3", "enc", 3, False, @error, @extended)
+AutoIt_Debugger_FinishedLine("D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\wrapper\enc.au3", "enc", 2, False, @error, @extended)
+AutoIt_Debugger_NextLine("D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\wrapper\enc.au3", "enc", 3, False, @error, @extended)
 #AutoIt3Wrapper_Compression=4
-AutoIt_Debugger_FinishedLine("D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\wrapper\enc.au3", "enc", 3, False, @error, @extended)
-AutoIt_Debugger_NextLine("D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\wrapper\enc.au3", "enc", 4, False, @error, @extended)
+AutoIt_Debugger_FinishedLine("D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\wrapper\enc.au3", "enc", 3, False, @error, @extended)
+AutoIt_Debugger_NextLine("D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\wrapper\enc.au3", "enc", 4, False, @error, @extended)
 #EndRegion ;**** Directives created by AutoIt3Wrapper_GUI ****
-AutoIt_Debugger_FinishedLine("D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\wrapper\enc.au3", "enc", 4, False, @error, @extended)
-AutoIt_Debugger_NextLine("D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\wrapper\enc.au3", "enc", 5, False, @error, @extended)
+AutoIt_Debugger_FinishedLine("D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\wrapper\enc.au3", "enc", 4, False, @error, @extended)
+AutoIt_Debugger_NextLine("D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\wrapper\enc.au3", "enc", 5, False, @error, @extended)
 #Include "D:\Program Files\AutoIt3\Include\guiconstants.au3"
-AutoIt_Debugger_FinishedLine("D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\wrapper\enc.au3", "enc", 5, False, @error, @extended)
-AutoIt_Debugger_NextLine("D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\wrapper\enc.au3", "enc", 6, False, @error, @extended)
-#Include "D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\wrapper\Debug\em.Debug Script.au3"
-AutoIt_Debugger_FinishedLine("D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\wrapper\enc.au3", "enc", 6, False, @error, @extended)
+AutoIt_Debugger_FinishedLine("D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\wrapper\enc.au3", "enc", 5, False, @error, @extended)
+AutoIt_Debugger_NextLine("D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\wrapper\enc.au3", "enc", 6, False, @error, @extended)
+#Include "D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\wrapper\Debug\em.Debug Script.au3"
+AutoIt_Debugger_FinishedLine("D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\wrapper\enc.au3", "enc", 6, False, @error, @extended)
 ; GUI and String stuff
-AutoIt_Debugger_NextLine("D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\wrapper\enc.au3", "enc", 8, False, @error, @extended)
+AutoIt_Debugger_NextLine("D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\wrapper\enc.au3", "enc", 8, False, @error, @extended)
 $WinMain = GUICreate('Encryption tool', 400, 400)
-AutoIt_Debugger_FinishedLine("D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\wrapper\enc.au3", "enc", 8, False, @error, @extended)
+AutoIt_Debugger_FinishedLine("D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\wrapper\enc.au3", "enc", 8, False, @error, @extended)
 AutoIt_Debugger_SendVariable("$WinMain", $WinMain, @error, @extended)
 ; Creates window
-AutoIt_Debugger_NextLine("D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\wrapper\enc.au3", "enc", 10, False, @error, @extended)
+AutoIt_Debugger_NextLine("D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\wrapper\enc.au3", "enc", 10, False, @error, @extended)
 $EditText = GUICtrlCreateEdit('', 5, 5, 380, 350)
-AutoIt_Debugger_FinishedLine("D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\wrapper\enc.au3", "enc", 10, False, @error, @extended)
+AutoIt_Debugger_FinishedLine("D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\wrapper\enc.au3", "enc", 10, False, @error, @extended)
 AutoIt_Debugger_SendVariable("$EditText", $EditText, @error, @extended)
-AutoIt_Debugger_NextLine("D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\wrapper\enc.au3", "enc", 11, False, @error, @extended)
+AutoIt_Debugger_NextLine("D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\wrapper\enc.au3", "enc", 11, False, @error, @extended)
 $InputPass = GUICtrlCreateInput('', 5, 360, 100, 20, 0x21)
-AutoIt_Debugger_FinishedLine("D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\wrapper\enc.au3", "enc", 11, False, @error, @extended)
+AutoIt_Debugger_FinishedLine("D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\wrapper\enc.au3", "enc", 11, False, @error, @extended)
 AutoIt_Debugger_SendVariable("$InputPass", $InputPass, @error, @extended)
 ; Creates main edit
 ; Creates the password box with blured/centered input
 ; These two make the level input with the Up|Down ability
-AutoIt_Debugger_NextLine("D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\wrapper\enc.au3", "enc", 15, False, @error, @extended)
+AutoIt_Debugger_NextLine("D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\wrapper\enc.au3", "enc", 15, False, @error, @extended)
 $EncryptButton = GUICtrlCreateButton('Encrypt', 170, 360, 105, 35)
-AutoIt_Debugger_FinishedLine("D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\wrapper\enc.au3", "enc", 15, False, @error, @extended)
+AutoIt_Debugger_FinishedLine("D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\wrapper\enc.au3", "enc", 15, False, @error, @extended)
 AutoIt_Debugger_SendVariable("$EncryptButton", $EncryptButton, @error, @extended)
 ; Encryption button
-AutoIt_Debugger_NextLine("D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\wrapper\enc.au3", "enc", 17, False, @error, @extended)
+AutoIt_Debugger_NextLine("D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\wrapper\enc.au3", "enc", 17, False, @error, @extended)
 $DecryptButton = GUICtrlCreateButton('Decrypt', 285, 360, 105, 35)
-AutoIt_Debugger_FinishedLine("D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\wrapper\enc.au3", "enc", 17, False, @error, @extended)
+AutoIt_Debugger_FinishedLine("D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\wrapper\enc.au3", "enc", 17, False, @error, @extended)
 AutoIt_Debugger_SendVariable("$DecryptButton", $DecryptButton, @error, @extended)
 ; Decryption button
 ; Simple text labels so you know what is what
-AutoIt_Debugger_NextLine("D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\wrapper\enc.au3", "enc", 20, False, @error, @extended)
+AutoIt_Debugger_NextLine("D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\wrapper\enc.au3", "enc", 20, False, @error, @extended)
 GUISetState()
-AutoIt_Debugger_FinishedLine("D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\wrapper\enc.au3", "enc", 20, False, @error, @extended)
+AutoIt_Debugger_FinishedLine("D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\wrapper\enc.au3", "enc", 20, False, @error, @extended)
 ; Shows window
 
-AutoIt_Debugger_NextLine("D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\wrapper\enc.au3", "enc", 23, False, @error, @extended)
+AutoIt_Debugger_NextLine("D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\wrapper\enc.au3", "enc", 23, False, @error, @extended)
 Do
-AutoIt_Debugger_FinishedLine("D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\wrapper\enc.au3", "enc", 23, False, @error, @extended)
-AutoIt_Debugger_NextLine("D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\wrapper\enc.au3", "enc", 24, False, @error, @extended)
+AutoIt_Debugger_FinishedLine("D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\wrapper\enc.au3", "enc", 23, False, @error, @extended)
+AutoIt_Debugger_NextLine("D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\wrapper\enc.au3", "enc", 24, False, @error, @extended)
 	$Msg = GUIGetMsg()
-AutoIt_Debugger_FinishedLine("D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\wrapper\enc.au3", "enc", 24, False, @error, @extended)
+AutoIt_Debugger_FinishedLine("D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\wrapper\enc.au3", "enc", 24, False, @error, @extended)
 AutoIt_Debugger_SendVariable("$Msg", $Msg, @error, @extended)
-AutoIt_Debugger_NextLine("D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\wrapper\enc.au3", "enc", 25, False, @error, @extended)
+AutoIt_Debugger_NextLine("D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\wrapper\enc.au3", "enc", 25, False, @error, @extended)
 	If $Msg = $EncryptButton Then
-AutoIt_Debugger_FinishedLine("D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\wrapper\enc.au3", "enc", 25, False, @error, @extended)
+AutoIt_Debugger_FinishedLine("D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\wrapper\enc.au3", "enc", 25, False, @error, @extended)
 AutoIt_Debugger_SendVariable("$Msg", $Msg, @error, @extended)
 AutoIt_Debugger_SendVariable("$EncryptButton", $EncryptButton, @error, @extended)
-AutoIt_Debugger_NextLine("D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\wrapper\enc.au3", "enc", 26, False, @error, @extended)
+AutoIt_Debugger_NextLine("D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\wrapper\enc.au3", "enc", 26, False, @error, @extended)
 		GUISetState(@SW_DISABLE, $WinMain) ; Stops you from changing anything
-AutoIt_Debugger_FinishedLine("D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\wrapper\enc.au3", "enc", 26, False, @error, @extended)
+AutoIt_Debugger_FinishedLine("D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\wrapper\enc.au3", "enc", 26, False, @error, @extended)
 AutoIt_Debugger_SendVariable("$WinMain", $WinMain, @error, @extended)
-AutoIt_Debugger_NextLine("D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\wrapper\enc.au3", "enc", 27, False, @error, @extended)
+AutoIt_Debugger_NextLine("D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\wrapper\enc.au3", "enc", 27, False, @error, @extended)
 		$string = GUICtrlRead($EditText) ; Saves the editbox for later
-AutoIt_Debugger_FinishedLine("D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\wrapper\enc.au3", "enc", 27, False, @error, @extended)
+AutoIt_Debugger_FinishedLine("D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\wrapper\enc.au3", "enc", 27, False, @error, @extended)
 AutoIt_Debugger_SendVariable("$string", $string, @error, @extended)
 AutoIt_Debugger_SendVariable("$EditText", $EditText, @error, @extended)
-AutoIt_Debugger_NextLine("D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\wrapper\enc.au3", "enc", 28, False, @error, @extended)
+AutoIt_Debugger_NextLine("D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\wrapper\enc.au3", "enc", 28, False, @error, @extended)
 		GUICtrlSetData($EditText, 'Please wait while the text is Encrypted/Decrypted.') ; Friendly message
-AutoIt_Debugger_FinishedLine("D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\wrapper\enc.au3", "enc", 28, False, @error, @extended)
+AutoIt_Debugger_FinishedLine("D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\wrapper\enc.au3", "enc", 28, False, @error, @extended)
 AutoIt_Debugger_SendVariable("$EditText", $EditText, @error, @extended)
-AutoIt_Debugger_NextLine("D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\wrapper\enc.au3", "enc", 29, False, @error, @extended)
+AutoIt_Debugger_NextLine("D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\wrapper\enc.au3", "enc", 29, False, @error, @extended)
 		$sen = sen($string, GUICtrlRead($InputPass))
-AutoIt_Debugger_FinishedLine("D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\wrapper\enc.au3", "enc", 29, False, @error, @extended)
+AutoIt_Debugger_FinishedLine("D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\wrapper\enc.au3", "enc", 29, False, @error, @extended)
 AutoIt_Debugger_SendVariable("$sen", $sen, @error, @extended)
 AutoIt_Debugger_SendVariable("$string", $string, @error, @extended)
 AutoIt_Debugger_SendVariable("$InputPass", $InputPass, @error, @extended)
-AutoIt_Debugger_NextLine("D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\wrapper\enc.au3", "enc", 30, False, @error, @extended)
+AutoIt_Debugger_NextLine("D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\wrapper\enc.au3", "enc", 30, False, @error, @extended)
 		GUICtrlSetData($EditText, BinaryToString($sen))
-AutoIt_Debugger_FinishedLine("D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\wrapper\enc.au3", "enc", 30, False, @error, @extended)
+AutoIt_Debugger_FinishedLine("D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\wrapper\enc.au3", "enc", 30, False, @error, @extended)
 AutoIt_Debugger_SendVariable("$EditText", $EditText, @error, @extended)
 AutoIt_Debugger_SendVariable("$sen", $sen, @error, @extended)
 		; Calls the encryption. Sets the data of editbox with the encrypted string
 		; The encryption starts with 1/0 to tell it to encrypt/decrypt
 		; The encryption then has the string that we saved for later from edit box
 		; It then reads the password box & Reads the level box
-AutoIt_Debugger_NextLine("D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\wrapper\enc.au3", "enc", 35, False, @error, @extended)
+AutoIt_Debugger_NextLine("D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\wrapper\enc.au3", "enc", 35, False, @error, @extended)
 		GUISetState(@SW_ENABLE, $WinMain) ; This turns the window back on
-AutoIt_Debugger_FinishedLine("D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\wrapper\enc.au3", "enc", 35, False, @error, @extended)
+AutoIt_Debugger_FinishedLine("D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\wrapper\enc.au3", "enc", 35, False, @error, @extended)
 AutoIt_Debugger_SendVariable("$WinMain", $WinMain, @error, @extended)
-AutoIt_Debugger_NextLine("D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\wrapper\enc.au3", "enc", 36, False, @error, @extended)
+AutoIt_Debugger_NextLine("D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\wrapper\enc.au3", "enc", 36, False, @error, @extended)
 	EndIf
-AutoIt_Debugger_FinishedLine("D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\wrapper\enc.au3", "enc", 36, False, @error, @extended)
-AutoIt_Debugger_NextLine("D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\wrapper\enc.au3", "enc", 37, False, @error, @extended)
+AutoIt_Debugger_FinishedLine("D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\wrapper\enc.au3", "enc", 36, False, @error, @extended)
+AutoIt_Debugger_NextLine("D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\wrapper\enc.au3", "enc", 37, False, @error, @extended)
 	If $Msg = $DecryptButton Then
-AutoIt_Debugger_FinishedLine("D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\wrapper\enc.au3", "enc", 37, False, @error, @extended)
+AutoIt_Debugger_FinishedLine("D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\wrapper\enc.au3", "enc", 37, False, @error, @extended)
 AutoIt_Debugger_SendVariable("$Msg", $Msg, @error, @extended)
 AutoIt_Debugger_SendVariable("$DecryptButton", $DecryptButton, @error, @extended)
-AutoIt_Debugger_NextLine("D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\wrapper\enc.au3", "enc", 38, False, @error, @extended)
+AutoIt_Debugger_NextLine("D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\wrapper\enc.au3", "enc", 38, False, @error, @extended)
 		GUISetState(@SW_DISABLE, $WinMain) ; Stops you from changing anything
-AutoIt_Debugger_FinishedLine("D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\wrapper\enc.au3", "enc", 38, False, @error, @extended)
+AutoIt_Debugger_FinishedLine("D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\wrapper\enc.au3", "enc", 38, False, @error, @extended)
 AutoIt_Debugger_SendVariable("$WinMain", $WinMain, @error, @extended)
-AutoIt_Debugger_NextLine("D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\wrapper\enc.au3", "enc", 39, False, @error, @extended)
+AutoIt_Debugger_NextLine("D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\wrapper\enc.au3", "enc", 39, False, @error, @extended)
 		$string = GUICtrlRead($EditText) ; Saves the editbox for later
-AutoIt_Debugger_FinishedLine("D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\wrapper\enc.au3", "enc", 39, False, @error, @extended)
+AutoIt_Debugger_FinishedLine("D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\wrapper\enc.au3", "enc", 39, False, @error, @extended)
 AutoIt_Debugger_SendVariable("$string", $string, @error, @extended)
 AutoIt_Debugger_SendVariable("$EditText", $EditText, @error, @extended)
-AutoIt_Debugger_NextLine("D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\wrapper\enc.au3", "enc", 40, False, @error, @extended)
+AutoIt_Debugger_NextLine("D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\wrapper\enc.au3", "enc", 40, False, @error, @extended)
 		GUICtrlSetData($EditText, 'Please wait while the text is Encrypted/Decrypted.') ; Friendly message
-AutoIt_Debugger_FinishedLine("D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\wrapper\enc.au3", "enc", 40, False, @error, @extended)
+AutoIt_Debugger_FinishedLine("D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\wrapper\enc.au3", "enc", 40, False, @error, @extended)
 AutoIt_Debugger_SendVariable("$EditText", $EditText, @error, @extended)
-AutoIt_Debugger_NextLine("D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\wrapper\enc.au3", "enc", 41, False, @error, @extended)
+AutoIt_Debugger_NextLine("D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\wrapper\enc.au3", "enc", 41, False, @error, @extended)
 		GUICtrlSetData($EditText, BinaryToString(sde($string, GUICtrlRead($InputPass))))
-AutoIt_Debugger_FinishedLine("D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\wrapper\enc.au3", "enc", 41, False, @error, @extended)
+AutoIt_Debugger_FinishedLine("D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\wrapper\enc.au3", "enc", 41, False, @error, @extended)
 AutoIt_Debugger_SendVariable("$EditText", $EditText, @error, @extended)
 AutoIt_Debugger_SendVariable("$string", $string, @error, @extended)
 AutoIt_Debugger_SendVariable("$InputPass", $InputPass, @error, @extended)
@@ -138,16 +138,16 @@ AutoIt_Debugger_SendVariable("$InputPass", $InputPass, @error, @extended)
 		; The encryption starts with 1/0 to tell it to encrypt/decrypt
 		; The encryption then has the string that we saved for later from edit box
 		; It then reads the password box & Reads the level box
-AutoIt_Debugger_NextLine("D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\wrapper\enc.au3", "enc", 46, False, @error, @extended)
+AutoIt_Debugger_NextLine("D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\wrapper\enc.au3", "enc", 46, False, @error, @extended)
 		GUISetState(@SW_ENABLE, $WinMain) ; This turns the window back on
-AutoIt_Debugger_FinishedLine("D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\wrapper\enc.au3", "enc", 46, False, @error, @extended)
+AutoIt_Debugger_FinishedLine("D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\wrapper\enc.au3", "enc", 46, False, @error, @extended)
 AutoIt_Debugger_SendVariable("$WinMain", $WinMain, @error, @extended)
-AutoIt_Debugger_NextLine("D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\wrapper\enc.au3", "enc", 47, False, @error, @extended)
+AutoIt_Debugger_NextLine("D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\wrapper\enc.au3", "enc", 47, False, @error, @extended)
 	EndIf
-AutoIt_Debugger_FinishedLine("D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\wrapper\enc.au3", "enc", 47, False, @error, @extended)
-AutoIt_Debugger_NextLine("D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\wrapper\enc.au3", "enc", 48, False, @error, @extended)
+AutoIt_Debugger_FinishedLine("D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\wrapper\enc.au3", "enc", 47, False, @error, @extended)
+AutoIt_Debugger_NextLine("D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\wrapper\enc.au3", "enc", 48, False, @error, @extended)
 Until $Msg = $GUI_EVENT_CLOSE ; Continue loop untill window is closed
-AutoIt_Debugger_FinishedLine("D:\Documents and Settings\Maverick\Desktop\thumb\anthraxsvn\wrapper\enc.au3", "enc", 48, False, @error, @extended)
+AutoIt_Debugger_FinishedLine("D:\Documents and Settings\Maverick\Desktop\thumb\PixelSoftsvn\wrapper\enc.au3", "enc", 48, False, @error, @extended)
 AutoIt_Debugger_SendVariable("$Msg", $Msg, @error, @extended)
 AutoIt_Debugger_SendVariable("$GUI_EVENT_CLOSE", $GUI_EVENT_CLOSE, @error, @extended)
 

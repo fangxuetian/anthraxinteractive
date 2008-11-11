@@ -16,7 +16,7 @@ Func wrap($an, $lk1, $ek1, $tt, $tty, $web)
 	$ek = $ek1
 	$serials = getserials($web)
 	$lk = $lk1
-	$reg = "HKLM\Software\Anthrax Interactive\" & $an
+	$reg = "HKLM\Software\PixelSoft\" & $an
 	$lkey = RegRead($reg, "key")
 	If $lkey = "trial" Then
 		$trial = 1

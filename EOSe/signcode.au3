@@ -1,7 +1,7 @@
 ; Initialize error handler
 ;~ $oMyError = ObjEvent("AutoIt.Error","MyErrFunc")
 
-$Script = "C:\Users\maverick\Desktop\thumb\anthrax\Anthrax EOSe\start.vbs"
+$Script = "C:\Users\maverick\Desktop\thumb\PixelSoft\PixelSoft EOSe\start.vbs"
 
 ; --------------------------------- Sign it ----------------------------------
 $oSigner = ObjCreate("Scripting.Signer")
