@@ -10,7 +10,7 @@ Const $N_MAXSOCKETS = 25
 Const $N_DEFAULTPORT = 42775
 Const $N_MAXRECV = 65536
 Const $N_WAITCLOSE = 2000
-Const $N_WAITWORK = 750
+Const $N_WAITWORK = 10
 ;;;
 Dim $hListenSocket
 Dim $hSockets[ $N_MAXSOCKETS ]
