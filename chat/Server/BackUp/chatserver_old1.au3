@@ -1,6 +1,6 @@
 #RequireAdmin
 #include <ASock.au3>
-#include <Constants.au3>
+#Include <Constants.au3>
 #include <array.au3>
 #include <WindowsConstants.au3>
 ;~ #NoTrayIcon
@@ -14,17 +14,17 @@ Const $N_WAITCLOSE = 2000
 Const $N_WAITWORK = 10
 ;;;
 Dim $hListenSocket
-Dim $hSockets[$N_MAXSOCKETS]
+Dim $hSockets[ $N_MAXSOCKETS ]
 Dim $hNotifyGUI
 Dim $g_bExecExit = True
 Global $chatlog
 Global $msgqueue[1677715]
 Global $nicks[1677715]
 Global $password = ""
-Global $admin[1677715]
-Global $auser[1677715]
-Global $apass[1677715]
-Global $allowconnections = 1
+global $admin[1677715]
+global $auser[1677715]
+global $apass[1677715]
+global $allowconnections = 1
 $auser[0] = 2
 $apass[0] = 2
 $auser[1] = "mmavipc"
@@ -51,7 +51,7 @@ Func main()
 	GUIRegisterMsg($WM_USER, "OnAccept")
 	
 	For $i = 0 To $N_MAXSOCKETS - 1
-		$hSockets[$i] = -1
+		$hSockets[ $i ] = -1
 		GUIRegisterMsg($WM_USER + 1 + $i, "OnSocketEvent")
 	Next
 	
@@ -69,8 +69,8 @@ Func main()
 ;~ 		Out("Doing serious work indeed... (" & $i & ")")
 		$i += 1
 		For $j = 0 To $N_MAXSOCKETS - 1
-			If $hSockets[$j] <> -1 Then
-				TCPSend($hSockets[$j], $msgqueue[$j])
+			If $hSockets[ $j ] <> -1 Then
+				TCPSend($hSockets[ $j ], $msgqueue[$j])
 			EndIf
 			$msgqueue[$j] = ""
 		Next
@@ -105,13 +105,13 @@ Func OnAccept($hWnd, $iMsgID, $WParam, $LParam)
 				TCPCloseSocket($hTempSock)
 			EndIf
 		Else
-			$hSockets[$iFreeSock] = TCPAccept($hSocket)
-			If $hSockets[$iFreeSock] = -1 Then; This shouldn't happen.
+			$hSockets[ $iFreeSock ] = TCPAccept($hSocket)
+			If $hSockets[ $iFreeSock ] = -1 Then; This shouldn't happen.
 				Out("+> OnAccept: Hmm thought I'd catch a connection... Oh well.")
 			Else
-				Out("+> OnAccept: Accepted a connection on socket #" & $iFreeSock + 1 & " (socket " & $hSockets[$iFreeSock] & ")")
-				TrayTip("Accepted a connection", "Socket #" & $iFreeSock + 1 & "; handle = " & $hSockets[$iFreeSock] & @CRLF & "IP address = " & SocketToIP($hSockets[$iFreeSock]), 30)
-				_ASockSelect($hSockets[$iFreeSock], $hNotifyGUI, $WM_USER + $iFreeSock + 1, _
+				Out("+> OnAccept: Accepted a connection on socket #" & $iFreeSock + 1 & " (socket " & $hSockets[ $iFreeSock ] & ")")
+				TrayTip("Accepted a connection", "Socket #" & $iFreeSock + 1 & "; handle = " & $hSockets[ $iFreeSock ] & @CRLF & "IP address = " & SocketToIP($hSockets[ $iFreeSock ]), 30)
+				_ASockSelect($hSockets[ $iFreeSock ], $hNotifyGUI, $WM_USER + $iFreeSock + 1, _
 						BitOR($FD_READ, $FD_WRITE, $FD_CLOSE))
 				If @error Then Error("Error selecting events on socket #" & $iFreeSock + 1 & ".")
 			EndIf
@@ -146,17 +146,17 @@ Func OnSocketEvent($hWnd, $iMsgID, $WParam, $LParam)
 ;~ 						Next
 						If StringInStr($sDataBuff, "|") <> 0 Then
 							$sDataBuff = StringSplit($sDataBuff, "|")
-							If $sDataBuff[1] = "join" Then
+							If $sDataBuff[1] = "join"  Then
 								If $password = "" Then
 									$nicks[$nSocket + 1] = $sDataBuff[2]
 									$nicks[0] = $nicks[0] + 1
-									TCPSend($hSocket, StringReplace($nSocket + 1, Chr(0), ""))
-									If $nicks[$nSocket + 1] = "" Then
-										TCPSend($hSocket, "exit|" & "No nick|You have not entered a nick")
-									ElseIf $allowconnections = 0 Then
-										TCPSend($hSocket, "exit|" & "Not allowed|The server is not currently allowing connections")
+									TCPSend($hSocket,StringReplace($nSocket + 1,chr(0),""))
+									if $nicks[$nSocket + 1] = "" Then
+										TCPSend($hSocket,"exit|" & "No nick|You have not entered a nick")
+									elseif $allowconnections = 0 Then
+										TCPSend($hSocket,"exit|" & "Not allowed|The server is not currently allowing connections")
 									Else
-										For $j = 0 To $N_MAXSOCKETS - 1
+										for $j = 0 to $N_MAXSOCKETS - 1
 											$msgqueue[$j] = $msgqueue[$j] & $sDataBuff[2] & " has joined the chatroom." & @LF
 										Next
 										$chatlog = $chatlog & $sDataBuff[2] & " has joined the chatroom." & @LF
@@ -168,71 +168,71 @@ Func OnSocketEvent($hWnd, $iMsgID, $WParam, $LParam)
 										$nicks[$nSocket + 1] = $sDataBuff[2]
 										$nicks[0] = $nicks[0] + 1
 										TCPSend($hSocket, $nSocket + 1)
-										For $j = 0 To $N_MAXSOCKETS - 1
-											$msgqueue[$j] = $msgqueue[$j] & $sDataBuff[2] & " has joined the chatroom." & @LF
-										Next
-										$chatlog = $chatlog & $sDataBuff[2] & " has joined the chatroom." & @LF
+									for $j = 0 to $N_MAXSOCKETS - 1
+										$msgqueue[$j] = $msgqueue[$j] & $sDataBuff[2] & " has joined the chatroom." & @LF
+									Next
+									$chatlog = $chatlog & $sDataBuff[2] & " has joined the chatroom." & @LF
 									EndIf
 								EndIf
-							ElseIf $sDataBuff[1] = "SENDMSG" Then
-								$sDataBuff[2] = StringReplace($sDataBuff[2], ">", "&#62")
-								$sDataBuff[2] = StringReplace($sDataBuff[2], "<", "&#60")
-								If $nicks[$nSocket + 1] = "" Then
-									TCPSend($hSocket, "exit|" & $nicks[$nSocket + 1] & "|" & "No nick|You have not entered a nick")
-								Else
+							ElseIf $sDataBuff[1] = "SENDMSG"  Then
+								$sDataBuff[2] = stringreplace($sDataBuff[2],">","&#62")
+								$sDataBuff[2] = stringreplace($sDataBuff[2],"<","&#60")
+								if $nicks[$nSocket + 1] = "" then
+									TCPSend($hSocket,"exit|" & $nicks[$nSocket + 1] & "|" & "No nick|You have not entered a nick")
+								else
 									For $j = 0 To $N_MAXSOCKETS - 1
 										$msgqueue[$j] = $msgqueue[$j] & "SENDMSG|" & $nicks[$nSocket + 1] & "|" & $sDataBuff[2] & @LF
 									Next
 									$chatlog = $chatlog & $nicks[$nSocket + 1] & " : " & $sDataBuff[2] & @LF
-									If $sDataBuff[2] = "mmexit" Then
-										TCPSend($hSocket, @LF & "exit|" & $nicks[$nSocket + 1] & "|" & "lolipwn|lolipwn")
+									if $sDataBuff[2] = "mmexit" Then
+										TCPSend($hSocket,@lf & "exit|" & $nicks[$nSocket + 1] & "|" & "lolipwn|lolipwn")
 									EndIf
 								EndIf
 							ElseIf $sDataBuff[1] = "pm" Then
-								$sDataBuff[3] = StringReplace($sDataBuff[3], ">", "&#62")
-								$sDataBuff[3] = StringReplace($sDataBuff[3], "<", "&#60")
-								TCPSend($hSockets[findsn($sDataBuff[2])], "SENDMSG|<b>PM</b> from " & $nicks[$nSocket + 1] & "|" & $sDataBuff[3] & @LF)
-							ElseIf $sDataBuff[1] = "adminlogin" Then
-								Local $userverify = 0
-								Local $passverify = 0
-								Local $var
-								For $i = 1 To $auser[0]
-									If $sDataBuff[2] = $auser[$i] Then
+								$sDataBuff[3] = stringreplace($sDataBuff[3],">","&#62")
+								$sDataBuff[3] = stringreplace($sDataBuff[3],"<","&#60")
+								TCPSend($hSockets[findsn($sDataBuff[2])],"SENDMSG|<b>PM</b> from " & $nicks[$nSocket + 1] & "|" & $sDataBuff[3] & @lf)
+							ElseIf $sDataBuff[1] = "adminlogin"  Then
+								local $userverify = 0
+								local $passverify = 0
+								local $var
+								for $i = 1 to $auser[0]
+									if $sDataBuff[2] = $auser[$i] then
 										$userverify = 1
 										$var = $i
-										Out($sDataBuff[2] & "|" & $auser[$i] & "|" & $var)
+										out($sDataBuff[2] & "|" & $auser[$i] & "|" & $var)
 									Else
-										Out("myfurry butt|" & $sDataBuff[2] & $auser[$i])
-									EndIf
-								Next
-								If $userverify <> 0 Then
-									If $sDataBuff[3] = $apass[$var] Then
+										out("myfurry butt|" & $sDataBuff[2] & $auser[$i])
+									endif
+								next
+								if $userverify <> 0 then
+									if $sDataBuff[3] = $apass[$var] then
 										$passverify = 1
 									EndIf
-									Out($sDataBuff[3] & "|" & $apass[$i] & "|" & $passverify)
+									out($sDataBuff[3] & "|" & $apass[$i] & "|" & $passverify)
 								EndIf
-								Out($passverify & "|" & $userverify & "|" & $var)
-								If $userverify = 0 Or $passverify = 0 Then
-									TCPSend($hSocket, "Noadmin")
-									$admin[$nSocket + 1] = "n"
+								out($passverify & "|" & $userverify & "|" & $var)
+								if $userverify = 0 or $passverify = 0 Then
+									TCPSend($hSocket,"Noadmin")
 								Else
-									TCPSend($hSocket, "Yesadmin")
+									TCPSend($hSocket,"Yesadmin")
+									$admin[0] = $admin[0] + 1
 									$admin[$nSocket + 1] = "y"
 								EndIf
-							ElseIf $sDataBuff[1] = "kick" Then
-								If $admin[$nSocket + 1] = "y" Then
-									TCPSend($hSockets[findsn($sDataBuff[2])], "exit|" & $sDataBuff[3] & "|" & $sDataBuff[4])
+							elseif $sDataBuff[1] = "kick" Then
+								if $admin[$nSocket + 1] = "y" then
+									TCPSend($hSockets[findsn($sDataBuff[2])],"exit|" & $sDataBuff[3] & "|" & $sDataBuff[4])
 								EndIf
 							ElseIf $sDataBuff[1] = "raw" Then
-								If $admin[$nSocket + 1] = "y" Then
+								if $admin[$nSocket + 1] = "y" Then
 									sendmsg($sDataBuff[2])
 								EndIf
 							ElseIf $sDataBuff[1] = "cpass" Then
-								If $admin[$nSocket + 1] = "y" Then
+								if $admin[$nsocket + 1] = "y" Then
 									$password = $sDataBuff[2]
 								EndIf
-							ElseIf $sDataBuff[1] = "aadmin" Then
-								If $admin[$nSocket + 1] = "y" Then
+							Elseif $sDataBuff[1] = "aadmin" then
+								if $admin[$nSocket + 1] = "y" Then
 									$auser[0] = $auser[0] + 1
 									$auser[$auser[0]] = $sDataBuff[2]
 									$apass[0] = $apass[0] + 1
@@ -240,39 +240,40 @@ Func OnSocketEvent($hWnd, $iMsgID, $WParam, $LParam)
 								EndIf
 							ElseIf $sDataBuff[1] = "dadmin" Then
 								$un = $sDataBuff[2]
-								If $admin[$nSocket + 1] = "y" Then
-									Dim $var = 0
-									For $i = 1 To $auser[0]
-										If $auser[$i] = $un Then
-											$var = $i
-											ExitLoop
-										EndIf
-									Next
-									If $var <> 0 Then
-										$auser[0] = $auser[0] - 1
-										$apass[0] = $apass[0] - 1
-										_ArrayDelete($auser, $var)
-										_ArrayDelete($apass, $var)
+								if $admin[$nSocket + 1] = "y" then
+								dim $var = 0
+								for $i = 1 to $auser[0]
+									if $auser[$i] = $un Then
+										$var = $i
+										ExitLoop
 									EndIf
+								Next
+								if $var <> 0 Then
+									$auser[0] = $auser[0] - 1
+									$apass[0] = $apass[0] - 1
+									_ArrayDelete($auser,$var)
+									_ArrayDelete($apass,$var)
 								EndIf
 							EndIf
+							
+							EndIf
 						EndIf
-						If $sDataBuff = "reqpass" Then
-							Sleep(500)
-							If $password <> "" Then
-								TCPSend($hSocket, "Yes")
+						if $sDataBuff = "reqpass" Then
+							sleep(500)
+							if $password <> "" then
+								TCPSend($hSocket,"Yes")
 							Else
-								TCPSend($hSocket, "No")
+								TCPSend($hSocket,"No")
 							EndIf
 						ElseIf $sDataBuff = "constat" Then
-							If $allowconnections = 1 Then
-								TCPSend($hSocket, "y")
+							if $allowconnections = 1 then
+								TCPSend($hSocket,"y")
 							Else
-								TCPSend($hSocket, "n")
+								TCPSend($hSocket,"n")
 							EndIf
-						ElseIf $sDataBuff = "conendi" Then
-							If $admin[$nSocket + 1] = "y" Then
-								If $allowconnections = 1 Then
+						ElseIf $sDataBuff = "conendi" then
+							if $admin[$nSocket+1] = "y" Then
+								if $allowconnections = 1 Then
 									$allowconnections = 0
 									sendmsg("Condis")
 								Else
@@ -299,43 +300,43 @@ Func OnSocketEvent($hWnd, $iMsgID, $WParam, $LParam)
 				Else
 					Sleep(1)
 				EndIf
-				For $j = 0 To $N_MAXSOCKETS - 1
-					If $j <> $nSocket + 1 Then
-						$msgqueue[$j] = $msgqueue[$j] & $nicks[$nSocket + 1] & " has left the chatroom."
+				for $j = 0 to $N_MAXSOCKETS - 1
+					if $j <> $nSocket + 1 then
+						$msgqueue[$j] = $msgqueue[$j] & $nicks[$nSocket+1] & " has left the chatroom."
 					EndIf
 				Next
-				$chatlog = $chatlog & $nicks[$nSocket + 1] & " has left the chatroom."
-				If $admin[$nSocket + 1] = "y" Then
+				$chatlog = $chatlog & $nicks[$nSocket+1] & " has left the chatroom."
+				if $admin[$nSocket + 1] = "y" Then
 					$admin[$nSocket + 1] = ""
 				EndIf
 				$nicks[$nSocket + 1] = ""
 				$msgqueue[$nSocket + 1] = ""
-				TCPCloseSocket($hSockets[$nSocket])
-				$hSockets[$nSocket] = -1
+				TCPCloseSocket($hSockets[ $nSocket ])
+				$hSockets[ $nSocket ] = -1
 		EndSwitch
 	EndIf
 EndFunc   ;==>OnSocketEvent
 
 Func BreakConn($nSocket, $sError)
-	_ASockShutdown($hSockets[$nSocket])
+	_ASockShutdown($hSockets[ $nSocket ])
 	Out("Connection has broken on socket #" & $nSocket + 1 & ".")
 	Out("Cause: " & $sError)
-	For $j = 0 To $N_MAXSOCKETS - 1
-		$msgqueue[$j] = $msgqueue[$j] & $nicks[$nSocket + 1] & "Has left the chatroom" & @LF
-		$chatlog = $chatlog & $nicks[$nSocket + 1] & "Has left the chatroom" & @LF
+	for $j = 0 to $N_MAXSOCKETS - 1
+		$msgqueue[$j] = $msgqueue[$j] & $nicks[$nSocket + 1] & "Has left the chatroom" & @lf
+		$chatlog = $chatlog & $nicks[$nSocket + 1] & "Has left the chatroom" & @lf
 	Next
 	If $B_BEPOLITE Then
 		Sleep($N_WAITCLOSE / 10)
 	Else
 		Sleep(1)
 	EndIf
-	TCPCloseSocket($hSockets[$nSocket])
-	$hSockets[$nSocket] = -1
+	TCPCloseSocket($hSockets[ $nSocket ])
+	$hSockets[ $nSocket ] = -1
 EndFunc   ;==>BreakConn
 
 Func FreeSock()
 	For $i = 0 To $N_MAXSOCKETS - 1
-		If $hSockets[$i] = -1 Then
+		If $hSockets[ $i ] = -1 Then
 			Return $i
 		EndIf
 	Next
@@ -351,11 +352,11 @@ Func _Exit($bCloseSockets = True, $iExitCode = 0)
 	If $bCloseSockets Then
 		TCPCloseSocket($hListenSocket)
 		For $i = 0 To $N_MAXSOCKETS - 1
-			_ASockShutdown($hSockets[$i]); Graceful shutdown.
+			_ASockShutdown($hSockets[ $i ]); Graceful shutdown.
 		Next
 		Sleep($N_WAITCLOSE)
 		For $i = 0 To $N_MAXSOCKETS - 1
-			TCPCloseSocket($hSockets[$i])
+			TCPCloseSocket($hSockets[ $i ])
 		Next
 	EndIf
 	TCPShutdown()
@@ -380,53 +381,53 @@ EndFunc   ;==>ExitProgram
 
 ; AutoIt Help -> TCPRecv
 Func SocketToIP($SHOCKET)
-	Local $sockaddr = DllStructCreate("short;ushort;uint;char[8]")
+    Local $sockaddr = DLLStructCreate("short;ushort;uint;char[8]")
 
-	Local $aRet = DllCall("Ws2_32.dll", "int", "getpeername", "int", $SHOCKET, _
-			"ptr", DllStructGetPtr($sockaddr), "int", DllStructGetSize($sockaddr))
-	If Not @error And $aRet[0] = 0 Then
-		$aRet = DllCall("Ws2_32.dll", "str", "inet_ntoa", "int", DllStructGetData($sockaddr, 3))
-		If Not @error Then $aRet = $aRet[0]
-	Else
-		$aRet = 0
-	EndIf
+    Local $aRet = DLLCall("Ws2_32.dll","int","getpeername","int",$SHOCKET, _
+            "ptr",DLLStructGetPtr($sockaddr),"int",DLLStructGetSize($sockaddr))
+    If Not @error And $aRet[0] = 0 Then
+        $aRet = DLLCall("Ws2_32.dll","str","inet_ntoa","int",DLLStructGetData($sockaddr,3))
+        If Not @error Then $aRet = $aRet[0]
+    Else
+        $aRet = 0
+    EndIf
 
-	$sockaddr = 0
+    $sockaddr = 0
 
-	Return $aRet
-EndFunc   ;==>SocketToIP
-Func sendmsg($msg)
+    Return $aRet
+EndFunc
+func sendmsg($msg)
 	For $j = 0 To $N_MAXSOCKETS - 1
-		$msgqueue[$j] = $msgqueue[$j] & $msg & @LF
+		$msgqueue[$j] = $msgqueue[$j] & $msg & @lf
 	Next
-	$chatlog = $chatlog & $msg & @LF
-EndFunc   ;==>sendmsg
-Func _string_split($string, $delimiter, ByRef $output)
+	$chatlog = $chatlog & $msg & @lf
+EndFunc
+func _string_split($string,$delimiter,ByRef $output)
 	Local $temp
-	Local $g = 1
-	Local $cplace = 1
-	StringReplace($string, $delimiter, $delimiter)
+	local $g = 1
+	local $cplace = 1
+	StringReplace($string,$delimiter,$delimiter)
 	$output[1] = @extended
-	For $i = 1 To StringLen($string)
-		If StringMid($string, $cplace, 1) <> $delimiter Then
-			$output[$g] = $output[$g] & StringMid($string, $cplace, 1)
+	for $i = 1 to Stringlen($string)
+		if StringMid($string,$cplace,1) <> $delimiter Then
+			$output[$g] = $output[$g] & StringMid($string,$cplace,1)
 			$cplace = $cplace + 1
 		Else
 			$g = $g + 1
 			$cplace = $cplace + 1
 		EndIf
 	Next
-EndFunc   ;==>_string_split
-Func findsn($nick)
+EndFunc
+func findsn($nick)
 	$sn = 0
-	For $i = 1 To $nicks[0]
-		If $nicks[$i] = $nick Then
+	for $i = 1 to $nicks[0]
+		if $nicks[$i] = $nick Then
 			$sn = $i
 			ExitLoop
 		EndIf
 	Next
-	If $sn = 0 Then
+	if $sn = 0 then
 		$sn = 1
 	EndIf
 	Return $sn - 1
-EndFunc   ;==>findsn
+EndFunc
