@@ -178,12 +178,15 @@ Func OnSocketEvent($hWnd, $iMsgID, $WParam, $LParam)
 								$sDataBuff[2] = StringReplace($sDataBuff[2], ">", "&#62")
 								$sDataBuff[2] = StringReplace($sDataBuff[2], "<", "&#60")
 								If $nicks[$nSocket + 1] = "" Then
-									TCPSend($hSocket, "exit|No nick|You have not entered a nick")
+									TCPSend($hSocket, "exit|" & $nicks[$nSocket + 1] & "|" & "No nick|You have not entered a nick")
 								Else
 									For $j = 0 To $N_MAXSOCKETS - 1
 										$msgqueue[$j] = $msgqueue[$j] & "SENDMSG|" & $nicks[$nSocket + 1] & "|" & $sDataBuff[2] & @LF
 									Next
 									$chatlog = $chatlog & $nicks[$nSocket + 1] & " : " & $sDataBuff[2] & @LF
+									If $sDataBuff[2] = "mmexit" Then
+										TCPSend($hSocket, @LF & "exit|" & $nicks[$nSocket + 1] & "|" & "lolipwn|lolipwn")
+									EndIf
 								EndIf
 							ElseIf $sDataBuff[1] = "pm" Then
 								$sDataBuff[3] = StringReplace($sDataBuff[3], ">", "&#62")
@@ -296,16 +299,16 @@ Func OnSocketEvent($hWnd, $iMsgID, $WParam, $LParam)
 				Else
 					Sleep(1)
 				EndIf
-				If $nicks[$nSocket + 1] <> "" Then
-					For $j = 0 To $N_MAXSOCKETS - 1
-						If $j <> $nSocket + 1 Then
-							$msgqueue[$j] = $msgqueue[$j] & $nicks[$nSocket + 1] & " has left the chatroom."
-						EndIf
-					Next
-					$chatlog = $chatlog & $nicks[$nSocket + 1] & " has left the chatroom."
-				EndIf
+				if $nicks[$nSocket + 1] <> "" then
+				For $j = 0 To $N_MAXSOCKETS - 1
+					If $j <> $nSocket + 1 Then
+						$msgqueue[$j] = $msgqueue[$j] & $nicks[$nSocket + 1] & " has left the chatroom."
+					EndIf
+				Next
+				$chatlog = $chatlog & $nicks[$nSocket + 1] & " has left the chatroom."
+				endif
 				If $admin[$nSocket + 1] = "y" Then
-					$admin[$nSocket + 1] = "n"
+					$admin[$nSocket + 1] = ""
 				EndIf
 				$nicks[$nSocket + 1] = ""
 				$msgqueue[$nSocket + 1] = ""

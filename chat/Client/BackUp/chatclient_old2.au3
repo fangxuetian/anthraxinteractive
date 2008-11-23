@@ -21,7 +21,7 @@ EndIf
 Dim $ovr
 Dim $ie
 $ie = _IECreateEmbedded()
-$ip = InputBox("", "Enter server address", "127.0.0.1")
+$ip = InputBox("", "Enter server address","127.0.0.1")
 $ip = TCPNameToIP($ip)
 $s = TCPConnect($ip, InputBox("Enter port", "enter port", 42775))
 $nick = InputBox("Nick", "Enter your nick", "Anonymous" & Random(100, 999, 1))
@@ -84,7 +84,7 @@ If $data = "INCPASS" Then
 	Exit (6)
 EndIf
 GUISetState(@SW_SHOW)
-AdlibEnable("msghandler", 50)
+AdlibEnable("msghandler",50)
 While 1
 	If $adminenabled = 1 And $isadminbutenabled = 0 Then
 		showc($Button4)
@@ -205,9 +205,9 @@ Func msghandler()
 				GUICtrlSetState($Checkbox1, $GUI_UNCHECKED)
 			ElseIf $temp[1] = "conena" Then
 				GUICtrlSetState($Checkbox1, $GUI_CHECKED)
-			ElseIf $temp[1] = "yesadmin" Then
+			ElseIf $temp[1] = "yesadmin" then
 				$adminenabled = 1
-			ElseIf $temp[1] = "noadmin" Then
+			ElseIf $temp[1] = "noadmin" then
 				$adminenabled = 0
 			Else
 				out($temp[1])
