@@ -1,4 +1,4 @@
-; dlltool --base-file D:\DOCUME~1\Maverick\LOCALS~1\Temp/cca10304.base --output-exp emdll.exp --dllname emdll.dll --output-def libemdll.def --no-export-all-symbols --add-stdcall-alias --exclude-symbol=DllMainCRTStartup@12 --def D:\DOCUME~1\Maverick\LOCALS~1\Temp/cca10304.def --output-lib libemdll.a
+; dlltool --base-file D:\DOCUME~1\Maverick\LOCALS~1\Temp/cca05672.base --output-exp emdll.exp --dllname emdll.dll --output-def libemdll.def --no-export-all-symbols --add-stdcall-alias --exclude-symbol=DllMainCRTStartup@12 --def D:\DOCUME~1\Maverick\LOCALS~1\Temp/cca05672.def --output-lib libemdll.a
 EXPORTS
 	AU3_GetPluginDetails @ 1
 	sen @ 2

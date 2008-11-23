@@ -213,10 +213,10 @@ TopLine=1
 LeftChar=1
 [Editor_29]
 Open=1
-Top=0
-CursorCol=3
-CursorRow=14
-TopLine=472
+Top=1
+CursorCol=13
+CursorRow=69
+TopLine=40
 LeftChar=1
 [Editor_30]
 Open=0
@@ -240,8 +240,8 @@ CursorRow=1
 TopLine=1
 LeftChar=1
 [Editor_33]
-Open=1
-Top=1
+Open=0
+Top=0
 CursorCol=1
 CursorRow=1
 TopLine=274
@@ -468,7 +468,7 @@ CursorCol=1
 CursorRow=45
 TopLine=1
 LeftChar=1
-Open=1
+Open=0
 Top=0
 [Editor_67]
 Open=0

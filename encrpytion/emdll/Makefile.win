@@ -7,12 +7,12 @@ WINDRES = windres.exe
 RES  = 
 OBJ  = dllmain.o au3plugin.o $(RES)
 LINKOBJ  = dllmain.o au3plugin.o $(RES)
-LIBS =  -L"D:/Dev-Cpp/lib" --no-export-all-symbols --add-stdcall-alias  -g3 -mwindows -fmessage-length=0 -s -mmmx 
+LIBS =  -L"D:/Dev-Cpp/lib" -g --no-export-all-symbols --add-stdcall-alias  -g3 -mwindows -fmessage-length=0 -s -mmmx 
 INCS =  -I"D:/Dev-Cpp/include" 
 CXXINCS =  -I"D:/Dev-Cpp/lib/gcc/mingw32/3.4.2/include"  -I"D:/Dev-Cpp/include/c++/3.4.2/backward"  -I"D:/Dev-Cpp/include/c++/3.4.2/mingw32"  -I"D:/Dev-Cpp/include/c++/3.4.2"  -I"D:/Dev-Cpp/include" 
 BIN  = emdll.dll
-CXXFLAGS = $(CXXINCS) -DBUILDING_DLL=1   -fexceptions -O3 -g3 -mwindows -fmessage-length=0 -mmmx
-CFLAGS = $(INCS) -DBUILDING_DLL=1   -fexceptions -O3 -g3 -mwindows -fmessage-length=0 -mmmx
+CXXFLAGS = $(CXXINCS) -DBUILDING_DLL=1   -g -fexceptions -O3 -g3 -mwindows -fmessage-length=0 -mmmx
+CFLAGS = $(INCS) -DBUILDING_DLL=1   -g -fexceptions -O3 -g3 -mwindows -fmessage-length=0 -mmmx
 RM = rm -f
 
 .PHONY: all all-before all-after clean clean-custom

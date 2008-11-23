@@ -3,16 +3,16 @@
 #include <string>
 #include <fstream>
 #include <sstream>
+#include <string.h>
 using namespace std;
 
 int main(int argc, char *argv[])
 {
-    string l;
-    l = "lofl";
-    if (l!="lol"){
-       cout << "lolz\n";
-    }
-    cout << l << "\n";
+    string lol;
+    lol = "pie";
+    lol = "lol" + lol;
+    char loll[999] = lol.c_str;
+    cout << "lol\n" << (int)strlen(loll);
     system("PAUSE");
     return EXIT_SUCCESS;
 }
