@@ -97,5 +97,5 @@ Func sde($et, $lol = "")
 			$rt = $rt & StringMid($an, $ets[$i] - 1, 1)
 		EndIf
 	Next
-	return $rt
+	Return binary($rt)
 EndFunc   ;==>sde

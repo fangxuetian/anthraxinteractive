@@ -1,7 +1,7 @@
 #include "controlhover.au3"
 Func interface($username)
 	Local $Allow_Move
-	Local $icons[16277715]
+	local $icons[16277715]
 	$int = GUICreate("PixelSoft EOSe", @DesktopWidth, @DesktopHeight, 0, 0, 0x80000000 + 0x00800000)
 	$exit = GUICtrlCreateButton("Exit", 5, @DesktopHeight - 35)
 	$logoff = GUICtrlCreateButton("Logoff", 30, @DesktopHeight - 35)
@@ -89,6 +89,10 @@ Func interface($username)
 					$u = InputBox("Input", "Enter the username to Change pass of.")
 					$p = InputBox("Input", "Enter the new pass.")
 					$mpc = "," & InputBox("PixelSoft EOSe", "Enter the master password. No repeating letters or errors will occur.", "", "*")
+					$c = MsgBox(4, "Confirmination", "Are you sure you want to delete the user " & $u & "?")
+					If $c = 7 Then
+						ContinueCase
+					EndIf
 					If $mpc == $mp Then
 						If $u <> "admim" Then
 							Dim $var
@@ -121,6 +125,7 @@ Func interface($username)
 							MsgBox(16, "Error", "Admin account cannot be deleted.")
 						EndIf
 					EndIf
+					
 				EndIf
 		EndSwitch
 	WEnd

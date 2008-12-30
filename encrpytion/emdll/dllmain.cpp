@@ -44,9 +44,11 @@ AU3_PLUGIN_DEFINE(sen)
     string lol;
     string rt;
     string anm;
+    string cl;
+    int cp;
     pt = AU3_GetString(&p_AU3_Params[0]);   
     lol = AU3_GetString(&p_AU3_Params[1]);
-    char an("9abcdefghijklmnopqrstuvwxyz| .=-\\)(*&^%{}$#@!~/+,'"":;><?[]_ABCDEFGHIJKLMNOPQRSTUVWXYZ012345678");
+    string an("9abcdefghijklmnopqrstuvwxyz| .=-\\)(*&^%{}$#@!~/+,'"":;><?[]_ABCDEFGHIJKLMNOPQRSTUVWXYZ012345678");
     string a1;
     string a2;
     for (int i=0;i<31;i++){
@@ -66,7 +68,9 @@ AU3_PLUGIN_DEFINE(sen)
     an = a1;
     an+=anm;
     an+=a2;
-    
+    for (int i=1;i<pt.size();i++){
+        cl ="";
+    }
    	pMyResult = AU3_AllocVar();
 	AU3_SetString(pMyResult, rt.data());
 	*p_AU3_Result		= pMyResult;
