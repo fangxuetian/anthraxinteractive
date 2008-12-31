@@ -21,7 +21,7 @@ If $cmdline[0] <> 0 Then
 		$upasswd = $cmdline[2]
 		_lock()
 	EndIf
-Else
+	Else
 	_passwdset()
 EndIf
 MsgBox(0, "Info", "You can change the password at any time by right clicking the tray icon and click set password. to lock your Desktop right click the tray icon and click lock. To unlock your Desktop while it's locked press p.")
